@@ -13,6 +13,8 @@
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/font-awesome/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,5 +40,27 @@
       </div>
     </nav>
 
+   <div class="container" style="padding:10px 0px;">
+     <table id="studentTable">
+      <thead>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+	  <td>Reno</td>
+	  <td>Valdes</td>
+        </tr>
+      </tbody>
+     </table>
+   </div>
 </body>
 </html>
+
+<script>
+ $(document).ready(function() {
+    $('#studentTable').DataTable();
+   } );
+</script>
