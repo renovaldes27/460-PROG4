@@ -16,9 +16,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Controller
-public class GreetingController {
+public class AppController {
 
-	@Autowired
+    @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
@@ -28,12 +28,9 @@ public class GreetingController {
     }
 
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        String sql = "insert into aakashrathore.people values (?)";
-        jdbcTemplate.update(sql, name);
-        return "greeting";
+    @GetMapping("/students")
+    public String greeting() {
+
     }
 
 }
