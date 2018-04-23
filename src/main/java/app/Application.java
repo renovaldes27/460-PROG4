@@ -39,6 +39,7 @@ public class Application implements CommandLineRunner{
         ds.setPassword("a4671");
         return ds;
     }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
