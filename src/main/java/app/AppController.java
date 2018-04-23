@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -29,8 +33,9 @@ public class AppController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @GetMapping("/students")
-    public Student greeting() {
+    @RequestMapping(value ="/students", method = RequestMethod.GET)
+    @ResponseBody
+    public Student getStudents() {
         Student student = new Student();
         student.setID(27);
         student.setName("Reno");
