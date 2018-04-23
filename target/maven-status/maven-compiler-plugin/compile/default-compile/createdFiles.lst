@@ -1,2 +1,3 @@
-hello/Application.class
-hello/GreetingController.class
+app/Application.class
+app/AppController.class
+models/Student.class
