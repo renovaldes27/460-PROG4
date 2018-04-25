@@ -28,25 +28,33 @@ import java.util.stream.Collectors;
 // mvn install:install-file -Dfile=./ojdbc14.jar -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=11.2.0 -Dpackaging=jar
 
 @SpringBootApplication
-public class Application implements CommandLineRunner{
+public class Application implements CommandLineRunner
+{
 
+    // can this just be a Statement? see comment in appController
+    // do we have to close this?
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource()
+    {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(oracle.jdbc.driver.OracleDriver.class.getName());
         ds.setUrl("jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle");
-        ds.setUsername("renovaldes");
-        ds.setPassword("a4671");
+        ds.setUsername("isaacp");
+        // ds.setUsername("renovaldes");
+        ds.setPassword("a7031");
+        // ds.setPassword("a4671");
         return ds;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         SpringApplication.run(Application.class, args);
     }
 
 
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String... strings) throws Exception 
+    {
 		System.out.println("Application Started!");
     
 	}
