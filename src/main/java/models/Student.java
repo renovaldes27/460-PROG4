@@ -8,7 +8,7 @@ public class Student {
     String phone;
     String email;
     char gender;
-    Date dob;
+    String dob;
     String category;
     String major;
     String minor;
@@ -63,11 +63,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 

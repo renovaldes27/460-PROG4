@@ -18,6 +18,8 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +37,8 @@ public class AppController {
 
     @RequestMapping(value ="/students", method = RequestMethod.GET)
     @ResponseBody
-    public Student getStudents() {
+    public Student[]  getStudents() {
+	DateFormat df = new SimpleDateFormat("MM/dd/YYYY");
         Student student = new Student();
         student.setID(27);
         student.setName("Reno");
@@ -43,12 +46,12 @@ public class AppController {
         student.setPhone("520-909-0123");
         student.setEmail("email@email.com");
         student.setGender('M');
-        student.setDob(new Date());
+        student.setDob(df.format(new Date()));
         student.setCategory("Cat");
         student.setMajor("Computer Science");
         student.setMinor("ISTA");
         student.setAdvisorID(10);
-        return student;
+        return new Student[]{student};
     }
 
 }

@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,10 +30,10 @@
             <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Students</a>
+            <a class="nav-link" onClick="toggle('students')" href="#">Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Leases</a>
+            <a class="nav-link" onClick="toggle('leases')" href="#">Leases</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Rooms</a>
@@ -41,27 +42,153 @@
       </div>
     </nav>
 
-   <div class="container" style="padding:10px 0px;">
+   <div class="container dt " id="students"  style="margin:10px 0px; display:none;">
+    <button type="button" id="newStudentBtn" style="margin:10px 0px;" class="btn btn-primary">New Student</button>
      <table id="studentTable" class="table table-striped table-bordered">
-      <thead>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-	  <td>Reno</td>
-	  <td>Valdes</td>
-        </tr>
-      </tbody>
+     </table>
+   </div>
+   <div class="container dt " id="leases"  style="padding:10px 0px; display:none;">
+     <table id="leaseTable" class="table table-striped table-bordered">
      </table>
    </div>
 </body>
+
+<div id="studentModal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <span class="close" >&times;</span>
+        </div>
+        <form>
+
+            <div class="form-group row">
+                <label for="studentID" class="col-1 col-form-label">ID</label>
+                <div class="col-3">
+                    <input  class="form-control" id="studentID" placeholder="ID">
+                </div>
+                <label for="studentName" class="col-1 col-form-label">Name</label>
+                <div class="col-3 ">
+                    <input  class="form-control" id="studentName" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentPhone" class="col-1 col-form-label">Phone</label>
+                <div class="col-4">
+                    <input  type="tel" class="form-control" id="studentPhone" placeholder="Phone">
+                </div>
+                <label for="studentEmail" class="col-1 col-form-label">Email</label>
+                <div class="col-4">
+                    <input  type="email" class="form-control" id="studentEmail" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentGender" class="col-1 col-form-label">Gender</label>
+                <div class="col-2">
+                    <select class="form-control" id="studentGender">
+                        <option>M</option>
+                        <option>F</option>
+                    </select>
+                </div>
+                <label for="studentDOB" class="col-1 col-form-label">DOB</label>
+                <div class="col-4">
+                    <input class="form-control" type="date" id="studentDOB">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentCategory" class="col-1 col-form-label">Category</label>
+                <div class="col-4">
+                    <input class="form-control" id="studentCategory" placeholder="Category">
+                </div>
+                <label for="studentMajor" class="col-1 col-form-label">Major</label>
+                <div class="col-4">
+                    <input  type="email" class="form-control" id="studentMajor" placeholder="Major">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentMinor" class="col-1 col-form-label">Minor</label>
+                <div class="col-4">
+                    <input class="form-control" id="studentMinor" placeholder="Minor">
+                </div>
+                <label for="studentAID" class="col-1 col-form-label">AID</label>
+                <div class="col-4">
+                    <input class="form-control" id="studentAID" placeholder="AID">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studentAddress" class="col-1 col-form-label">Address</label>
+                <div class="col-8">
+                    <input  class="form-control" id="studentAddress" placeholder="Address">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 offset-8">
+                    <button class="btn btn-small btn-primary" id="studentSubmit">Submit</button>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-small btn-light" id="studentCancel">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 </html>
 
 <script>
  $(document).ready(function() {
-    $('#studentTable').DataTable();
-   } );
+    $('#studentTable').DataTable( {
+     ajax: {
+           url: '/students',
+            dataSrc: ''
+        },
+        columns: [
+                {data: 'id', title:'ID'},
+                {data: 'name', title:'Name'},
+                {data: 'address', title: 'Address'},
+                {data: 'phone', title:'Phone'},
+                {data: 'email', title:'Email'},
+                {data: 'gender', title:'Gender'},
+                {data: 'dob', title:'DOB'},
+                {data: 'category', title:'Category'},
+                {data: 'major', title:'Major'},
+                {data: 'minor', title:'Minor'},
+                {data: 'advisorID', title:'AID'}
+                ]
+    });
+ });
+
+function toggle(elId){
+    var tables = document.getElementsByClassName('dt');
+
+    for(var i=0;i<tables.length;i++){
+     tables[i].style.display = 'none';
+    }
+    document.getElementById(elId).style.display = 'block'; 
+}
+
+// Get the modal
+var modal = document.getElementById('studentModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("newStudentBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 </script>
