@@ -1,6 +1,7 @@
 package app;
 
 import models.Student;
+import models.HallManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +66,42 @@ public class AppController
         return new Student[]{student};
 
         // return Student.getAll(statement);
+    }
+
+    @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public void getHallManagerInfo()
+    {
+        HallManager[] output = null;
+
+        try
+        {
+            ResultSet answer = statement.executeQuery("select isaacp.staff.Name as ManagerName, isaacp.building.TelephoneNumber, isaacp.building.name as BuildingName from isaacp.staff join isaacp.building on (isaacp.building.managerID == isaacp.staff.id)");
+            
+            answer.last();
+            int size = answer.getRow() - 1;
+            answer.beforeFirst();
+            output = new Student[size];
+
+            for(int i = 0; answer.next(); i++)
+            {
+                HallManager manager = new HallManager();
+
+                manager.ID = (answer.getInt("ManagerName"));
+                manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
+                manager.BuildingName = (answer.getInt("BuildingName"));
+
+                output[i] = manager;
+            }
+            
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't retrieve the managers. " + e.getMessage());
+        }
+
+        return output;
     }
 
 
