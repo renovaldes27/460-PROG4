@@ -1,5 +1,6 @@
 package app;
 
+import models.Staff;
 import models.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,23 @@ public class AppController
         return new Student[]{student};
 
         // return Student.getAll(statement);
+    }
+
+    @RequestMapping(value ="/staff", method = RequestMethod.GET)
+    @ResponseBody
+    public Staff[]  getStaff()
+    {
+        DateFormat df = new SimpleDateFormat("MM/dd/YYYY");
+        Staff staff = new Staff();
+        staff.id = 27;
+        staff.name = "Reno";
+        staff.address = "Address";
+        staff.email = "staff@email.com";
+        staff.gender = 'M';
+        staff.dob = df.format(new Date());
+        staff.jobTitle = "Head CS Professor";
+        staff.location = "University of Arizona";
+        return new Staff[]{staff};
     }
 
 
