@@ -87,7 +87,7 @@ public class AppController
     }
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
-    public void getHallManagerInfo()
+    public HallManager[] getHallManagerInfo()
     {
         HallManager[] output = null;
 
@@ -98,15 +98,15 @@ public class AppController
             answer.last();
             int size = answer.getRow() - 1;
             answer.beforeFirst();
-            output = new Student[size];
+            output = new HallManager[size];
 
             for(int i = 0; answer.next(); i++)
             {
                 HallManager manager = new HallManager();
 
-                manager.ID = (answer.getInt("ManagerName"));
-                manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
-                manager.BuildingName = (answer.getInt("BuildingName"));
+                //manager.ID = (answer.getInt("ManagerName"));
+                //manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
+                //manager.BuildingName = (answer.getInt("BuildingName"));
 
                 output[i] = manager;
             }
