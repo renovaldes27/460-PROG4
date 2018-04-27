@@ -6,17 +6,17 @@ public class Student
 {
     private static int nextStudentId;
     private static boolean isInitialized;
-    int ID;
-    String name;
-    String address;
-    String phone;
-    String email;
-    char gender;
-    String dob;
-    String category;
-    String major;
-    String minor;
-    int advisorID;
+    public int id;
+    public String name;
+    public String address;
+    public String phone;
+    public String email;
+    public char gender;
+    public String dob;
+    public String category;
+    public String major;
+    public String minor;
+    public int advisorID;
 
     public void add(Statement statement)
     {
@@ -49,12 +49,12 @@ public class Student
     {
         try
         {
-            statement.execute("update student set name = " + name + " where id = " + ID);
+            statement.execute("update student set name = " + name + " where id = " + id);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't update student, id = " + ID + "." + e.getMessage());
+            System.err.println("ERROR: can't update student, id = " + id + "." + e.getMessage());
         }  
     }
 
@@ -62,12 +62,12 @@ public class Student
     {
         try
         {
-            statement.execute("delete from student where id = " + ID);
+            statement.execute("delete from student where id = " + id);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't remove student, id = " + ID + "." + e.getMessage());
+            System.err.println("ERROR: can't remove student, id = " + id + "." + e.getMessage());
         }
     }
 
@@ -86,7 +86,7 @@ public class Student
             {
                 Student tempStudent = new Student();
 
-                tempStudent.ID = (answer.getInt("id"));
+                tempStudent.id = (answer.getInt("id"));
                 // TODO: add all of the other fields
 
                 output[i] = tempStudent;
@@ -101,92 +101,5 @@ public class Student
 
         return output;
     }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public char getGender() {
-        return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    public String getMinor() {
-        return minor;
-    }
-
-    public void setMinor(String minor) {
-        this.minor = minor;
-    }
-
-    public int getAdvisorID() {
-        return advisorID;
-    }
-
-    public void setAdvisorID(int advisorID) {
-        this.advisorID = advisorID;
-    }
+    
 }
