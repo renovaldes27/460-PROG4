@@ -53,17 +53,17 @@ public class AppController
     {
 	    DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
         Student student = new Student();
-        student.setID(27);
-        student.setName("Reno");
-        student.setAddress("Address");
-        student.setPhone("520-909-0123");
-        student.setEmail("email@email.com");
-        student.setGender('M');
-        student.setDob(df.format(new Date()));
-        student.setCategory("Cat");
-        student.setMajor("Computer Science");
-        student.setMinor("ISTA");
-        student.setAdvisorID(10);
+        student.id = 27;
+        student.name ="Reno";
+        student.address = "Address";
+        student.phone = "520-909-0123";
+        student.email = "email@email.com";
+        student.gender = 'M';
+        student.dob = df.format(new Date());
+        student.category = "Cat";
+        student.major = "Computer Science";
+        student.minor = "ISTA";
+        student.advisorID = 10;
         return new Student[]{student};
 
         // return Student.getAll(statement);
