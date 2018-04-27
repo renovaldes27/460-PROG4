@@ -66,7 +66,15 @@ $(document).ready(function () {
     $('#editStudentBtn').click( function () {
         studentModal.style.display= "block";
         var selectedData = studentTable.row('.selected').data()
-        $('#studentName').text(selectedData.name);
+        if(selectedData !== null){
+            $('#studId').val(selectedData.id);
+            $('#studName').val(selectedData.name);
+            $('#studPhone').val(selectedData.phone);
+            $('#studGender').val(selectedData.gender);
+            $('#studDob').val(selectedData.dob);
+            $('#studCategory').val(selectedData.category);
+
+        }
     } );
 });
 
