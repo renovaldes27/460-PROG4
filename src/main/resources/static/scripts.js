@@ -51,12 +51,14 @@ $(document).ready(function () {
         ]
     });
 
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
+    var leaseModal = document.getElementById('lease-modal')
 
 
     $('#staffTable tbody').on('click', 'tr', function () {
@@ -122,7 +124,45 @@ $(document).ready(function () {
             $('#aid').attr('value',selectedData.advisorID);
         }
     });
-});
+
+    $('#editLeaseBtn').click( function () {
+        leaseModal.style.display= "block";
+        var selectedData = leaseTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#lease-id').attr('value',selectedData.id);
+            $('#lease-rid').attr('value',selectedData.rID);
+            $('#lease-sid').attr('value',selectedData.sID);
+            $('#lease-cost').attr('value', selectedData.cost);
+            $('#lease-duration').attr('value',selectedData.duration);
+            $('#lease-start').attr('value',selectedData.startDate);
+
+        }
+    });
+
+    $('#newStudentBtn').click( function() {
+        studentModal.style.display = "block";
+    });
+
+    $('#newStaffBtn').click( function() {
+        staffModal.style.display = "block";
+    });
+
+    $('#newLeaseBtn').click( function() {
+        leaseModal.style.display = "block";
+    });
+
+    $('#studentClose').click( function() {
+        studentModal.style.display = "none";
+    });
+
+    $('#staffClose').click( function() {
+        staffModal.style.display = "none";
+    });
+
+    $('#lease-close').click( function() {
+        leaseModal.style.display = "none";
+    });
+}); 
 
 function toggle(elId) {
     var tables = document.getElementsByClassName('dt');
@@ -132,40 +172,4 @@ function toggle(elId) {
     }
 
     document.getElementById(elId).style.display = 'block';
-}
-
-// Get the modal
-var studentModal = document.getElementById('studentModal');
-var staffModal = document.getElementById('staffModal');
-
-// Get the buttons that opens the modal
-var newStudentBtn = document.getElementById("newStudentBtn");
-var newStaffBtn = document.getElementById("newStaffBtn");
-
-var editStudentBtn = document.getElementById("editStudentBtn");
-var editStaffBtn = document.getElementById("editStaffBtn");
-
-// Get the <span> element that closes the modal
-var studentClose = document.getElementById("studentClose")
-var staffClose = document.getElementById("staffClose")
-
-// When the user clicks on the button, open the modal 
-newStudentBtn.onclick = function () {
-    $("#studentForm").find("input[type=text]").attr('value',"");
-    studentModal.style.display = "block";
-}
-
-newStaffBtn.onclick = function () {
-    $("#staffForm").find("input[type=text]").attr('value',"");
-    staffModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-studentClose.onclick = function () {
-    studentModal.style.display = "none";
-}
-
-// When the user clicks on <span> (x), close the modal
-staffClose.onclick = function () {
-    staffModal.style.display = "none";
 }
