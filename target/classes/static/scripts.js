@@ -65,7 +65,8 @@ $(document).ready(function () {
 
     $('#editStudentBtn').click( function () {
         studentModal.style.display= "block";
-        console.log(studentTable.row('.selected').data());
+        var selectedData = studentTable.row('.selected').data()
+        $('#studentName').text(selectedData.name);
     } );
 });
 
