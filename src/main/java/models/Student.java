@@ -6,17 +6,17 @@ public class Student
 {
     private static int nextStudentId;
     private static boolean isInitialized;
-    int ID;
-    String name;
-    String address;
-    String phone;
-    String email;
-    char gender;
-    String dob;
-    String category;
-    String major;
-    String minor;
-    int advisorID;
+    public int ID;
+    public String name;
+    public String address;
+    public String phone;
+    public String email;
+    public String gender;
+    public String dob;
+    public String category;
+    public String major;
+    public String minor;
+    public int advisorID;
 
     public void add(Statement statement)
     {
@@ -86,7 +86,17 @@ public class Student
             {
                 Student tempStudent = new Student();
 
-                tempStudent.ID = (answer.getInt("id"));
+                tempStudent.ID = (answer.getInt("ID"));
+                tempStudent.name = (answer.getString("Name"));
+                tempStudent.address = (answer.getString("Address"));
+                tempStudent.phone = (answer.getInt("PhoneNumber")) + "";
+                tempStudent.email = (answer.getString("Email"));
+                tempStudent.gender = (answer.getString("Gender"));
+                tempStudent.dob = (answer.getDate("DOB")).toString();
+                tempStudent.category = (answer.getString("Category"));
+                tempStudent.major = (answer.getInt("MajorID")) + "";
+                tempStudent.minor = (answer.getInt("MinorID")) + "";
+                tempStudent.advisorID = (answer.getInt("AdvisorID"));
                 // TODO: add all of the other fields
 
                 output[i] = tempStudent;

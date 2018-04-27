@@ -51,22 +51,22 @@ public class AppController
     @ResponseBody
     public Student[]  getStudents() 
     {
-	    DateFormat df = new SimpleDateFormat("MM/dd/YYYY");
-        Student student = new Student();
-        student.setID(27);
-        student.setName("Reno");
-        student.setAddress("Address");
-        student.setPhone("520-909-0123");
-        student.setEmail("email@email.com");
-        student.setGender('M');
-        student.setDob(df.format(new Date()));
-        student.setCategory("Cat");
-        student.setMajor("Computer Science");
-        student.setMinor("ISTA");
-        student.setAdvisorID(10);
-        return new Student[]{student};
+	    // DateFormat df = new SimpleDateFormat("MM/dd/YYYY");
+        // Student student = new Student();
+        // student.setID(27);
+        // student.setName("Reno");
+        // student.setAddress("Address");
+        // student.setPhone("520-909-0123");
+        // student.setEmail("email@email.com");
+        // student.setGender('M');
+        // student.setDob(df.format(new Date()));
+        // student.setCategory("Cat");
+        // student.setMajor("Computer Science");
+        // student.setMinor("ISTA");
+        // student.setAdvisorID(10);
+        // return new Student[]{student};
 
-        // return Student.getAll(statement);
+        return Student.getAll(statement);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
