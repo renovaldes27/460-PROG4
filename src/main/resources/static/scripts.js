@@ -63,7 +63,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#editStudentButton').click( function () {
+    $('#editStudentBtn').click( function () {
         studentModal.style.display= "block";
         console.log(studentTable.row('.selected').data());
     } );
