@@ -40,7 +40,7 @@ public class Student
             "', '" + phone +
             "', '" + email +
             "', '" + gender +
-            "', '" + dob +
+            "', '" + dob + // TODO This will not be formatted correctly
             "', '" + category +
             "', '" + major +
             "', '" + minor +
