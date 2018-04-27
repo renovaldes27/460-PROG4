@@ -39,5 +39,5 @@
 }
 
 table.dataTable {
-    margin: 0 auto;
+    float: left;
   }
