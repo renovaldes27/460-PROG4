@@ -124,12 +124,12 @@ var staffClose = document.getElementById("staffClose")
 
 // When the user clicks on the button, open the modal 
 newStudentBtn.onclick = function () {
-    $("form").reset();
+    $("#studentForm")[0].reset();
     studentModal.style.display = "block";
 }
 
 newStaffBtn.onclick = function () {
-    $("form").reset();
+    $("#staffForm")[0].reset();
     staffModal.style.display = "block";
 }
 
