@@ -50,12 +50,12 @@ public class Student
     {
         try
         {
-            statement.execute("update student set name = " + name + " where id = " + ID);
+            statement.execute("update student set name = " + name + " where id = " + id);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't update student, id = " + ID + "." + e.getMessage());
+            System.err.println("ERROR: can't update student, id = " + id + "." + e.getMessage());
         }  
     }
 
@@ -63,12 +63,12 @@ public class Student
     {
         try
         {
-            statement.execute("delete from student where id = " + ID);
+            statement.execute("delete from student where id = " + id);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't remove student, id = " + ID + "." + e.getMessage());
+            System.err.println("ERROR: can't remove student, id = " + id + "." + e.getMessage());
         }
     }
 
