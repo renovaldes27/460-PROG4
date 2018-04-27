@@ -80,6 +80,22 @@ $(document).ready(function () {
             $('#aid').attr('value',selectedData.advisorID);
         }
     });
+
+    $('#editStaffBtn').click( function () {
+        staffModal.style.display= "block";
+        var selectedData = staffTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#staffID').attr('value',selectedData.id);
+            $('#staffName').attr('value',selectedData.name);
+            $('#staffEmail').attr('value',selectedData.email);
+            $('#staffDob').attr('value', selectedData.dob);
+            $('#staffGender').attr('value',selectedData.gender);
+            $('#staffTitle').attr('value',selectedData.jobTitle);
+            $('#staffLocation').attr('value',selectedData.location);
+            $('#staffAddress').attr('value',selectedData.address);
+            $('#aid').attr('value',selectedData.advisorID);
+        }
+    });
 });
 
 function toggle(elId) {
@@ -108,10 +124,12 @@ var staffClose = document.getElementById("staffClose")
 
 // When the user clicks on the button, open the modal 
 newStudentBtn.onclick = function () {
+    $("form").reset();
     studentModal.style.display = "block";
 }
 
 newStaffBtn.onclick = function () {
+    $("form").reset();
     staffModal.style.display = "block";
 }
 
