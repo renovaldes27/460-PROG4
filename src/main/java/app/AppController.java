@@ -3,6 +3,8 @@ package app;
 import models.Staff;
 import models.Student;
 import models.HallManager;
+import models.Lease;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,6 +87,22 @@ public class AppController
         staff.location = "University of Arizona";
         return new Staff[]{staff};
     }
+
+    @RequestMapping(value ="/lease", method = RequestMethod.GET)
+    @ResponseBody
+    public Lease[]  getLease()
+    {
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+        Lease lease = new Lease();
+        lease.id = 200;
+        lease.rID = 4;
+        lease.sID = 27;
+        lease.duration = "6 mo";
+        lease.cost = 1000;
+        lease.startDate = df.format(new Date());
+        return new Lease[]{lease};
+    }
+
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()

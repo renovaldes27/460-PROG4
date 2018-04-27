@@ -36,8 +36,26 @@ $(document).ready(function () {
         ]
     });
 
+    $('#leaseTable').DataTable({
+        ajax: {
+            url: '/lease',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'id', title: 'ID' },
+            { data: 'name', title: 'Name' },
+            { data: 'email', title: 'Email' },
+            { data: 'address', title: 'Address' },
+            { data: 'gender', title: 'Gender' },
+            { data: 'dob', title: 'DOB' },
+            { data: 'jobTitle', title: 'Title' },
+            { data: 'location', title: 'Location' },
+        ]
+    });
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
+    var leaseTable = $('#leaseTable').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
@@ -59,6 +77,16 @@ $(document).ready(function () {
         }
         else {
             studentTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#leaseTable tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            leaseTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
