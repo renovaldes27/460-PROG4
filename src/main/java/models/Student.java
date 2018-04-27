@@ -1,4 +1,5 @@
 package models;
+import java.util.*;
 import java.util.Date;
 import java.sql.*;
 
@@ -78,11 +79,20 @@ public class Student
         try
         {
             ResultSet answer = statement.executeQuery("select * from student");
-            answer.last();
-            int size = answer.getRow() - 1;
-            answer.beforeFirst();
-            output = new Student[size];
-            for(int i = 0; answer.next(); i++)
+            
+            // // figure out how many students there are
+            // This dosen't work, becuase the result set is "forward only"
+            // answer.last();
+            // int size = answer.getRow() - 1;
+            // answer.beforeFirst();
+
+            // // create an array of appropriate size
+            // output = new Student[size];
+
+            List<Student> expandableList = new ArrayList<>();
+            // fill out the tablez
+            // for(int i = 0; answer.next(); i++)
+            while(answer.next())
             {
                 Student tempStudent = new Student();
 
@@ -97,9 +107,18 @@ public class Student
                 tempStudent.major = (answer.getInt("MajorID")) + "";
                 tempStudent.minor = (answer.getInt("MinorID")) + "";
                 tempStudent.advisorID = (answer.getInt("AdvisorID"));
-                // TODO: add all of the other fields
 
-                output[i] = tempStudent;
+                // output[i] = tempStudent;
+                expandableList.add(tempStudent);
+            }
+
+            // result set won't allow us to easily get size
+            // so we have to copy values from a resizable array, sigh
+            int size = expandableList.size();
+            output = new Student[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
             }
             
         }
@@ -112,91 +131,91 @@ public class Student
         return output;
     }
 
-    public int getID() {
-        return ID;
-    }
+    // public int getID() {
+    //     return ID;
+    // }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    // public void setID(int ID) {
+    //     this.ID = ID;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    //     this.name = name;
+    // }
 
-    public String getAddress() {
-        return address;
-    }
+    // public String getAddress() {
+    //     return address;
+    // }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    // public void setAddress(String address) {
+    //     this.address = address;
+    // }
 
-    public String getPhone() {
-        return phone;
-    }
+    // public String getPhone() {
+    //     return phone;
+    // }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    // public void setPhone(String phone) {
+    //     this.phone = phone;
+    // }
 
-    public String getEmail() {
-        return email;
-    }
+    // public String getEmail() {
+    //     return email;
+    // }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    // public void setEmail(String email) {
+    //     this.email = email;
+    // }
 
-    public String getGender() {
-        return gender;
-    }
+    // public String getGender() {
+    //     return gender;
+    // }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    // public void setGender(String gender) {
+    //     this.gender = gender;
+    // }
 
-    public String getDob() {
-        return dob;
-    }
+    // public String getDob() {
+    //     return dob;
+    // }
 
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
+    // public void setDob(String dob) {
+    //     this.dob = dob;
+    // }
 
-    public String getCategory() {
-        return category;
-    }
+    // public String getCategory() {
+    //     return category;
+    // }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    // public void setCategory(String category) {
+    //     this.category = category;
+    // }
 
-    public String getMajor() {
-        return major;
-    }
+    // public String getMajor() {
+    //     return major;
+    // }
 
-    public void setMajor(String major) {
-        this.major = major;
-    }
+    // public void setMajor(String major) {
+    //     this.major = major;
+    // }
 
-    public String getMinor() {
-        return minor;
-    }
+    // public String getMinor() {
+    //     return minor;
+    // }
 
-    public void setMinor(String minor) {
-        this.minor = minor;
-    }
+    // public void setMinor(String minor) {
+    //     this.minor = minor;
+    // }
 
-    public int getAdvisorID() {
-        return advisorID;
-    }
+    // public int getAdvisorID() {
+    //     return advisorID;
+    // }
 
-    public void setAdvisorID(int advisorID) {
-        this.advisorID = advisorID;
-    }
+    // public void setAdvisorID(int advisorID) {
+    //     this.advisorID = advisorID;
+    // }
 }
