@@ -44,7 +44,11 @@
                         <a class="nav-link" href="#">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onClick="toggle('buildings')" href="#">Buildings</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">All Buildings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')" href="#">Hall Managers</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -60,6 +64,10 @@
             <button type="button" id="newStaffBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">New Staff</button>
             <button type="button" id="editStaffBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">Edit Staff</button>
             <table id="staffTable" class="table table-striped table-bordered">
+            </table>
+        </div>
+        <div class="container dt" id="hallmanagers" style="margin:10px 0px; display:none;">
+            <table id="hallmanagers-table" class="table table-striped table-bordered">
             </table>
         </div>
     </body>
