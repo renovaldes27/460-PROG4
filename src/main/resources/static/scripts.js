@@ -39,6 +39,9 @@ $(document).ready(function () {
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
 
+    var studentModal = document.getElementById('studentModal');
+    var staffModal = document.getElementById('staffModal');
+
 
     $('#staffTable tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
@@ -61,6 +64,7 @@ $(document).ready(function () {
     });
 
     $('#editStudentButton').click( function () {
+        studentModal.style.display= "block";
         console.log(studentTable.row('.selected').data());
     } );
 });
@@ -76,7 +80,6 @@ function toggle(elId) {
 
 // Get the modal
 var studentModal = document.getElementById('studentModal');
-
 var staffModal = document.getElementById('staffModal');
 
 // Get the buttons that opens the modal
@@ -96,14 +99,6 @@ newStudentBtn.onclick = function () {
 }
 
 newStaffBtn.onclick = function () {
-    staffModal.style.display = "block";
-}
-
-editStudentBtn.onclick = function () {
-    studentModal.style.display = "block";
-}
-
-editStaffBtn.onclick = function () {
     staffModal.style.display = "block";
 }
 
