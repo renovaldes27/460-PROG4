@@ -36,13 +36,16 @@ $(document).ready(function () {
         ]
     });
 
+    var staffTable = $('#staffTable').DataTable();
+    var studentTable = $('#studentTable').DataTable();
+
+
     $('#staffTable tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         }
         else {
-            var table = $('#staffTable').DataTable();
-            table.$('tr.selected').removeClass('selected');
+            staffTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
@@ -52,11 +55,14 @@ $(document).ready(function () {
             $(this).removeClass('selected');
         }
         else {
-            var table = $('#studentTable').DataTable();
-            table.$('tr.selected').removeClass('selected');
+            studentTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
+
+    $('#editStudentButton').click( function () {
+        console.log(studentTable.row('.selected').data());
+    } );
 });
 
 function toggle(elId) {
