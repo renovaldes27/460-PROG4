@@ -70,12 +70,13 @@ $(document).ready(function () {
             $('#studID').attr('value',selectedData.id);
             $('#studName').attr('value',selectedData.name);
             $('#studPhone').attr('value',selectedData.phone);
+            $('#studEmail').attr('value',selectedData.email);
             $('#studGender').attr('value',selectedData.gender);
             $('#studCategory').attr('value',selectedData.category);
-            $('#studMajor').attr('value',selectedData.category);
-            $('#studMinor').attr('value',selectedData.category);
+            $('#studMajor').attr('value',selectedData.major);
+            $('#studMinor').attr('value',selectedData.minor);
             $('#studAddress').attr('value',selectedData.address);
-            ('#aid').attr('value',selectedData.aid);
+            ('#aid').attr('value',selectedData.advisorID);
         }
     });
 });
