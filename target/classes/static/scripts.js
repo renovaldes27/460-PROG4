@@ -43,13 +43,11 @@ $(document).ready(function () {
         },
         columns: [
             { data: 'id', title: 'ID' },
-            { data: 'name', title: 'Name' },
-            { data: 'email', title: 'Email' },
-            { data: 'address', title: 'Address' },
-            { data: 'gender', title: 'Gender' },
-            { data: 'dob', title: 'DOB' },
-            { data: 'jobTitle', title: 'Title' },
-            { data: 'location', title: 'Location' },
+            { data: 'rID', title: 'Room ID' },
+            { data: 'sID', title: 'Student ID' },
+            { data: 'duration', title: 'Duration' },
+            { data: 'cost', title: 'Monthly Rent' },
+            { data: 'startDate', title: 'Start Date' },
         ]
     });
 
@@ -132,6 +130,7 @@ function toggle(elId) {
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = 'none';
     }
+
     document.getElementById(elId).style.display = 'block';
 }
 
