@@ -67,14 +67,14 @@ $(document).ready(function () {
         studentModal.style.display= "block";
         var selectedData = studentTable.row('.selected').data()
         if(selectedData !== null){
-            $('#studId').attr('value',selectedData.id);
+            $('#studIG').attr('value',selectedData.id);
+
             $('#studName').attr('value',selectedData.name);
             $('#studPhone').attr('value',selectedData.phone);
             $('#studGender').attr('value',selectedData.gender);
-            $('#studDob').attr('value',selectedData.dob);
             $('#studCategory').attr('value',selectedData.category);
         }
-    } );
+    });
 });
 
 function toggle(elId) {
