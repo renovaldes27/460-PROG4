@@ -71,12 +71,13 @@ $(document).ready(function () {
             $('#studName').attr('value',selectedData.name);
             $('#studPhone').attr('value',selectedData.phone);
             $('#studEmail').attr('value',selectedData.email);
+            $('#studDob').attr('value', selectedData.dob);
             $('#studGender').attr('value',selectedData.gender);
             $('#studCategory').attr('value',selectedData.category);
             $('#studMajor').attr('value',selectedData.major);
             $('#studMinor').attr('value',selectedData.minor);
             $('#studAddress').attr('value',selectedData.address);
-            ('#aid').attr('value',selectedData.advisorID);
+            $('#aid').attr('value',selectedData.advisorID);
         }
     });
 });
