@@ -7,7 +7,7 @@ public class Student
 {
     private static int nextStudentId;
     private static boolean isInitialized;
-    public int ID;
+    public int id;
     public String name;
     public String address;
     public String phone;
@@ -96,7 +96,7 @@ public class Student
             {
                 Student tempStudent = new Student();
 
-                tempStudent.ID = (answer.getInt("ID"));
+                tempStudent.id = (answer.getInt("ID"));
                 tempStudent.name = (answer.getString("Name"));
                 tempStudent.address = (answer.getString("Address"));
                 tempStudent.phone = (answer.getInt("PhoneNumber")) + "";
