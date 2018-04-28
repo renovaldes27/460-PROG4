@@ -43,11 +43,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Rooms</a>
                     </li>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">All Buildings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')" href="#">Hall Managers</a>
-                    </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Buildings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">All Buildings</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')">Hall Managers</a>
+                        </div>
+                      </li>
                 </ul>
             </div>
         </nav>
