@@ -205,6 +205,7 @@ $(document).ready(function () {
 }); 
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
+    console.log("I am in");
     $('#hallmanagers-table').DataTable({
         ajax: {
             url: '/getHallManagerInfo',
@@ -216,6 +217,7 @@ $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
             { data: 'BuildingName', title: 'Building Name' },
         ]
     });
+    console.log("I am passed it");
 });
 
 function toggle(elId) {
