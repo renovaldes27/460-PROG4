@@ -61,6 +61,22 @@ public class AppController
         return jsonString;
     }
 
+
+    @RequestMapping(value ="/staff", method = RequestMethod.POST)
+    public @ResponseBody Staff addNewStudent(@RequestBody Staff jsonString) {
+
+        System.out.println(jsonString.name);
+        return jsonString;
+    }
+
+
+    @RequestMapping(value ="/lease", method = RequestMethod.POST)
+    public @ResponseBody Lease addNewLease(@RequestBody Lease jsonString) {
+
+        System.out.println(jsonString.startDate);
+        return jsonString;
+    }
+
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()

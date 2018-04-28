@@ -164,6 +164,14 @@ $(document).ready(function () {
     });
 
     $('#studentCancel').click( function() {
+        studentModal.style.display = "none";
+    });
+
+    $('#staffCancel').click( function() {
+        staffModal.style.display = "none";
+    });
+
+    $('#lease-cancel').click( function() {
         leaseModal.style.display = "none";
     });
 
@@ -191,7 +199,70 @@ $(document).ready(function () {
 			dataType : 'json',
 			timeout : 100000,
 			success : function(data) {
-				console.log("SUCCESS: ", data);
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+    });
+
+    $('#staffSubmit').click( function() {
+        var formData = {
+            id: $('#staffID').val(),
+            name:$('#staffName').val(),
+            address:$('#staffAddress').val(),
+            email:$('#staffEmail').val(),
+            gender:$('#staffGender').val(),
+            dob:$('#staffDob').val(),
+            jobTitle:$('#staffTitle').val(),
+            location: $('#staffLocation').val(),
+        };
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/staff",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+    });
+
+    $('#lease-submit').click( function() {
+        var formData = {
+            id: $('#lease-id').val(),
+            rID:$('#lease-rid').val(),
+            sID:$('#lease-sid').val(),
+            duration:$('#lease-duration').val(),
+            cost:$('#lease-cost').val(),
+            startDate:$('#lease-start').val(),
+        };
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/staff",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
