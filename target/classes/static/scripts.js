@@ -223,7 +223,6 @@ $(document).ready(function () {
         });
 
         location.reload();
-        document.getElementById('students').style.display = "block";
     });
 
     $('#staff-submit').click( function() {
@@ -259,7 +258,6 @@ $(document).ready(function () {
         });
 
         location.reload();
-        document.getElementById('staff').style.display = "block";
     });
 
     $('#lease-submit').click( function() {
@@ -294,8 +292,6 @@ $(document).ready(function () {
         });
 
         location.reload();
-        document.getElementById('leases').style.display = "block";
-
     });
 
 }); 
