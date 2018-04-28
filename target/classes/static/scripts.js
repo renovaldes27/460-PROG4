@@ -221,7 +221,7 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
-        
+        studentTable.destroy();
         createStudents();
     });
 
@@ -256,7 +256,8 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
-        
+
+        staffTable.destroy();
         createStaff();
     });
 
@@ -290,6 +291,7 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
+        leaseTable.destroy();
         createLease();
 
     });
