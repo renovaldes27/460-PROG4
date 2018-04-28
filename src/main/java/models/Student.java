@@ -95,7 +95,9 @@ public class Student
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from isaacp.student");
+            ResultSet answer = statement.executeQuery("select isaacp.student.id as id, isaacp.student.name as name, address, phoneNumber, email, gender, dob, category, isaacp.department.name as majorid, advisorid" + 
+            " from isaacp.student join isaacp.department on (isaacp.student.majorID = isaacp.department.id)" +
+            "");
 
             List<Student> expandableList = new ArrayList<>();
 
