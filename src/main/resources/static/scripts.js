@@ -70,12 +70,30 @@ $(document).ready(function () {
             $('#studID').attr('value',selectedData.id);
             $('#studName').attr('value',selectedData.name);
             $('#studPhone').attr('value',selectedData.phone);
+            $('#studEmail').attr('value',selectedData.email);
+            $('#studDob').attr('value', selectedData.dob);
             $('#studGender').attr('value',selectedData.gender);
             $('#studCategory').attr('value',selectedData.category);
-            $('#studMajor').attr('value',selectedData.category);
-            $('#studMinor').attr('value',selectedData.category);
+            $('#studMajor').attr('value',selectedData.major);
+            $('#studMinor').attr('value',selectedData.minor);
             $('#studAddress').attr('value',selectedData.address);
-            ('#aid').attr('value',selectedData.aid);
+            $('#aid').attr('value',selectedData.advisorID);
+        }
+    });
+
+    $('#editStaffBtn').click( function () {
+        staffModal.style.display= "block";
+        var selectedData = staffTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#staffID').attr('value',selectedData.id);
+            $('#staffName').attr('value',selectedData.name);
+            $('#staffEmail').attr('value',selectedData.email);
+            $('#staffDob').attr('value', selectedData.dob);
+            $('#staffGender').attr('value',selectedData.gender);
+            $('#staffTitle').attr('value',selectedData.jobTitle);
+            $('#staffLocation').attr('value',selectedData.location);
+            $('#staffAddress').attr('value',selectedData.address);
+            $('#aid').attr('value',selectedData.advisorID);
         }
     });
 });
@@ -106,10 +124,12 @@ var staffClose = document.getElementById("staffClose")
 
 // When the user clicks on the button, open the modal 
 newStudentBtn.onclick = function () {
+    $("#studentForm").find("input[type=text]").attr('value',"");
     studentModal.style.display = "block";
 }
 
 newStaffBtn.onclick = function () {
+    $("#staffForm").find("input[type=text]").attr('value',"");
     staffModal.style.display = "block";
 }
 

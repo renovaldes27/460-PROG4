@@ -56,7 +56,7 @@ public class AppController
     @ResponseBody
     public Staff[]  getStaff()
     {
-        DateFormat df = new SimpleDateFormat("MM/dd/YYYY");
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
         Staff staff = new Staff();
         staff.id = 27;
         staff.name = "Reno";
