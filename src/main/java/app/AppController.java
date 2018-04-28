@@ -55,8 +55,9 @@ public class AppController
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
-    public @ResponseBody Student addNewStudent(@RequestBody Student jsonString) {
-
+    public @ResponseBody Student addNewStudent(@RequestBody Student jsonString) 
+    {
+        jsonString.add(statement);
         System.out.println(jsonString.name);
         return jsonString;
     }
@@ -120,12 +121,12 @@ public class AppController
     }
 
 
-    // the id field of input student will be ignored.
-    // id will be uniqly assigned
-    public void addStudent(Student student)
-    {
-        student.add(statement);
-    }
+    // // the id field of input student will be ignored.
+    // // id will be uniqly assigned
+    // public void addStudent(Student student)
+    // {
+    //     student.add(statement);
+    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.
