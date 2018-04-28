@@ -205,18 +205,25 @@ $(document).ready(function () {
 }); 
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
-    console.log("I am in");
-    $('#hallmanagers-table').DataTable({
-        ajax: {
-            url: '/getHallManagerInfo',
-            destroy: true
-        },
-        columns: [
-            { data: 'ManagerName', title: 'Manager Name' },
-            { data: 'TelephoneNumber', title: 'Telephone Number' },
-            { data: 'BuildingName', title: 'Building Name' },
-        ]
-    });
+    if ( $.fn.dataTable.isDataTable( '#hallmanagers-table' ) ) {
+        table = $('#hallmanagers-table').DataTable();
+        console.log("in if");
+    }
+    else {
+        console.log("in else");
+        table = $('#hallmanagers-table').DataTable( {
+            ajax: {
+                url: '/getHallManagerInfo',
+                dataSrc: '',
+                destroy: true
+            },
+            columns: [
+                { data: 'ManagerName', title: 'Manager Name' },
+                { data: 'TelephoneNumber', title: 'Telephone Number' },
+                { data: 'BuildingName', title: 'Building Name' },
+            ]
+        } );
+    }
     console.log("I am passed it");
 });
 
