@@ -19,7 +19,8 @@ public class Staff {
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from isaacp.Staff join isaacp.jobtitle on (isaacp.staff.jobtitleid = isaacp.jobtitle.id)");
+            ResultSet answer = statement.executeQuery("select isaacp.staff.ID as ID, isaacp.staff.Name AS Name, Email, HomeAddress, DOB, Gender, isaacp.JobTitle.Name as Title, Location " + 
+            "from isaacp.Staff join isaacp.jobtitle on (isaacp.staff.jobtitleid = isaacp.jobtitle.id)");
 
             List<Staff> expandableList = new ArrayList<>();
 
@@ -27,14 +28,14 @@ public class Staff {
             {
                 Staff tempStaff = new Staff();
 
-                tempStaff.id = (answer.getInt("isaacp.staff.ID"));
-                tempStaff.name = (answer.getString("isaacp.staff.Name"));
-                tempStaff.email = (answer.getString("isaacp.staff.Email"));
-                tempStaff.address = (answer.getString("isaacp.staff.HomeAddress"));
-                tempStaff.dob = (answer.getDate("isaacp.staff.DOB")).toString();
-                tempStaff.gender = (answer.getString("isaacp.staff.Gender"));
-                tempStaff.jobTitle = (answer.getString("isaacp.JobTitle.Name"));
-                tempStaff.location = (answer.getString("isaacp.staff.Location"));
+                tempStaff.id = (answer.getInt("ID"));
+                tempStaff.name = (answer.getString("Name"));
+                tempStaff.email = (answer.getString("Email"));
+                tempStaff.address = (answer.getString("HomeAddress"));
+                tempStaff.dob = (answer.getDate("DOB")).toString();
+                tempStaff.gender = (answer.getString("Gender"));
+                tempStaff.jobTitle = (answer.getString("Title"));
+                tempStaff.location = (answer.getString("Location"));
 
                 expandableList.add(tempStaff);
             }
