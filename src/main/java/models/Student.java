@@ -33,7 +33,7 @@ public class Student
                 ResultSet answer = statement.executeQuery("select max(id) from isaacp.student");
                 while(answer.next()) // there should be only one result, but java requires us to use .next()
                 {
-                    nextStudentId = answer.getInt("MAX(ID)");
+                    nextStudentId = answer.getInt("MAX(ID)") + 1;
                 }
             }
 
