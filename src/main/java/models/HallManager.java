@@ -7,5 +7,5 @@ public class HallManager
 {
     public String ManagerName;
     public int TelephoneNumber;
-    public String ResidenceHallName;
+    public String BuildingName;
 }

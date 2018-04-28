@@ -87,7 +87,7 @@ public class AppController
             {
                 HallManager manager = new HallManager();
 
-                manager.ID = (answer.getInt("ManagerName"));
+                manager.ManagerName = (answer.getInt("ManagerName"));
                 manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
                 manager.BuildingName = (answer.getInt("BuildingName"));
 
