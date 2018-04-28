@@ -204,6 +204,20 @@ $(document).ready(function () {
 
 }); 
 
+$("#nav-hallmanagers").on("click", function populateHallManagersTable() {
+    $('#hallmanagers-table').DataTable({
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    });
+});
+
 function toggle(elId) {
     var tables = document.getElementsByClassName('dt');
 

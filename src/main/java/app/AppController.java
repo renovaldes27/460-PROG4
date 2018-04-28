@@ -112,10 +112,9 @@ public class AppController
             {
                 HallManager manager = new HallManager();
 
-                //manager.ID = (answer.getInt("ManagerName"));
-                //manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
-                //manager.BuildingName = (answer.getInt("BuildingName"));
-
+                manager.ManagerName = (answer.getString("ManagerName"));
+                manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
+                manager.BuildingName = (answer.getString("BuildingName"));
                 output[i] = manager;
             }
             
