@@ -1,4 +1,6 @@
-package models;
+package main.java.models;
+import java.util.*;
+import java.sql.*;
 
 public class Staff {
     public int id;
