@@ -2,6 +2,7 @@ package models;
 import java.util.*;
 
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -36,8 +37,9 @@ public class Student
                 }
             }
 
+            SimpleDateFormat input = new SimpleDateFormat();
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
-            String dobString = formater.format(formater.parse(dob));
+            String dobString = formater.format(input.parse(dob));
 
             statement.execute("insert into isaacp.student values('" + nextStudentId +
             "', '" + name +
