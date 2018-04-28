@@ -190,7 +190,7 @@ $(document).ready(function () {
             advisorID: $('#aid').val()
 
         };
-        studentModal.style.direction = "none";
+        studentModal.style.display = "none";
 
         $.ajax({
 			type : "POST",
@@ -223,7 +223,7 @@ $(document).ready(function () {
             jobTitle:$('#staffTitle').val(),
             location: $('#staffLocation').val(),
         };
-        staffModal.style.direction = "none";
+        staffModal.style.display = "none";
 
         $.ajax({
 			type : "POST",
@@ -254,8 +254,8 @@ $(document).ready(function () {
             cost:$('#lease-cost').val(),
             startDate:$('#lease-start').val(),
         };
-        
-        leaseModal.style.direction = "none";
+
+        leaseModal.style.display = "none";
 
         $.ajax({
 			type : "POST",
