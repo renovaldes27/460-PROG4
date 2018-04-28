@@ -20,7 +20,7 @@ public class Student
     public String category;
     public String major;
     public String minor;
-    public int advisorID;
+    public String advisorID;
 
     public void add(Statement statement)
     {
@@ -113,9 +113,9 @@ public class Student
                 tempStudent.gender = (answer.getString("Gender"));
                 tempStudent.dob = (answer.getDate("DOB")).toString();
                 tempStudent.category = (answer.getString("Category"));
-                tempStudent.major = (answer.getInt("MajorID")) + "";
-                tempStudent.minor = (answer.getInt("MinorID")) + "";
-                tempStudent.advisorID = (answer.getInt("AdvisorID"));
+                tempStudent.major = (answer.getString("MajorID")) + "";
+                tempStudent.minor = (answer.getString("MinorID")) + "";
+                tempStudent.advisorID = (answer.getString("AdvisorID"));
 
                 expandableList.add(tempStudent);
             }
