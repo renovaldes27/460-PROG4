@@ -20,7 +20,7 @@ public class Student
     public String category;
     public String major;
     public String minor;
-    public String advisorID;
+    public int advisorID;
 
     public void add(Statement statement)
     {
@@ -115,7 +115,7 @@ public class Student
                 tempStudent.category = (answer.getString("Category"));
                 tempStudent.major = (answer.getString("MajorID")) + "";
                 tempStudent.minor = (answer.getString("MinorID")) + "";
-                tempStudent.advisorID = (answer.getString("AdvisorID"));
+                tempStudent.advisorID = (answer.getInt("AdvisorID"));
 
                 expandableList.add(tempStudent);
             }
