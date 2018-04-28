@@ -223,6 +223,7 @@ $(document).ready(function () {
         });
 
         location.reload();
+        studentTable.style.display = "block";
     });
 
     $('#staff-submit').click( function() {
@@ -258,6 +259,7 @@ $(document).ready(function () {
         });
 
         location.reload();
+        staffTable.style.display = "block";
     });
 
     $('#lease-submit').click( function() {
@@ -292,6 +294,7 @@ $(document).ready(function () {
         });
 
         location.reload();
+        leaseTable.style.display = "block";
 
     });
 
