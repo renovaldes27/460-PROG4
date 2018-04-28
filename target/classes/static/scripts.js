@@ -167,7 +167,7 @@ $(document).ready(function () {
         studentModal.style.display = "none";
     });
 
-    $('#staffCancel').click( function() {
+    $('#staff-cancel').click( function() {
         staffModal.style.display = "none";
     });
 
@@ -211,7 +211,7 @@ $(document).ready(function () {
 		});
     });
 
-    $('#staffSubmit').click( function() {
+    $('#staff-submit').click( function() {
         var formData = {
             id: $('#staffID').val(),
             name:$('#staffName').val(),
@@ -256,7 +256,7 @@ $(document).ready(function () {
         $.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/staff",
+			url : "/lease",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			timeout : 100000,

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -55,26 +57,26 @@ public class AppController
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
-    public @ResponseBody Student addNewStudent(@RequestBody Student jsonString) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewStudent(@RequestBody Student jsonString) {
 
         System.out.println(jsonString.name);
-        return jsonString;
     }
 
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
-    public @ResponseBody Staff addNewStudent(@RequestBody Staff jsonString) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewStudent(@RequestBody Staff jsonString) {
 
-        System.out.println(jsonString.name);
-        return jsonString;
+        System.out.println(jsonString.name); 
     }
 
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
-    public @ResponseBody Lease addNewLease(@RequestBody Lease jsonString) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewLease(@RequestBody Lease jsonString) {
 
-        System.out.println(jsonString.startDate);
-        return jsonString;
+        System.out.println(jsonString.startDate);  
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
