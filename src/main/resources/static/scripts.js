@@ -1,55 +1,66 @@
 $(document).ready(function () {
-    $('#studentTable').DataTable({
-        ajax: {
-            url: '/students',
-            dataSrc: ''
-        },
-        columns: [
-            { data: 'id', title: 'ID' },
-            { data: 'name', title: 'Name' },
-            { data: 'address', title: 'Address' },
-            { data: 'phone', title: 'Phone' },
-            { data: 'email', title: 'Email' },
-            { data: 'gender', title: 'Gender' },
-            { data: 'dob', title: 'DOB' },
-            { data: 'category', title: 'Category' },
-            { data: 'major', title: 'Major' },
-            { data: 'minor', title: 'Minor' },
-            { data: 'advisorID', title: 'AID' }
-        ]
-    });
+    function createStudents() {
+        $('#studentTable').DataTable({
+            ajax: {
+                url: '/students',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'name', title: 'Name' },
+                { data: 'address', title: 'Address' },
+                { data: 'phone', title: 'Phone' },
+                { data: 'email', title: 'Email' },
+                { data: 'gender', title: 'Gender' },
+                { data: 'dob', title: 'DOB' },
+                { data: 'category', title: 'Category' },
+                { data: 'major', title: 'Major' },
+                { data: 'minor', title: 'Minor' },
+                { data: 'advisorID', title: 'AID' }
+            ]
+        });
 
-    $('#staffTable').DataTable({
-        ajax: {
-            url: '/staff',
-            dataSrc: ''
-        },
-        columns: [
-            { data: 'id', title: 'ID' },
-            { data: 'name', title: 'Name' },
-            { data: 'email', title: 'Email' },
-            { data: 'address', title: 'Address' },
-            { data: 'gender', title: 'Gender' },
-            { data: 'dob', title: 'DOB' },
-            { data: 'jobTitle', title: 'Title' },
-            { data: 'location', title: 'Location' },
-        ]
-    });
+    }
+    createStudents();
 
-    $('#leaseTable').DataTable({
-        ajax: {
-            url: '/lease',
-            dataSrc: ''
-        },
-        columns: [
-            { data: 'id', title: 'ID' },
-            { data: 'rID', title: 'Room ID' },
-            { data: 'sID', title: 'Student ID' },
-            { data: 'duration', title: 'Duration' },
-            { data: 'cost', title: 'Monthly Rent' },
-            { data: 'startDate', title: 'Start Date' },
-        ]
-    });
+    function createStaff() {
+        $('#staffTable').DataTable({
+            ajax: {
+                url: '/staff',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'name', title: 'Name' },
+                { data: 'email', title: 'Email' },
+                { data: 'address', title: 'Address' },
+                { data: 'gender', title: 'Gender' },
+                { data: 'dob', title: 'DOB' },
+                { data: 'jobTitle', title: 'Title' },
+                { data: 'location', title: 'Location' },
+            ]
+        });
+    }
+    createStaff();
+
+
+    function createLease() {
+        $('#leaseTable').DataTable({
+            ajax: {
+                url: '/lease',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'rID', title: 'Room ID' },
+                { data: 'sID', title: 'Student ID' },
+                { data: 'duration', title: 'Duration' },
+                { data: 'cost', title: 'Monthly Rent' },
+                { data: 'startDate', title: 'Start Date' },
+            ]
+        });
+    }
+    createLease();
 
 
     var staffTable = $('#staffTable').DataTable();
@@ -198,7 +209,7 @@ $(document).ready(function () {
 			url : "/students",
 			data : JSON.stringify(formData),
 			dataType : 'json',
-			timeout : 100000,
+			timeout : 1000,
 			success : function(data) {
                 console.log("SUCCESS: ", data);
                 location.reload();
@@ -209,7 +220,9 @@ $(document).ready(function () {
 			done : function(e) {
 				console.log("DONE");
 			}
-		});
+        });
+        
+        createStudents();
     });
 
     $('#staff-submit').click( function() {
@@ -231,7 +244,7 @@ $(document).ready(function () {
 			url : "/staff",
 			data : JSON.stringify(formData),
 			dataType : 'json',
-			timeout : 100000,
+			timeout : 1000,
 			success : function(data) {
                 console.log("SUCCESS: ", data);
                 location.reload();
@@ -242,7 +255,9 @@ $(document).ready(function () {
 			done : function(e) {
 				console.log("DONE");
 			}
-		});
+        });
+        
+        createStaff();
     });
 
     $('#lease-submit').click( function() {
@@ -263,7 +278,7 @@ $(document).ready(function () {
 			url : "/lease",
 			data : JSON.stringify(formData),
 			dataType : 'json',
-			timeout : 100000,
+			timeout : 1000,
 			success : function(data) {
                 console.log("SUCCESS: ", data);
                 location.reload();
@@ -274,7 +289,9 @@ $(document).ready(function () {
 			done : function(e) {
 				console.log("DONE");
 			}
-		});
+        });
+        createLease();
+
     });
 
 }); 
