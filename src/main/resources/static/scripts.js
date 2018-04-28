@@ -208,8 +208,7 @@ $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
     $('#hallmanagers-table').DataTable({
         ajax: {
             url: '/getHallManagerInfo',
-            destroy: true,
-            dataSrc: ''
+            destroy: true
         },
         columns: [
             { data: 'ManagerName', title: 'Manager Name' },
