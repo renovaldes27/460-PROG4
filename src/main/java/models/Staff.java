@@ -30,7 +30,7 @@ public class Staff {
                 tempStaff.id = (answer.getInt("ID"));
                 tempStaff.name = (answer.getString("Name"));
                 tempStaff.email = (answer.getString("Email"));
-                tempStaff.address = (answer.getString("Address"));
+                tempStaff.address = (answer.getString("HomeAddress"));
                 tempStaff.dob = (answer.getDate("DOB")).toString();
                 tempStaff.gender = (answer.getString("Gender"));
                 tempStaff.jobTitle = (answer.getString("JobTitleID"));
