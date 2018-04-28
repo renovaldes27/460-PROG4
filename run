@@ -1,4 +1,4 @@
 #! /bin/bash -u
-
+mvn clean
 mvn compile
 mvn spring-boot:run
