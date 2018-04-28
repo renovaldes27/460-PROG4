@@ -221,8 +221,8 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
-        studentTable.destroy();
-        createStudents();
+
+        location.reload();
     });
 
     $('#staff-submit').click( function() {
@@ -257,8 +257,7 @@ $(document).ready(function () {
 			}
         });
 
-        staffTable.destroy();
-        createStaff();
+        location.reload();
     });
 
     $('#lease-submit').click( function() {
@@ -291,8 +290,8 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
-        leaseTable.destroy();
-        createLease();
+
+        location.reload();
 
     });
 
