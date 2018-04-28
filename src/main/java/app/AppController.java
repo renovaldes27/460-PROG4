@@ -58,8 +58,9 @@ public class AppController
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewStudent(@RequestBody Student jsonString) {
-
+    public void addNewStudent(@RequestBody Student jsonString) 
+    {
+        jsonString.add(statement);
         System.out.println(jsonString.name);
     }
 
@@ -83,17 +84,7 @@ public class AppController
     @ResponseBody
     public Staff[]  getStaff()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        Staff staff = new Staff();
-        staff.id = 27;
-        staff.name = "Reno";
-        staff.address = "Address";
-        staff.email = "staff@email.com";
-        staff.gender = 'M';
-        staff.dob = df.format(new Date());
-        staff.jobTitle = "Head CS Professor";
-        staff.location = "University of Arizona";
-        return new Staff[]{staff};
+        return Staff.getAll(statement);
     }
 
     @RequestMapping(value ="/lease", method = RequestMethod.GET)
@@ -148,12 +139,12 @@ public class AppController
     }
 
 
-    // the id field of input student will be ignored.
-    // id will be uniqly assigned
-    public void addStudent(Student student)
-    {
-        student.add(statement);
-    }
+    // // the id field of input student will be ignored.
+    // // id will be uniqly assigned
+    // public void addStudent(Student student)
+    // {
+    //     student.add(statement);
+    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.
