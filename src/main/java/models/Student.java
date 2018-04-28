@@ -95,7 +95,7 @@ public class Student
 
         try
         {
-            ResultSet answer = statement.executeQuery("select isaacp.student.id as id, isaacp.student.name as name, address, phoneNumber, email, gender, dob, category, isaacp.department.name as majorid, isaacp.student.minorid as minorid, isaacp.advisor.name as advisorid" + 
+            ResultSet answer = statement.executeQuery("select isaacp.student.id as id, isaacp.student.name as name, address, phoneNumber, isaacp.student.email, gender, dob, category, isaacp.department.name as majorid, isaacp.student.minorid as minorid, isaacp.advisor.name as advisorid" + 
             " from isaacp.student join isaacp.department on (isaacp.student.majorID = isaacp.department.id)" +
             " join isaacp.advisor on (isaacp.student.advisorid = isaacp.advisor.id)");
 
