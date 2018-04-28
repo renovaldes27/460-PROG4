@@ -55,6 +55,7 @@ $(document).ready(function () {
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
+    $('#hallmanagers-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
@@ -205,25 +206,23 @@ $(document).ready(function () {
 }); 
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
-    if ( $.fn.dataTable.isDataTable( '#hallmanagers-table' ) ) {
-        table = $('#hallmanagers-table').DataTable();
-        console.log("in if");
-    }
-    else {
-        console.log("in else");
-        table = $('#hallmanagers-table').DataTable( {
-            ajax: {
-                url: '/getHallManagerInfo',
-                dataSrc: '',
-                destroy: true
-            },
-            columns: [
-                { data: 'ManagerName', title: 'Manager Name' },
-                { data: 'TelephoneNumber', title: 'Telephone Number' },
-                { data: 'BuildingName', title: 'Building Name' },
-            ]
-        } );
-    }
+    table = $('#hallmanagers-table').DataTable();
+
+    table.destroy();
+
+    table = $('#hallmanagers-table').DataTable( {
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: '',
+            destroy: true,
+            retrieve: true
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    } );
     console.log("I am passed it");
 });
 
