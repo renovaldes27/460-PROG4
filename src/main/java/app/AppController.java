@@ -54,6 +54,13 @@ public class AppController
         return Student.getAll(statement);
     }
 
+    @RequestMapping(value ="/students", method = RequestMethod.POST)
+    public @ResponseBody Student addNewStudent(@RequestBody Student jsonString) {
+
+        System.out.println(jsonString.name);
+        return jsonString;
+    }
+
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
