@@ -8,8 +8,8 @@ public class Staff {
     public String name;
     public String email;
     public String address;
-    public String dob;
     public String gender;
+    public String dob;
     public String jobTitle;
     public String location;
 
