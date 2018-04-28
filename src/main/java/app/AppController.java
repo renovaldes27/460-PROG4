@@ -29,14 +29,12 @@ public class AppController
 {
     @Autowired
     private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
-    private JdbcTemplate jdbcTemplate;  // do we need this?  the query function looks over engineered
 
     private Statement statement;
 
     @PostConstruct
     private void postConstruct() 
     {
-        jdbcTemplate = new JdbcTemplate(dataSource);
         try
         {
             // create the statement that every function will use
@@ -53,22 +51,7 @@ public class AppController
     @ResponseBody
     public Student[]  getStudents() 
     {
-	    DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        Student student = new Student();
-        student.id = 27;
-        student.name ="Reno";
-        student.address = "Address";
-        student.phone = "520-909-0123";
-        student.email = "email@email.com";
-        student.gender = 'M';
-        student.dob = df.format(new Date());
-        student.category = "Cat";
-        student.major = "Computer Science";
-        student.minor = "ISTA";
-        student.advisorID = 10;
-        return new Student[]{student};
-
-        // return Student.getAll(statement);
+        return Student.getAll(statement);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)

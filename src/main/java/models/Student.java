@@ -1,5 +1,5 @@
 package models;
-import java.util.Date;
+import java.util.*;
 import java.sql.*;
 
 public class Student 
@@ -11,7 +11,7 @@ public class Student
     public String address;
     public String phone;
     public String email;
-    public char gender;
+    public String gender;
     public String dob;
     public String category;
     public String major;
@@ -33,9 +33,18 @@ public class Student
                 }
             }
 
-            // TODO: add all of the other fields
-            // TODO: implement student.toString()?  would need to ignore the id field
-            statement.execute("insert into isaacp.student values(" + nextStudentId + name + ")");
+            statement.execute("insert into isaacp.student values('" + nextStudentId +     
+            "', '" + name +
+            "', '" + address +
+            "', '" + phone +
+            "', '" + email +
+            "', '" + gender +
+            "', '" + dob + // TODO This will not be formatted correctly
+            "', '" + category +
+            "', '" + major +
+            "', '" + minor +
+            "', '" + advisorID + 
+            "' )");
         }
         catch (SQLException e)
         {
@@ -78,18 +87,35 @@ public class Student
         try
         {
             ResultSet answer = statement.executeQuery("select * from student");
-            answer.last();
-            int size = answer.getRow() - 1;
-            answer.beforeFirst();
-            output = new Student[size];
-            for(int i = 0; answer.next(); i++)
+
+            List<Student> expandableList = new ArrayList<>();
+
+            while(answer.next())
             {
                 Student tempStudent = new Student();
 
-                tempStudent.id = (answer.getInt("id"));
-                // TODO: add all of the other fields
+                tempStudent.id = (answer.getInt("ID"));
+                tempStudent.name = (answer.getString("Name"));
+                tempStudent.address = (answer.getString("Address"));
+                tempStudent.phone = (answer.getInt("PhoneNumber")) + "";
+                tempStudent.email = (answer.getString("Email"));
+                tempStudent.gender = (answer.getString("Gender"));
+                tempStudent.dob = (answer.getDate("DOB")).toString();
+                tempStudent.category = (answer.getString("Category"));
+                tempStudent.major = (answer.getInt("MajorID")) + "";
+                tempStudent.minor = (answer.getInt("MinorID")) + "";
+                tempStudent.advisorID = (answer.getInt("AdvisorID"));
 
-                output[i] = tempStudent;
+                expandableList.add(tempStudent);
+            }
+
+            // result set won't allow us to easily get size
+            // so we have to copy values from a resizable array, sigh
+            int size = expandableList.size();
+            output = new Student[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
             }
             
         }
@@ -101,5 +127,4 @@ public class Student
 
         return output;
     }
-    
 }
