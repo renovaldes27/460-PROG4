@@ -206,10 +206,6 @@ $(document).ready(function () {
 }); 
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
-    table = $('#hallmanagers-table').DataTable();
-
-    table.destroy();
-
     table = $('#hallmanagers-table').DataTable( {
         ajax: {
             url: '/getHallManagerInfo',
