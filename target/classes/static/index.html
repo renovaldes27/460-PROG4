@@ -67,22 +67,22 @@
             <div class="row">
                 <span id="studentClose" class="close">&times;</span>
             </div>
-            <form>
+            <form id="studentForm">
                 <div class="form-group row">
                     <label for="studID" class="col-1 col-form-label">ID</label>
                     <div class="col-3">
-                        <input class="form-control" id="studID" placeholder="ID">
+                        <input type="number" class="form-control" id="studID" placeholder="ID">
                     </div>
                     <label for="studName" class="col-1 col-form-label">Name</label>
                     <div class="col-3 ">
-                        <input class="form-control" id="studNname" placeholder="Name">
+                        <input type="text" class="form-control" id="studName" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group row">
 
                     <label for="studPhone" class="col-1 col-form-label">Phone</label>
                     <div class="col-4">
-                        <input class="form-control" id="studPhone" placeholder="Phone">
+                        <input type="phone" class="form-control" id="studPhone" placeholder="Phone">
                     </div>
 
                     <label for="studEmail" class="col-1 col-form-label">Email</label>
@@ -94,8 +94,8 @@
                     <label for="studGender" class="col-1 col-form-label">Gender</label>
                     <div class="col-2">
                         <select class="form-control" id="studGender">
-                            <option>M</option>
-                            <option>F</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
                         </select>
                     </div>
                     <label for="studDob" class="col-1 col-form-label">DOB</label>
@@ -106,29 +106,28 @@
                 <div class="form-group row">
                     <label for="studCategory" class="col-1 col-form-label">Category</label>
                     <div class="col-4">
-                        <input class="form-control" id="studCcategory" placeholder="Category">
+                        <input type="text" class="form-control" id="studCategory" placeholder="Category">
                     </div>
 
                     <label for="studMajor" class="col-1 col-form-label">Major</label>
                     <div class="col-4">
-                        <input class="form-control" id="studMajor" placeholder="Major">
+                        <input type="text" class="form-control" id="studMajor" placeholder="Major">
                     </div>
-
                 </div>
                 <div class="form-group row">
                     <label for="studMinor" class="col-1 col-form-label">Minor</label>
                     <div class="col-4">
-                        <input class="form-control" id="studMinor" placeholder="Minor">
+                        <input type="text" class="form-control" id="studMinor" placeholder="Minor">
                     </div>
                     <label for="aid" class="col-1 col-form-label">AID</label>
                     <div class="col-4">
-                        <input class="form-control" id="aid" placeholder="AID">
+                        <input type="text" class="form-control" id="aid" placeholder="AID">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="studAddress" class="col-1 col-form-label">Address</label>
                     <div class="col-8">
-                        <input class="form-control" id="studAddress" placeholder="Address">
+                        <input type="text" class="form-control" id="studAddress" placeholder="Address">
                     </div>
                 </div>
                 <div class="row">
@@ -148,7 +147,7 @@
             <div class="row">
                 <span id="staffClose" class="close">&times;</span>
             </div>
-            <form>
+            <form id="staffForm">
                 <div class="form-group row">
                     <label for="staffID" class="col-1 col-form-label">ID</label>
                     <div class="col-3">
