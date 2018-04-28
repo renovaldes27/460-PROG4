@@ -36,11 +36,29 @@ $(document).ready(function () {
         ]
     });
 
+    $('#leaseTable').DataTable({
+        ajax: {
+            url: '/lease',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'id', title: 'ID' },
+            { data: 'rID', title: 'Room ID' },
+            { data: 'sID', title: 'Student ID' },
+            { data: 'duration', title: 'Duration' },
+            { data: 'cost', title: 'Monthly Rent' },
+            { data: 'startDate', title: 'Start Date' },
+        ]
+    });
+
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
+    var leaseTable = $('#leaseTable').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
+    var leaseModal = document.getElementById('lease-modal')
 
 
     $('#staffTable tbody').on('click', 'tr', function () {
@@ -59,6 +77,16 @@ $(document).ready(function () {
         }
         else {
             studentTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#leaseTable tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            leaseTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
@@ -96,7 +124,85 @@ $(document).ready(function () {
             $('#aid').attr('value',selectedData.advisorID);
         }
     });
-});
+
+    $('#editLeaseBtn').click( function () {
+        leaseModal.style.display= "block";
+        var selectedData = leaseTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#lease-id').attr('value',selectedData.id);
+            $('#lease-rid').attr('value',selectedData.rID);
+            $('#lease-sid').attr('value',selectedData.sID);
+            $('#lease-cost').attr('value', selectedData.cost);
+            $('#lease-duration').attr('value',selectedData.duration);
+            $('#lease-start').attr('value',selectedData.startDate);
+
+        }
+    });
+
+    $('#newStudentBtn').click( function() {
+        studentModal.style.display = "block";
+    });
+
+    $('#newStaffBtn').click( function() {
+        staffModal.style.display = "block";
+    });
+
+    $('#newLeaseBtn').click( function() {
+        leaseModal.style.display = "block";
+    });
+
+    $('#studentClose').click( function() {
+        studentModal.style.display = "none";
+    });
+
+    $('#staffClose').click( function() {
+        staffModal.style.display = "none";
+    });
+
+    $('#lease-close').click( function() {
+        leaseModal.style.display = "none";
+    });
+
+    $('#studentCancel').click( function() {
+        leaseModal.style.display = "none";
+    });
+
+    $('#studentSubmit').click( function() {
+        var formData = {
+            id: $('#studID').val(),
+            name:$('#studName').val(),
+            address:$('#studAddress').val(),
+            phone:$('#studPhone').val(),
+            email:$('#studEmail').val(),
+            gender:$('#studGender').val(),
+            dob:$('#studDob').val(),
+            category:$('#studCategory').val(),
+            major: $('#studMajor').val(),
+            minor: $('#studMinor').val(),
+            advisorID: $('#aid').val()
+
+        };
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/students",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+    });
+
+}); 
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
     $('#hallmanagers-table').DataTable({
@@ -118,41 +224,6 @@ function toggle(elId) {
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = 'none';
     }
+
     document.getElementById(elId).style.display = 'block';
-}
-
-// Get the modal
-var studentModal = document.getElementById('studentModal');
-var staffModal = document.getElementById('staffModal');
-
-// Get the buttons that opens the modal
-var newStudentBtn = document.getElementById("newStudentBtn");
-var newStaffBtn = document.getElementById("newStaffBtn");
-
-var editStudentBtn = document.getElementById("editStudentBtn");
-var editStaffBtn = document.getElementById("editStaffBtn");
-
-// Get the <span> element that closes the modal
-var studentClose = document.getElementById("studentClose")
-var staffClose = document.getElementById("staffClose")
-
-// When the user clicks on the button, open the modal 
-newStudentBtn.onclick = function () {
-    $("#studentForm").find("input[type=text]").attr('value',"");
-    studentModal.style.display = "block";
-}
-
-newStaffBtn.onclick = function () {
-    $("#staffForm").find("input[type=text]").attr('value',"");
-    staffModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-studentClose.onclick = function () {
-    studentModal.style.display = "none";
-}
-
-// When the user clicks on <span> (x), close the modal
-staffClose.onclick = function () {
-    staffModal.style.display = "none";
 }
