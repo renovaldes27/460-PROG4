@@ -115,7 +115,7 @@ public class Student
                 tempStudent.category = (answer.getString("Category"));
                 tempStudent.major = (answer.getString("MajorID"));
                 tempStudent.minor = (answer.getInt("MinorID")) + "";
-                tempStudent.advisorID = (answer.getInt("AdvisorID") + "");
+                tempStudent.advisorID = (answer.getString("AdvisorID"));
 
                 expandableList.add(tempStudent);
             }
