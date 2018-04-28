@@ -38,6 +38,7 @@ public class Student
             }
 
             SimpleDateFormat input = new SimpleDateFormat();
+            System.out.print(input.toPattern());
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String dobString = formater.format(input.parse(dob));
 
