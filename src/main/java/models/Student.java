@@ -1,8 +1,5 @@
 package models;
 import java.util.*;
-import java.util.Date;
-
-import org.attoparser.dom.DOMBuilderMarkupHandler;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -67,7 +64,7 @@ public class Student
     {
         try
         {
-            statement.execute("update student set name = " + name + " where id = " + id);
+            statement.execute("update student set name = '" + name + "' where id = " + id);
         }
         catch (SQLException e)
         {
