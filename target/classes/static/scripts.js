@@ -162,6 +162,46 @@ $(document).ready(function () {
     $('#lease-close').click( function() {
         leaseModal.style.display = "none";
     });
+
+    $('#studentCancel').click( function() {
+        leaseModal.style.display = "none";
+    });
+
+    $('#studentSubmit').click( function() {
+        var formData = {
+            id: $('#studID').val(),
+            name:$('#studName').val(),
+            address:$('#studAddress').val(),
+            phone:$('#studPhone').val(),
+            email:$('#studEmail').val(),
+            gender:$('#studGender').val(),
+            dob:$('#studDob').val(),
+            category:$('#studCategory').val(),
+            major: $('#studMajor').val(),
+            minor: $('#studMinor').val(),
+            advisorID: $('#aid').val()
+
+        };
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/students",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});
+    });
+
 }); 
 
 function toggle(elId) {
