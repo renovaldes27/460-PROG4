@@ -1,6 +1,12 @@
 package models;
 import java.util.*;
+import java.util.Date;
+
+import org.attoparser.dom.DOMBuilderMarkupHandler;
+
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Student 
 {
@@ -33,20 +39,23 @@ public class Student
                 }
             }
 
-            statement.execute("insert into isaacp.student values('" + nextStudentId +     
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String dobString = formater.format(formater.parse(dob));
+
+            statement.execute("insert into isaacp.student values('" + nextStudentId +
             "', '" + name +
             "', '" + address +
             "', '" + phone +
             "', '" + email +
             "', '" + gender +
-            "', '" + dob + // TODO This will not be formatted correctly
+            "', '" + dobString +
             "', '" + category +
             "', '" + major +
             "', '" + minor +
-            "', '" + advisorID + 
+            "', '" + advisorID +
             "' )");
         }
-        catch (SQLException e)
+        catch (SQLException | ParseException e)
         {
             e.printStackTrace();
             System.err.println("ERROR: can't add a new student. " + e.getMessage());
