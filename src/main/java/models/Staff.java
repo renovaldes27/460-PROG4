@@ -19,7 +19,7 @@ public class Staff {
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from isaacp.Staff");
+            ResultSet answer = statement.executeQuery("select * from isaacp.Staff join isaacp.jobtitle on (isaacp.staff.jobtitleid == isaacp.jobtitle.id)");
 
             List<Staff> expandableList = new ArrayList<>();
 
