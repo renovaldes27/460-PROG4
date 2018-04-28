@@ -1,33 +1,32 @@
-package app;
+package app; 
 
-import models.Staff;
-import models.Student;
-import models.HallManager;
-import models.Lease;
+import models.Staff; 
+import models.Student; 
+import models.HallManager; 
+import models.Lease; 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model; 
+import org.springframework.web.bind.annotation.GetMapping; 
+import org.springframework.web.bind.annotation.RequestParam; 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.jdbc.core.JdbcTemplate; 
+import org.springframework.stereotype.Repository; 
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*; 
 
-import javax.annotation.PostConstruct;
-import javax.sql.*;
+import javax.annotation.PostConstruct; 
+import javax.sql.*; 
 
-import java.sql.*;
-import java.text.*;
-import java.util.Date;
+import java.sql.*; 
+import java.text.*; 
+import java.util.Date; 
 import java.util.*;
 
 @Controller
-public class AppController 
-{
-    @Autowired
+public class AppController {
+@Autowired
     private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
 
     private Statement statement;
@@ -65,7 +64,7 @@ public class AppController
     @ResponseBody
     public Staff[]  getStaff()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+        DateFormat df = new SimpleDateFormat("YYYY - MM - dd");
         Staff staff = new Staff();
         staff.id = 27;
         staff.name = "Reno";
@@ -82,7 +81,7 @@ public class AppController
     @ResponseBody
     public Lease[]  getLease()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+        DateFormat df = new SimpleDateFormat("YYYY - MM - dd");
         Lease lease = new Lease();
         lease.id = 200;
         lease.rID = 4;
@@ -102,27 +101,30 @@ public class AppController
         try
         {
             ResultSet answer = statement.executeQuery("select isaacp.staff.Name as ManagerName, isaacp.building.TelephoneNumber, isaacp.building.name as BuildingName from isaacp.staff join isaacp.building on (isaacp.building.managerID = isaacp.staff.id)");
-            
-            answer.last();
-            int size = answer.getRow() - 1;
-            answer.beforeFirst();
-            output = new HallManager[size];
+            List<HallManager> expandableList = new ArrayList<>();
 
-            for(int i = 0; answer.next(); i++)
+            while(answer.next())
             {
                 HallManager manager = new HallManager();
 
                 manager.ManagerName = (answer.getString("ManagerName"));
                 manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
                 manager.BuildingName = (answer.getString("BuildingName"));
-                output[i] = manager;
+
+                expandableList.add(manager);
+            } 
+
+            int size = expandableList.size();
+            output = new HallManager[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
             }
-            
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't retrieve the managers. " + e.getMessage());
+            System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
         }
 
         return output;
