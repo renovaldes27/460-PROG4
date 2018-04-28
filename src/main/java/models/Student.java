@@ -29,7 +29,7 @@ public class Student
             {
                 isInitialized = true;
                 // get the max id that was used in the database
-                ResultSet answer = statement.executeQuery("select max(id) from student");
+                ResultSet answer = statement.executeQuery("select max(id) from isaacp.student");
                 while(answer.next()) // there should be only one result, but java requires us to use .next()
                 {
                     nextStudentId = answer.getInt("id");
@@ -64,7 +64,7 @@ public class Student
     {
         try
         {
-            statement.execute("update student set name = '" + name + "' where id = " + id);
+            statement.execute("update isaacp.student set name = '" + name + "' where id = " + id);
         }
         catch (SQLException e)
         {
@@ -77,7 +77,7 @@ public class Student
     {
         try
         {
-            statement.execute("delete from student where id = " + id);
+            statement.execute("delete from isaacp.student where id = " + id);
         }
         catch (SQLException e)
         {
@@ -92,7 +92,7 @@ public class Student
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from student");
+            ResultSet answer = statement.executeQuery("select * from isaacp.student");
 
             List<Student> expandableList = new ArrayList<>();
 

@@ -19,7 +19,7 @@ public class Staff {
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from student");
+            ResultSet answer = statement.executeQuery("select * from isaacp.Staff");
 
             List<Staff> expandableList = new ArrayList<>();
 
