@@ -306,7 +306,7 @@ $(document).ready(function () {
         location.reload();
     });
 
-    $('#student-delete').click( function() {
+    $('#delete-student').click( function() {
 
         var selectedData = studentTable.row('.selected').data()
 
