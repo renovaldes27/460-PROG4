@@ -52,6 +52,18 @@ $(document).ready(function () {
     });
 
 
+    $('#hallmanagers-table').DataTable( {
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    } );
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
@@ -273,7 +285,25 @@ $(document).ready(function () {
 		});
     });
 
-}); 
+});
+
+$("#nav-hallmanagers").on("click", function populateHallManagersTable() {
+    table = $('#hallmanagers-table').DataTable();
+
+    table.destroy();
+
+    $('#hallmanagers-table').DataTable( {
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    } );
+});
 
 function toggle(elId) {
     var tables = document.getElementsByClassName('dt');
