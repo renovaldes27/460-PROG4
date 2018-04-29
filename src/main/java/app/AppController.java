@@ -61,10 +61,10 @@ public class AppController
     }
 
     @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
-    public void deleteStudentPost(@RequestBody String jsonString) 
+    public void deleteStudentPost(@RequestBody Student jsonString) 
     {
-        // Not working currently
-        System.out.println("test"+jsonString);
+        
+        System.out.println("test"+jsonString.id);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)

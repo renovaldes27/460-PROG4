@@ -362,7 +362,24 @@ $(document).ready(function () {
         var selectedData = studentTable.row('.selected').data()
 
         if(selectedData.id !== null){
-            $.post("/deletestudent", selectedData.id);
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/deletestudent",
+                data : JSON.stringify(selectedData),
+                dataType : 'json',
+                timeout : 1000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                    location.reload();
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                }
+            });
         }
     });
 
