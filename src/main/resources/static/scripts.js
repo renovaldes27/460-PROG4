@@ -205,11 +205,14 @@ $(document).ready(function () {
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
+    table = $('#hallmanagers-table').DataTable();
+
+    table.destroy();
+
     $('#hallmanagers-table').DataTable( {
         ajax: {
             url: '/getHallManagerInfo',
-            dataSrc: '',
-            destroy: true
+            dataSrc: ''
         },
         columns: [
             { data: 'ManagerName', title: 'Manager Name' },
