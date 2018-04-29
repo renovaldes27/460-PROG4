@@ -10,9 +10,7 @@ public class Invoice
     private static int nextInvoiceId;
     private static boolean isInitialized;
     public int id;
-    public String inputLeaseID;
-    public String outputStudentName;
-    public String outputRoomString;
+    public String leaseID;
     public String semester;
     public String paymentDueDate;
     public String DatePaid;
@@ -38,8 +36,7 @@ public class Invoice
 
                 tempLease.id = answer.getInt("ID");
                 tempLease.semester = answer.getString("semester");
-                tempLease.outputRoomString = answer.getString("bName") + ": " + answer.getString("rNumber");
-                tempLease.outputStudentName = answer.getString("SNAME");
+                tempLease.leaseID = answer.getString("SNAME") + " in " + answer.getString("bName") + ": " + answer.getString("rNumber");
                 tempLease.paymentDueDate = answer.getDate("PaymentDue").toString();
 
                 Date DatePaidAsDate = answer.getDate("DatePaid");
@@ -97,8 +94,7 @@ public class Invoice
 
                 tempLease.id = answer.getInt("ID");
                 tempLease.semester = answer.getString("semester");
-                tempLease.outputRoomString = answer.getString("bName") + ": " + answer.getString("rNumber");
-                tempLease.outputStudentName = answer.getString("SNAME");
+                tempLease.leaseID = answer.getString("SNAME") + " in " + answer.getString("bName") + ": " + answer.getString("rNumber");
                 tempLease.paymentDueDate = answer.getDate("PaymentDue").toString();
                 
                 tempLease.DatePaid = "";
@@ -156,7 +152,7 @@ public class Invoice
             }
 
             statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
-            "', '" + inputLeaseID +
+            "', '" + leaseID +
             "', '" + semester +
             "', '" + payDueString +
             "', " + datePaidString +
