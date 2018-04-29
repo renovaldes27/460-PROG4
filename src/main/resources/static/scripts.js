@@ -306,6 +306,32 @@ $(document).ready(function () {
         location.reload();
     });
 
+    $('#student-delete').click( function() {
+
+        var selectedData = studentTable.row('.selected').data()
+
+        if(selectedData.id !== null){
+            $.ajax({
+                type : "POST",
+                url : "/studentdelete",
+                data : selectedData.id,
+                dataType : 'text',
+                timeout : 1000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                }
+            });
+
+            studentTable.row('.selected').remove();
+        }
+    });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
