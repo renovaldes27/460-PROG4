@@ -27,13 +27,7 @@ import java.util.*;
 public class AppController 
 {
     @Autowired
-    private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
-
-    // @PostConstruct
-    // private void postConstruct() 
-    // {
-
-    // }
+    private DataSource dataSource;
 
     @RequestMapping(value ="/students", method = RequestMethod.GET)
     @ResponseBody
