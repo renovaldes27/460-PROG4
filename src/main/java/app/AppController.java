@@ -89,7 +89,7 @@ public class AppController {
         staff.name = "Reno";
         staff.address = "Address";
         staff.email = "staff@email.com";
-        staff.gender = 'M';
+        staff.gender = "M";
         staff.dob = df.format(new Date());
         staff.jobTitle = "Head CS Professor";
         staff.location = "University of Arizona";
