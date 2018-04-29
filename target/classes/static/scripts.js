@@ -21,6 +21,7 @@ $(document).ready(function () {
         });
 
     }
+    createStudents();
 
     function createStaff() {
         $('#staffTable').DataTable({
@@ -40,6 +41,7 @@ $(document).ready(function () {
             ]
         });
     }
+    createStaff();
 
 
     function createLease() {
@@ -58,6 +60,7 @@ $(document).ready(function () {
             ]
         });
     }
+    createLease();
 
     function createAdvisors() {
         $('#advisor-table').DataTable({
@@ -75,6 +78,7 @@ $(document).ready(function () {
             ]
         });
     }
+    createAdvisors();
 
     function createRooms() {
         $('#room-table').DataTable({
@@ -91,6 +95,7 @@ $(document).ready(function () {
             ]
         });
     }
+    createRooms();
 
     function createBuildings() {
         $('#building-table').DataTable({
@@ -109,6 +114,7 @@ $(document).ready(function () {
             ]
         });
     }
+    createBuildings();
 
 
     $('#hallmanagers-table').DataTable( {
@@ -393,33 +399,5 @@ function toggle(elId) {
         tables[i].style.display = 'none';
     }
 
-    switch(elId){
-        case "students":{
-            studentTable.destroy();
-            createStudents;
-
-        }
-        case "advisors":{
-            advisorTable.destroy();
-            createAdvisors;
-        }
-        case "staff":{
-            staffTable.destroy();
-            createStaff;
-        }
-        case "leases":{
-            leaseTable.destroy();
-            createLease;
-        }
-        case "rooms":{
-            roomTable.destroy();
-            createRooms;
-        }
-        case "buildings":{
-            buildingTable.destroy();
-            createBuildings;
-        }
-
-    }
     document.getElementById(elId).style.display = 'block';
 }
