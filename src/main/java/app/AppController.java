@@ -64,7 +64,6 @@ public class AppController
         System.out.println(jsonString.name);
     }
 
-
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewStudent(@RequestBody Staff jsonString) {
