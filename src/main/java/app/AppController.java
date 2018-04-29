@@ -60,6 +60,13 @@ public class AppController
         jsonString.add(statement);
     }
 
+    @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteStudentPost(@RequestBody String jsonString) 
+    {
+        System.out.println(jsonString);
+    }
+
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewSaff(@RequestBody Staff jsonString)
