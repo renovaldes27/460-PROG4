@@ -60,15 +60,15 @@ public class AppController {
     public void addNewStudent(@RequestBody Student jsonString) 
     {
         jsonString.add(statement);
-        System.out.println(jsonString.name);
     }
 
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewStudent(@RequestBody Staff jsonString) {
+    public void addNewSaff(@RequestBody Staff jsonString) {
 
-        System.out.println(jsonString.name); 
+        System.out.println(jsonString.name);
+        jsonString.add(statement); 
     }
 
 
