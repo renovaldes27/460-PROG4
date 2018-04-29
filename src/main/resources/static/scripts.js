@@ -51,10 +51,22 @@ $(document).ready(function () {
         ]
     });
 
+
+    $('#hallmanagers-table').DataTable( {
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    } );
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
-    var managersTable = $('#hallmanagers-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
