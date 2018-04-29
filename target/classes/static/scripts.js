@@ -21,7 +21,6 @@ $(document).ready(function () {
         });
 
     }
-    createStudents();
 
     function createStaff() {
         $('#staffTable').DataTable({
@@ -41,7 +40,6 @@ $(document).ready(function () {
             ]
         });
     }
-    createStaff();
 
 
     function createLease() {
@@ -60,7 +58,6 @@ $(document).ready(function () {
             ]
         });
     }
-    createLease();
 
     function createAdvisors() {
         $('#advisor-table').DataTable({
@@ -78,7 +75,6 @@ $(document).ready(function () {
             ]
         });
     }
-    createAdvisors();
 
     function createRooms() {
         $('#room-table').DataTable({
@@ -95,7 +91,6 @@ $(document).ready(function () {
             ]
         });
     }
-    createRooms();
 
     function createBuildings() {
         $('#building-table').DataTable({
@@ -114,7 +109,6 @@ $(document).ready(function () {
             ]
         });
     }
-    createBuildings();
 
 
     $('#hallmanagers-table').DataTable( {
@@ -132,6 +126,9 @@ $(document).ready(function () {
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
+    var advisorTable = $('#advisor-table').DataTable();
+    var roomTable = $('#room-table').DataTable();
+    var buildingTable = $('#building-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
@@ -396,5 +393,33 @@ function toggle(elId) {
         tables[i].style.display = 'none';
     }
 
+    switch(elId){
+        case "students":{
+            studentTable.destroy();
+            createStudents;
+
+        }
+        case "advisors":{
+            advisorTable.destroy();
+            createAdvisors;
+        }
+        case "staff":{
+            staffTable.destroy();
+            createStaff;
+        }
+        case "leases":{
+            leaseTable.destroy();
+            createLease;
+        }
+        case "rooms":{
+            roomTable.destroy();
+            createRooms;
+        }
+        case "buildings":{
+            buildingTable.destroy();
+            createBuildings;
+        }
+
+    }
     document.getElementById(elId).style.display = 'block';
 }
