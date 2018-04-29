@@ -32,7 +32,7 @@ public class Room
                 tempStaff.roomNumber = answer.getString("RoomNumber");
                 tempStaff.buildingId = answer.getString("bName");
                 tempStaff.studentID = answer.getString("sName");
-                tempStaff.monthlyRent = answer.getString("monthlyRent");
+                tempStaff.monthlyRent = answer.getString("monthlyRentRate");
 
                 expandableList.add(tempStaff);
             }
