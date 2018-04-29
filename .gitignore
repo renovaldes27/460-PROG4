@@ -10,3 +10,5 @@ target/classes/application\.properties
 target/classes/static/index\.html
 
 target/classes/static/scripts\.js
+target/classes/static/styles.css
+target/classes/templates/greeting.html
