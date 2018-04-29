@@ -1,9 +1,13 @@
 package models;
 import java.sql.*;
 import java.util.*;
+import java.text.*;
 
 
-public class Staff {
+public class Staff 
+{
+    private static int nextStaffId;
+    private static boolean isInitialized;
     public int id;
     public String name;
     public String email;
@@ -59,4 +63,41 @@ public class Staff {
         return output;
     }
 
+    public void add(Statement statement)
+    {
+        try
+        {
+            if(isInitialized == false)
+            {
+                isInitialized = true;
+                // get the max id that was used in the database
+                ResultSet answer = statement.executeQuery("select max(id) from isaacp.staff");
+                while(answer.next()) // there should be only one result, but java requires us to use .next()
+                {
+                    nextStaffId = answer.getInt("MAX(ID)") + 1;
+                }
+            }
+
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+            // System.out.println(input.toPattern());
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String dobString = formater.format(input.parse(dob));
+
+            statement.execute("insert into isaacp.staff values('" + nextStaffId +
+            "', '" + name +
+            "', '" + email +
+            "', '" + address +
+            "', '" + dobString +
+            "', '" + gender +
+            "', '" + jobTitle +
+            "', '" + location +
+            "' )");
+        }
+        catch (SQLException | ParseException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't add a new staff. " + e.getMessage());
+        }
+        nextStaffId++;
+    }
 }

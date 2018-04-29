@@ -1,14 +1,11 @@
-package app;
+package app; 
 
-import models.Staff;
-import models.Student;
-import models.HallManager;
-import models.Lease;
+import models.*; 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model; 
+import org.springframework.web.bind.annotation.GetMapping; 
+import org.springframework.web.bind.annotation.RequestParam; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,14 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*; 
 
-import javax.annotation.PostConstruct;
-import javax.sql.*;
+import javax.annotation.PostConstruct; 
+import javax.sql.*; 
 
-import java.sql.*;
-import java.text.*;
-import java.util.Date;
+import java.sql.*; 
+import java.text.*; 
+import java.util.Date; 
 import java.util.*;
 
 @Controller
@@ -61,22 +58,21 @@ public class AppController
     public void addNewStudent(@RequestBody Student jsonString) 
     {
         jsonString.add(statement);
-        System.out.println(jsonString.name);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewStudent(@RequestBody Staff jsonString) {
-
-        System.out.println(jsonString.name); 
+    public void addNewSaff(@RequestBody Staff jsonString)
+    {
+        jsonString.add(statement); 
     }
 
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewLease(@RequestBody Lease jsonString) {
-
-        System.out.println(jsonString.startDate);  
+    public void addNewLease(@RequestBody Lease jsonString) 
+    {
+        jsonString.add(statement);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
@@ -90,15 +86,7 @@ public class AppController
     @ResponseBody
     public Lease[]  getLease()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        Lease lease = new Lease();
-        lease.id = 200;
-        lease.rID = 4;
-        lease.sID = 27;
-        lease.duration = "6 mo";
-        lease.cost = 1000;
-        lease.startDate = df.format(new Date());
-        return new Lease[]{lease};
+        return Lease.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
@@ -109,41 +97,35 @@ public class AppController
 
         try
         {
-            ResultSet answer = statement.executeQuery("select isaacp.staff.Name as ManagerName, isaacp.building.TelephoneNumber, isaacp.building.name as BuildingName from isaacp.staff join isaacp.building on (isaacp.building.managerID == isaacp.staff.id)");
-            
-            answer.last();
-            int size = answer.getRow() - 1;
-            answer.beforeFirst();
-            output = new HallManager[size];
+            ResultSet answer = statement.executeQuery("select isaacp.staff.Name as ManagerName, isaacp.building.TelephoneNumber, isaacp.building.name as BuildingName from isaacp.staff join isaacp.building on (isaacp.building.managerID = isaacp.staff.id)");
+            List<HallManager> expandableList = new ArrayList<>();
 
-            for(int i = 0; answer.next(); i++)
+            while(answer.next())
             {
                 HallManager manager = new HallManager();
 
-                //manager.ID = (answer.getInt("ManagerName"));
-                //manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
-                //manager.BuildingName = (answer.getInt("BuildingName"));
+                manager.ManagerName = (answer.getString("ManagerName"));
+                manager.TelephoneNumber = (answer.getInt("TelephoneNumber"));
+                manager.BuildingName = (answer.getString("BuildingName"));
 
-                output[i] = manager;
+                expandableList.add(manager);
+            } 
+
+            int size = expandableList.size();
+            output = new HallManager[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
             }
-            
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't retrieve the managers. " + e.getMessage());
+            System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
         }
 
         return output;
     }
-
-
-    // // the id field of input student will be ignored.
-    // // id will be uniqly assigned
-    // public void addStudent(Student student)
-    // {
-    //     student.add(statement);
-    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.

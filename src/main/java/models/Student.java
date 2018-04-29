@@ -1,10 +1,8 @@
 package models;
-import java.util.*;
 
+import java.util.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 
 public class Student 
 {
@@ -20,7 +18,7 @@ public class Student
     public String category;
     public String major;
     public String minor;
-    public int advisorID;
+    public String advisorID;
 
     public void add(Statement statement)
     {
@@ -95,7 +93,11 @@ public class Student
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from isaacp.student");
+            ResultSet answer = statement.executeQuery("select isaacp.student.id as id, isaacp.student.name as name, address, phoneNumber, isaacp.student.email, gender, dob, category, major.name as majorid, minor.name as minorid, isaacp.advisor.name as advisorid" + 
+            " from isaacp.student" + 
+            " join isaacp.department major on (isaacp.student.majorID = major.id)" +
+            " join isaacp.department minor on (isaacp.student.minorID = minor.id)" +
+            " join isaacp.advisor on (isaacp.student.advisorid = isaacp.advisor.id)");
 
             List<Student> expandableList = new ArrayList<>();
 
@@ -111,9 +113,9 @@ public class Student
                 tempStudent.gender = (answer.getString("Gender"));
                 tempStudent.dob = (answer.getDate("DOB")).toString();
                 tempStudent.category = (answer.getString("Category"));
-                tempStudent.major = (answer.getInt("MajorID")) + "";
-                tempStudent.minor = (answer.getInt("MinorID")) + "";
-                tempStudent.advisorID = (answer.getInt("AdvisorID"));
+                tempStudent.major = (answer.getString("MajorID"));
+                tempStudent.minor = (answer.getString("MinorID"));
+                tempStudent.advisorID = (answer.getString("AdvisorID"));
 
                 expandableList.add(tempStudent);
             }

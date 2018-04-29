@@ -3,5 +3,12 @@
 .settings/org.eclipse.core.resources.prefs
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
-src/main/resources/application.properties
-target/classes/application.properties
+.target/
+
+target/classes/application\.properties
+
+target/classes/static/index\.html
+
+target/classes/static/scripts\.js
+target/classes/static/styles.css
+target/classes/templates/greeting.html
