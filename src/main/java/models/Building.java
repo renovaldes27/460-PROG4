@@ -9,7 +9,7 @@ public class Building
     public int id;
     public String name;
     public String address;
-    public String isApartment;
+    public int isApartment;
     public String telephoneNumber;
     public String managerID;
     public String numStudents;
@@ -32,15 +32,7 @@ public class Building
                 tempStaff.id = answer.getInt("ID");
                 tempStaff.name = answer.getString("Name");
                 tempStaff.address = answer.getString("Address");
-                int isApt = answer.getInt("IsApartment");
-                if(isApt == 0)
-                {
-                    tempStaff.isApartment = "No";
-                }
-                else
-                {
-                    tempStaff.isApartment = "Yes";
-                }
+                tempStaff.isApartment = answer.getInt("IsApartment");
                 tempStaff.managerID = answer.getString("staffName");
                 tempStaff.telephoneNumber = answer.getString("TelephoneNumber");
                 tempStaff.numStudents = answer.getString("NumberOfStudents");

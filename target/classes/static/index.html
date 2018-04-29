@@ -195,7 +195,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="staffTitle" class="col-1 col-form-label">Title</label>
-                    <div class="col-3">  
+                    <div class="col-3">
                         <input required class="form-control" id="staffTitle" placeholder="Title">
                     </div>
 
@@ -257,7 +257,7 @@
                         <input class="form-control" id="lease-rid" placeholder="RID">
                     </div>
                     <label for="lease-sid" class="col-1 col-form-label">SID</label>
-                    <div class="col-4">
+                    <div class="col-3">
                         <input class="form-control" id="lease-sid" placeholder="SID">
                     </div>
                 </div>
@@ -285,6 +285,157 @@
                     </div>
                     <div class="col-2">
                         <button class="btn btn-small btn-light" type="reset" id="lease-cancel">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="advisor-modal" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <span id="advisor-close" class="close">&times;</span>
+            </div>
+            <form id="lease-form">
+                <div class="form-group row">
+                    <label for="advisor-id" class="col-1 col-form-label">ID</label>
+                    <div class="col-3">
+                        <input class="form-control" id="advisor-id" placeholder="ID">
+                    </div>
+                    <label for="advisor-name" class="col-1 col-form-label">Name</label>
+                    <div class="col-3 ">
+                        <input class="form-control" id="advisor-name" placeholder="Name">
+                    </div>
+                    <label for="advisor-position" class="col-1 col-form-label">Position</label>
+                    <div class="col-3">
+                        <input class="form-control" id="advisor-position" placeholder="Position">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="advisor-department" class="col-1 col-form-label">Department</label>
+                    <div class="col-3">
+                        <select class="form-control" id="advisor-department">
+                            <option value="1" text="Computer Science" />
+                            <option value="2" text="English" />
+                        </select>
+                    </div>
+                    <label for="advisor-phone" class="col-1 col-form-label">Phone</label>
+                    <div class="col-3">
+                        <input class="form-control" id="advisor-phone" placeholder="Phone">
+                    </div>
+                    <label for="advisor-email" class="col-1 col-form-label">Email</label>
+                    <div class="col-3">
+                        <input class="form-control" id="advisor-email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 offset-8">
+                        <button class="btn btn-small btn-primary" type=button id="advisor-submit">Submit</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-small btn-light" type="reset" id="advisor-cancel">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="room-modal" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <span id="room-close" class="close">&times;</span>
+            </div>
+            <form id="lease-form">
+                <div class="form-group row">
+                    <label for="room-id" class="col-1 col-form-label">ID</label>
+                    <div class="col-3">
+                        <input class="form-control" id="room-id" placeholder="ID">
+                    </div>
+                    <label for="room-num" class="col-1 col-form-label">Room #</label>
+                    <div class="col-3">
+                        <input class="form-control" id="room-num" placeholder="#">
+                    </div>
+                    <label for="room-building" class="col-1 col-form-label">Building</label>
+                    <div class="col-3">
+                        <select class="form-control" id="room-building">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lease-cost" class="col-1 col-form-label">Student</label>
+                    <div class="col-3">
+                        <select class="form-control" id="room-student">
+                        </select>
+                    </div>
+                    <label for="room-rent" class="col-1 col-form-label">Rent</label>
+                    <div class="col-4">
+                        <input class="form-control" id="room-rent" placeholder="Rent">
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-2 offset-8">
+                <button class="btn btn-small btn-primary" type=button id="room-submit">Submit</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-small btn-light" type="reset" id="room-cancel">Cancel</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <div id="building-modal" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <span id="building-close" class="close">&times;</span>
+            </div>
+            <form id="lease-form">
+                <div class="form-group row">
+                    <label for="building-id" class="col-1 col-form-label">ID</label>
+                    <div class="col-3">
+                        <input class="form-control" id="building-id" placeholder="ID">
+                    </div>
+                    <label for="building-name" class="col-1 col-form-label">Name</label>
+                    <div class="col-3 ">
+                        <input class="form-control" id="building-name" placeholder="Name">
+                    </div>
+                    <label for="building-apt" class="col-1 col-form-label">Apartment?</label>
+                    <div class="col-3">
+                        <select class="form-control" id="building-apt">
+                            <option value="0" text="No" />
+                            <option value="1" text="Yes" />
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="building-phone" class="col-1 col-form-label">Phone</label>
+                    <div class="col-3">
+                        <input class="form-control" id="building-phone" placeholder="Phone">
+                    </div>
+                    <label for="building-manager" class="col-1 col-form-label">Manager</label>
+                    <div class="col-3">
+                        <select class="form-control" id="building-manager">
+                        </select>
+                    </div>
+                    <label for="building-count" class="col-1 col-form-label">Student Count</label>
+                    <div class="col-3">
+                        <input class="form-control" id="building-count" placeholder="Student Count">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="building-address" class="col-1 col-form-label">Address</label>
+                    <div class="col-8">
+                        <input type="text" class="form-control" id="building-address" placeholder="Address">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-2 offset-8">
+                        <button class="btn btn-small btn-primary" type=button id="building-submit">Submit</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-small btn-light" type="reset" id="building-cancel">Cancel</button>
                     </div>
                 </div>
             </form>

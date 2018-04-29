@@ -111,6 +111,27 @@ public class AppController
         }
     }
 
+    @RequestMapping(value ="/advisors", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewAdvisor(@RequestBody Advisor jsonString) 
+    {
+       System.out.println(jsonString.name);
+    }
+
+    @RequestMapping(value ="/room", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewRoom(@RequestBody Room jsonString) 
+    {
+       System.out.println(jsonString.monthlyRent);
+    }
+
+    @RequestMapping(value ="/buildings", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewBuildilng(@RequestBody Building jsonString) 
+    {
+       System.out.println(jsonString.name);
+    }
+
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
