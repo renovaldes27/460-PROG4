@@ -31,7 +31,7 @@ public class Lease {
                 tempLease.cost = (answer.getInt("MonthlyCost"));
                 tempLease.duration = (answer.getInt("Duration") + " semesters");
                 tempLease.rID = (answer.getString("bName") + ": " + answer.getString("rNumber"));
-                tempLease.sID = (answer.getString("sName"));
+                tempLease.sID = (answer.getString("SNAME"));
                 tempLease.startDate = (answer.getDate("LeaseStartDate")).toString();
 
                 expandableList.add(tempLease);
