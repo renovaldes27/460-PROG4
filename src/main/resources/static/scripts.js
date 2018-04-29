@@ -599,6 +599,11 @@ $(document).ready(function () {
         }
     });
 
+    $.getJSON( "/staff", function( data ) {
+        var options = $("#building-manager");
+
+      });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
