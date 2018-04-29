@@ -74,6 +74,7 @@ public class Invoice
         return output;
     }
 
+    // This answers query 3
     public static Invoice[] getUnpaid(Statement statement)
     {
         Invoice[] output = null;
