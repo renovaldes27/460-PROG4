@@ -85,14 +85,13 @@ public class AppController
         } 
     }
 
-    @RequestMapping(value ="/something", method = RequestMethod.POST)
+    @RequestMapping(value ="/studremove", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void something(@RequestBody Student jsonString)
     {
         System.out.print(jsonString.id);
 
     }
-
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
