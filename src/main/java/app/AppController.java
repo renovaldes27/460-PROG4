@@ -64,7 +64,7 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteStudentPost(@RequestBody String jsonString) 
     {
-        System.out.println(jsonString);
+        System.out.println("test"+jsonString);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)

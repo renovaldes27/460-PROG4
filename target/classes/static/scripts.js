@@ -311,12 +311,7 @@ $(document).ready(function () {
         var selectedData = studentTable.row('.selected').data()
 
         if(selectedData.id !== null){
-            $.ajax({
-                type : "POST",
-                url : "/studentdelete",
-                data : selectedData.id
-            });
-            studentTable.row('.selected').remove().draw();
+            $.post("/deletestudent", selectedData.id);
         }
     });
 
