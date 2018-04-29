@@ -60,7 +60,7 @@ public class AppController
         jsonString.add(statement);
     }
 
-    @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
+    @RequestMapping(value ="/delete", method = RequestMethod.POST)
     public void deleteStudentPost(@RequestBody Student jsonString) 
     {
         

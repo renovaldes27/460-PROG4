@@ -371,7 +371,7 @@ $(document).ready(function () {
             $.ajax({
                 type : "POST",
                 contentType : "application/json",
-                url : "/deletestudent",
+                url : "/delete",
                 data : JSON.stringify(selectedData),
                 dataType : 'json',
                 timeout : 1000,
