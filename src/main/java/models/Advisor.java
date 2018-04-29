@@ -1,8 +1,6 @@
 package models;
 import java.sql.*;
 import java.util.*;
-import java.text.*;
-
 
 public class Advisor 
 {
@@ -30,12 +28,12 @@ public class Advisor
             {
                 Advisor tempStaff = new Advisor();
 
-                tempStaff.id = (answer.getInt("ID"));
-                tempStaff.name = (answer.getString("Name"));
-                tempStaff.position = (answer.getString("Position"));
-                tempStaff.departmentID = (answer.getString("dName"));
-                tempStaff.TelephoneNumber = (answer.getString("TelephoneNumber"));
-                tempStaff.email = (answer.getString("Email"));
+                tempStaff.id = answer.getInt("ID");
+                tempStaff.name = answer.getString("Name");
+                tempStaff.position = answer.getString("Position");
+                tempStaff.departmentID = answer.getString("dName");
+                tempStaff.TelephoneNumber = answer.getString("TelephoneNumber");
+                tempStaff.email = answer.getString("Email");
 
                 expandableList.add(tempStaff);
             }
