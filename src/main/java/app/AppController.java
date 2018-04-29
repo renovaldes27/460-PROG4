@@ -29,22 +29,11 @@ public class AppController
     @Autowired
     private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
 
-    // private Statement statement;
+    // @PostConstruct
+    // private void postConstruct() 
+    // {
 
-    @PostConstruct
-    private void postConstruct() 
-    {
-        // try
-        // {
-        //     // create the statement that every function will use
-        //     statement = dataSource.getConnection().createStatement();
-        // }
-        // catch (SQLException e)
-        // {
-        //     e.printStackTrace();
-        //     System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
-        // }
-    }
+    // }
 
     @RequestMapping(value ="/students", method = RequestMethod.GET)
     @ResponseBody
