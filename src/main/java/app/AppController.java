@@ -1,9 +1,6 @@
 package app; 
 
-import models.Staff; 
-import models.Student; 
-import models.HallManager; 
-import models.Lease; 
+import models.*; 
 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
@@ -27,8 +24,9 @@ import java.util.Date;
 import java.util.*;
 
 @Controller
-public class AppController {
-@Autowired
+public class AppController 
+{
+    @Autowired
     private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
 
     private Statement statement;
