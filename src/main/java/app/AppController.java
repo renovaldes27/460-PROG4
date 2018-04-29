@@ -60,55 +60,36 @@ public class AppController {
     public void addNewStudent(@RequestBody Student jsonString) 
     {
         jsonString.add(statement);
-        System.out.println(jsonString.name);
     }
 
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewStudent(@RequestBody Staff jsonString) {
-
-        System.out.println(jsonString.name); 
+    public void addNewSaff(@RequestBody Staff jsonString)
+    {
+        jsonString.add(statement); 
     }
 
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewLease(@RequestBody Lease jsonString) {
-
-        System.out.println(jsonString.startDate);  
+    public void addNewLease(@RequestBody Lease jsonString) 
+    {
+        jsonString.add(statement);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        Staff staff = new Staff();
-        staff.id = 27;
-        staff.name = "Reno";
-        staff.address = "Address";
-        staff.email = "staff@email.com";
-        staff.gender = "M";
-        staff.dob = df.format(new Date());
-        staff.jobTitle = "Head CS Professor";
-        staff.location = "University of Arizona";
-        return new Staff[]{staff};
+        return Staff.getAll(statement);
     }
 
     @RequestMapping(value ="/lease", method = RequestMethod.GET)
     @ResponseBody
     public Lease[]  getLease()
     {
-        DateFormat df = new SimpleDateFormat("YYYY - MM - dd");
-        Lease lease = new Lease();
-        lease.id = 200;
-        lease.rID = 4;
-        lease.sID = 27;
-        lease.duration = "6 mo";
-        lease.cost = 1000;
-        lease.startDate = df.format(new Date());
-        return new Lease[]{lease};
+        return Lease.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
@@ -148,14 +129,6 @@ public class AppController {
 
         return output;
     }
-
-
-    // // the id field of input student will be ignored.
-    // // id will be uniqly assigned
-    // public void addStudent(Student student)
-    // {
-    //     student.add(statement);
-    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.
