@@ -83,17 +83,6 @@ public class AppController {
     @ResponseBody
     public Staff[]  getStaff()
     {
-        // DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        // Staff staff = new Staff();
-        // staff.id = 27;
-        // staff.name = "Reno";
-        // staff.address = "Address";
-        // staff.email = "staff@email.com";
-        // staff.gender = "M";
-        // staff.dob = df.format(new Date());
-        // staff.jobTitle = "Head CS Professor";
-        // staff.location = "University of Arizona";
-        // return new Staff[]{staff};
         return Staff.getAll(statement);
     }
 
