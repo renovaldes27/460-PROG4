@@ -51,11 +51,23 @@ $(document).ready(function () {
         ]
     });
 
+    $('#hallmanagers-table').DataTable( {
+        ajax: {
+            url: '/getHallManagerInfo',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'ManagerName', title: 'Manager Name' },
+            { data: 'TelephoneNumber', title: 'Telephone Number' },
+            { data: 'BuildingName', title: 'Building Name' },
+        ]
+    } );
+
 
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
-    $('#hallmanagers-table').DataTable();
+    var managersTable = $('#hallmanagers-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
@@ -203,23 +215,6 @@ $(document).ready(function () {
 		});
     });
 
-}); 
-
-$("#nav-hallmanagers").on("click", function populateHallManagersTable() {
-    table = $('#hallmanagers-table').DataTable( {
-        ajax: {
-            url: '/getHallManagerInfo',
-            dataSrc: '',
-            destroy: true,
-            retrieve: true
-        },
-        columns: [
-            { data: 'ManagerName', title: 'Manager Name' },
-            { data: 'TelephoneNumber', title: 'Telephone Number' },
-            { data: 'BuildingName', title: 'Building Name' },
-        ]
-    } );
-    console.log("I am passed it");
 });
 
 function toggle(elId) {
