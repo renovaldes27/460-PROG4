@@ -16,7 +16,7 @@ public class Lease {
 
         try
         {
-            ResultSet answer = statement.executeQuery("select isaacp.StudentLease.ID as ID, MonthlyCost, Duration, LeaseStartDate, isaacp.student.name AS sName, isaacp.room.RoomNumber AS rNumber, isaacp.building.name AS bName" + 
+            ResultSet answer = statement.executeQuery("select isaacp.StudentLease.ID as ID, MonthlyCost, Duration, LeaseStartDate, isaacp.student.name AS sName, isaacp.room.RoomNumber AS rNumber, isaacp.building.name AS bName " + 
             "from isaacp.StudentLease join isaacp.student on (isaacp.StudentLease.StudentID = isaacp.student.id) " +
             "join isaacp.room on (isaacp.studentLease.roomID = isaacp.room.id) " + 
             "join isaacp.building on (isaacp.room.buildingID = isaacp.building.id)");
@@ -50,7 +50,7 @@ public class Lease {
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't retrieve the staff. " + e.getMessage());
+            System.err.println("ERROR: can't retrieve the Lease. " + e.getMessage());
         }
 
         return output;
