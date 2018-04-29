@@ -601,7 +601,9 @@ $(document).ready(function () {
 
     $.getJSON( "/staff", function( data ) {
         var options = $("#building-manager");
-
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
       });
 
 });
