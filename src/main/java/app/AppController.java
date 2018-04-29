@@ -103,7 +103,7 @@ public class AppController
         return Advisor.getAll(statement);
     }
 
-    @RequestMapping(value ="/rooms", method = RequestMethod.GET)
+    @RequestMapping(value ="/room", method = RequestMethod.GET)
     @ResponseBody
     public Room[] getRooms()
     {

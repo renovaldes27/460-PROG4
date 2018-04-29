@@ -9,7 +9,7 @@ public class Building
     public int id;
     public String name;
     public String address;
-    public String isAppartment;
+    public String isApartment;
     public String telephoneNumber;
     public String managerID;
     public String numStudents;
@@ -35,11 +35,11 @@ public class Building
                 int isApt = answer.getInt("IsApartment");
                 if(isApt == 0)
                 {
-                    tempStaff.isAppartment = "No";
+                    tempStaff.isApartment = "No";
                 }
                 else
                 {
-                    tempStaff.isAppartment = "Yes";
+                    tempStaff.isApartment = "Yes";
                 }
                 tempStaff.managerID = answer.getString("staffName");
                 tempStaff.telephoneNumber = answer.getString("TelephoneNumber");
@@ -85,7 +85,7 @@ public class Building
             statement.execute("insert into isaacp.Building values('" + nextBuildingId +
             "', '" + name +
             "', '" + address +
-            "', '" + isAppartment +
+            "', '" + isApartment +
             "', '" + telephoneNumber +
             "', '" + managerID +
             "', '" + numStudents +

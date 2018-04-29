@@ -83,7 +83,7 @@ $(document).ready(function () {
     function createRooms() {
         $('#room-table').DataTable({
             ajax: {
-                url: '/rooms',
+                url: '/room',
                 dataSrc: ''
             },
             columns: [
