@@ -314,21 +314,9 @@ $(document).ready(function () {
             $.ajax({
                 type : "POST",
                 url : "/studentdelete",
-                data : selectedData.id,
-                dataType : 'text',
-                timeout : 1000,
-                success : function(data) {
-                    console.log("SUCCESS: ", data);
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                },
-                done : function(e) {
-                    console.log("DONE");
-                }
+                data : selectedData.id
             });
-
-            studentTable.row('.selected').remove();
+            studentTable.row('.selected').remove().draw();
         }
     });
 
