@@ -43,16 +43,6 @@
                     <li class="nav-item">
                         <a class="nav-link" onClick="toggle('leases')" href="#">Leases</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Buildings
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">All Buildings</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')">Hall Managers</a>
-                        </div>
-                      </li>
                 </ul>
             </div>
         </nav>
@@ -60,28 +50,26 @@
         <div class="container dt" id="students" style="margin:10px 0px; display:none;">
             <button type="button" id="newStudentBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">New Student</button>
             <button type="button" id="editStudentBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">Edit Student</button>
+            <button type="button" id="delete-student" style="margin:10px 0px;" class="btn btn-primary btn-small">Delete Student</button>
+
             <table id="studentTable" class="table table-striped table-bordered">
             </table>
         </div>
-
         <div class="container dt" id="staff" style="margin:10px 0px; display:none;">
             <button type="button" id="newStaffBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">New Staff</button>
             <button type="button" id="editStaffBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">Edit Staff</button>
             <table id="staffTable" class="table table-striped table-bordered">
             </table>
         </div>
-
         <div class="container dt" id="leases" style="margin:10px 0px; display:none;">
             <button type="button" id="newLeaseBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">New Lease</button>
             <button type="button" id="editLeaseBtn" style="margin:10px 0px;" class="btn btn-primary btn-small">Edit Lease</button>
             <table id="leaseTable" class="table table-striped table-bordered">
             </table>
         </div>
+    </body>
+    </body>
 
-        <div class="container dt" id="hallmanagers" style="margin:10px 0px; display:none;">
-            <table id="hallmanagers-table" class="table table-striped table-bordered">
-            </table>
-        </div>    
     <div id="studentModal" class="modal">
         <div class="modal-content">
             <div class="row">
@@ -171,47 +159,47 @@
                 <div class="form-group row">
                     <label for="staffID" class="col-1 col-form-label">ID</label>
                     <div class="col-3">
-                        <input class="form-control" id="staffID" placeholder="ID">
+                        <input required class="form-control" id="staffID" placeholder="ID">
                     </div>
                     <label for="staffName" class="col-1 col-form-label">Name</label>
                     <div class="col-3 ">
-                        <input class="form-control" id="staffName" placeholder="Name">
+                        <input required class="form-control" id="staffName" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staffTitle" class="col-1 col-form-label">Title</label>
                     <div class="col-3">  
-                        <input class="form-control" id="staffTitle" placeholder="Title">
+                        <input required class="form-control" id="staffTitle" placeholder="Title">
                     </div>
 
                     <label for="staffEmail" class="col-1 col-form-label">Email</label>
                     <div class="col-4">
-                        <input type="email" class="form-control" id="staffEmail" placeholder="Email">
+                        <input required type="email" class="form-control" id="staffEmail" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staffGender" class="col-1 col-form-label">Gender</label>
                     <div class="col-2">
-                        <select class="form-control" id="staffGender">
+                        <select required class="form-control" id="staffGender">
                             <option>M</option>
                             <option>F</option>
                         </select>
                     </div>
                     <label for="staffDob" class="col-1 col-form-label">DOB</label>
                     <div class="col-4">
-                        <input class="form-control" type="date" id="staffDob">
+                        <input required class="form-control" type="date" id="staffDob">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staffLocation" class="col-1 col-form-label">Location</label>
                     <div class="col-4">
-                        <input class="form-control" id="staffLocation" placeholder="Location">
+                        <input required class="form-control" id="staffLocation" placeholder="Location">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="staffAddress" class="col-1 col-form-label">Address</label>
                     <div class="col-8">
-                        <input class="form-control" id="staffAddress" placeholder="Address">
+                        <input required class="form-control" id="staffAddress" placeholder="Address">
                     </div>
                 </div>
                 <div class="row">
@@ -275,7 +263,6 @@
             </form>
         </div>
     </div>
-</body>
 
 </html>
 
