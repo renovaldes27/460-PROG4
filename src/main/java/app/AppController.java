@@ -135,7 +135,6 @@ public class AppController
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
         return results;
-        // return Staff.getAll(statement);
     }
 
     @RequestMapping(value ="/lease", method = RequestMethod.GET)
@@ -156,7 +155,6 @@ public class AppController
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
         return results;
-        // return Lease.getAll(statement);
     }
 
     @RequestMapping(value ="/advisors", method = RequestMethod.GET)
@@ -177,7 +175,6 @@ public class AppController
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
         return results;
-        // return Advisor.getAll(statement);
     }
 
     @RequestMapping(value ="/room", method = RequestMethod.GET)
@@ -198,7 +195,6 @@ public class AppController
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
         return results;
-        // return Room.getAll(statement);
     }
 
     @RequestMapping(value ="/buildings", method = RequestMethod.GET)
@@ -219,7 +215,6 @@ public class AppController
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
         return results;
-        // return Building.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
