@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Lease {
     public int id;
-    public String room;
-    public String student;
+    public String rID;
+    public String sID;
     public String duration;
     public int cost;
     public String startDate;
@@ -30,8 +30,8 @@ public class Lease {
                 tempLease.id = (answer.getInt("ID"));
                 tempLease.cost = (answer.getInt("MonthlyCost"));
                 tempLease.duration = (answer.getInt("Duration") + " semesters");
-                tempLease.room = (answer.getString("bName") + ": " + answer.getString("rNumber"));
-                tempLease.student = (answer.getString("sName"));
+                tempLease.rID = (answer.getString("bName") + ": " + answer.getString("rNumber"));
+                tempLease.sID = (answer.getString("sName"));
                 tempLease.startDate = (answer.getDate("LeaseStartDate")).toString();
 
                 expandableList.add(tempLease);
