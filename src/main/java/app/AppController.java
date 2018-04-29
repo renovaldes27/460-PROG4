@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping; 
 import org.springframework.web.bind.annotation.RequestParam; 
 
-import org.springframework.beans.factory.annotation.Autowired; 
-import org.springframework.jdbc.core.JdbcTemplate; 
-import org.springframework.stereotype.Repository; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import org.springframework.web.bind.annotation.*; 
 
@@ -54,17 +56,34 @@ public class AppController {
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
-    public @ResponseBody Student addNewStudent(@RequestBody Student jsonString) {
-
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewStudent(@RequestBody Student jsonString) 
+    {
+        jsonString.add(statement);
         System.out.println(jsonString.name);
-        return jsonString;
+    }
+
+
+    @RequestMapping(value ="/staff", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewStudent(@RequestBody Staff jsonString) {
+
+        System.out.println(jsonString.name); 
+    }
+
+
+    @RequestMapping(value ="/lease", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewLease(@RequestBody Lease jsonString) {
+
+        System.out.println(jsonString.startDate);  
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
     {
-        DateFormat df = new SimpleDateFormat("YYYY - MM - dd");
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
         Staff staff = new Staff();
         staff.id = 27;
         staff.name = "Reno";
@@ -131,12 +150,12 @@ public class AppController {
     }
 
 
-    // the id field of input student will be ignored.
-    // id will be uniqly assigned
-    public void addStudent(Student student)
-    {
-        student.add(statement);
-    }
+    // // the id field of input student will be ignored.
+    // // id will be uniqly assigned
+    // public void addStudent(Student student)
+    // {
+    //     student.add(statement);
+    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.

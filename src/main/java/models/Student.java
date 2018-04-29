@@ -1,7 +1,11 @@
 package models;
 
 import java.util.*;
+
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Student 
 {
@@ -17,7 +21,7 @@ public class Student
     public String category;
     public String major;
     public String minor;
-    public int advisorID;
+    public String advisorID;
 
     public void add(Statement statement)
     {
@@ -27,27 +31,32 @@ public class Student
             {
                 isInitialized = true;
                 // get the max id that was used in the database
-                ResultSet answer = statement.executeQuery("select max(id) from student");
+                ResultSet answer = statement.executeQuery("select max(id) from isaacp.student");
                 while(answer.next()) // there should be only one result, but java requires us to use .next()
                 {
-                    nextStudentId = answer.getInt("id");
+                    nextStudentId = answer.getInt("MAX(ID)") + 1;
                 }
             }
 
-            statement.execute("insert into isaacp.student values('" + nextStudentId +     
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+            // System.out.println(input.toPattern());
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String dobString = formater.format(input.parse(dob));
+
+            statement.execute("insert into isaacp.student values('" + nextStudentId +
             "', '" + name +
             "', '" + address +
             "', '" + phone +
             "', '" + email +
             "', '" + gender +
-            "', '" + dob + // TODO This will not be formatted correctly
+            "', '" + dobString +
             "', '" + category +
             "', '" + major +
             "', '" + minor +
-            "', '" + advisorID + 
+            "', '" + advisorID +
             "' )");
         }
-        catch (SQLException e)
+        catch (SQLException | ParseException e)
         {
             e.printStackTrace();
             System.err.println("ERROR: can't add a new student. " + e.getMessage());
@@ -59,7 +68,7 @@ public class Student
     {
         try
         {
-            statement.execute("update student set name = " + name + " where id = " + id);
+            statement.execute("update isaacp.student set name = '" + name + "' where id = " + id);
         }
         catch (SQLException e)
         {
@@ -72,7 +81,7 @@ public class Student
     {
         try
         {
-            statement.execute("delete from student where id = " + id);
+            statement.execute("delete from isaacp.student where id = " + id);
         }
         catch (SQLException e)
         {
@@ -87,7 +96,11 @@ public class Student
 
         try
         {
-            ResultSet answer = statement.executeQuery("select * from student");
+            ResultSet answer = statement.executeQuery("select isaacp.student.id as id, isaacp.student.name as name, address, phoneNumber, isaacp.student.email, gender, dob, category, major.name as majorid, minor.name as minorid, isaacp.advisor.name as advisorid" + 
+            " from isaacp.student" + 
+            " join isaacp.department major on (isaacp.student.majorID = major.id)" +
+            " join isaacp.department minor on (isaacp.student.minorID = minor.id)" +
+            " join isaacp.advisor on (isaacp.student.advisorid = isaacp.advisor.id)");
 
             List<Student> expandableList = new ArrayList<>();
 
@@ -103,9 +116,9 @@ public class Student
                 tempStudent.gender = (answer.getString("Gender"));
                 tempStudent.dob = (answer.getDate("DOB")).toString();
                 tempStudent.category = (answer.getString("Category"));
-                tempStudent.major = (answer.getInt("MajorID")) + "";
-                tempStudent.minor = (answer.getInt("MinorID")) + "";
-                tempStudent.advisorID = (answer.getInt("AdvisorID"));
+                tempStudent.major = (answer.getString("MajorID"));
+                tempStudent.minor = (answer.getString("MinorID"));
+                tempStudent.advisorID = (answer.getString("AdvisorID"));
 
                 expandableList.add(tempStudent);
             }
