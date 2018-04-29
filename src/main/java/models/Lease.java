@@ -81,7 +81,7 @@ public class Lease
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String startDateString = formater.format(input.parse(startDate));
 
-            statement.execute("insert into isaacp.StudentLease('" + nextLeaseId +
+            statement.execute("insert into isaacp.StudentLease values('" + nextLeaseId +
             "', '" + rID +
             "', '" + sID +
             "', '" + duration +
