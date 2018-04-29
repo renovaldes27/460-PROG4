@@ -60,17 +60,18 @@ public class AppController
         jsonString.add(statement);
     }
 
-    @RequestMapping(value ="/students", method = RequestMethod.DELETE)
-    public void deleteStudentPost(@RequestBody Student jsonString) 
-    {
-        System.out.println("test"+jsonString.id);
-    }
-
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewSaff(@RequestBody Staff jsonString)
+    public void addNewStaff(@RequestBody Staff jsonString)
     {
         jsonString.add(statement); 
+    }
+
+    @RequestMapping(value ="/something", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void something(@RequestBody Student jsonString)
+    {
+        System.out.print(jsonString.id);
     }
 
 
