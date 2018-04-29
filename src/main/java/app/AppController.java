@@ -29,35 +29,59 @@ public class AppController
     @Autowired
     private DataSource dataSource; // IF we don't need jdbc template (see comment below), can this be changed to just a Statement?
 
-    private Statement statement;
+    // private Statement statement;
 
     @PostConstruct
     private void postConstruct() 
     {
-        try
-        {
-            // create the statement that every function will use
-            statement = dataSource.getConnection().createStatement();
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
-        }
+        // try
+        // {
+        //     // create the statement that every function will use
+        //     statement = dataSource.getConnection().createStatement();
+        // }
+        // catch (SQLException e)
+        // {
+        //     e.printStackTrace();
+        //     System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        // }
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.GET)
     @ResponseBody
     public Student[]  getStudents() 
     {
-        return Student.getAll(statement);
+        Student results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Student.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewStudent(@RequestBody Student jsonString) 
     {
-        jsonString.add(statement);
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            jsonString.add(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
     }
 
     @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
@@ -71,7 +95,18 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewSaff(@RequestBody Staff jsonString)
     {
-        jsonString.add(statement); 
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            jsonString.add(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        } 
     }
 
 
@@ -79,42 +114,123 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewLease(@RequestBody Lease jsonString) 
     {
-        jsonString.add(statement);
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            jsonString.add(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
     {
-        return Staff.getAll(statement);
+        Staff results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Staff.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+        // return Staff.getAll(statement);
     }
 
     @RequestMapping(value ="/lease", method = RequestMethod.GET)
     @ResponseBody
     public Lease[]  getLease()
     {
-        return Lease.getAll(statement);
+        Lease results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Lease.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+        // return Lease.getAll(statement);
     }
 
     @RequestMapping(value ="/advisors", method = RequestMethod.GET)
     @ResponseBody
     public Advisor[] getAdvisors()
     {
-        return Advisor.getAll(statement);
+        Advisor results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Advisor.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+        // return Advisor.getAll(statement);
     }
 
     @RequestMapping(value ="/room", method = RequestMethod.GET)
     @ResponseBody
     public Room[] getRooms()
     {
-        return Room.getAll(statement);
+        Room results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Room.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+        // return Room.getAll(statement);
     }
 
     @RequestMapping(value ="/buildings", method = RequestMethod.GET)
     @ResponseBody
     public Building[] getBuildings()
     {
-        return Building.getAll(statement);
+        Building results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Building.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+        // return Building.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
@@ -125,6 +241,8 @@ public class AppController
 
         try
         {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
             ResultSet answer = statement.executeQuery("select isaacp.staff.Name as ManagerName, isaacp.building.TelephoneNumber, isaacp.building.name as BuildingName from isaacp.staff join isaacp.building on (isaacp.building.managerID = isaacp.staff.id)");
             List<HallManager> expandableList = new ArrayList<>();
 
@@ -145,6 +263,8 @@ public class AppController
             {
                 output[i] = expandableList.get(i);
             }
+            statement.close();
+            connection.close();
         }
         catch (SQLException e)
         {
@@ -154,21 +274,4 @@ public class AppController
 
         return output;
     }
-
-    // for the given student.id, updates all of the other fields.
-    // TODO: how to designate when no matching id is found.
-    // TODO: optimization, change only some fields
-    public void updateStudent(Student student)
-    {
-        student.update(statement);     
-    }
-
-    // for the given student.id, delete the student with matching id
-    // TODO: how to designate when no matching id is found.
-    public void deleteStudent(Student student)
-    {
-        student.delete(statement);
-    }
 }
-
-
