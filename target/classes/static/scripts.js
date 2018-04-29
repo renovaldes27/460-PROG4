@@ -606,6 +606,20 @@ $(document).ready(function () {
         });
       });
 
+      $.getJSON( "/students", function( data ) {
+        var options = $("#room-student");
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
+      });
+
+      $.getJSON( "/buildings", function( data ) {
+        var options = $("#room-building");
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
+      });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
