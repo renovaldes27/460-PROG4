@@ -18,7 +18,7 @@ public class Room
 
         try
         {
-            ResultSet answer = statement.executeQuery("select isaacp.Room.ID as ID, RoomNumber, isaacp.student.name AS sName, monthlyRent, isaacp.building.Name as bName " + 
+            ResultSet answer = statement.executeQuery("select isaacp.Room.ID as ID, RoomNumber, isaacp.student.name AS sName, MonthlyRentRate, isaacp.building.Name as bName " + 
             "from isaacp.Room join isaacp.student on (isaacp.Room.studentID = isaacp.student.id) " +
             "join isaacp.building on (isaacp.Room.buildingID = isaacp.building.id)");
 
