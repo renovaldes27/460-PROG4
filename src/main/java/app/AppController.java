@@ -75,7 +75,6 @@ public class AppController {
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewLease(@RequestBody Lease jsonString) 
     {
-        System.out.println(jsonString.startDate);  
         jsonString.add(statement);
     }
 
