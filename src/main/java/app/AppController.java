@@ -61,9 +61,9 @@ public class AppController
     }
 
     @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.OK)
     public void deleteStudentPost(@RequestBody String jsonString) 
     {
+        // Not working currently
         System.out.println("test"+jsonString);
     }
 
@@ -94,6 +94,27 @@ public class AppController
     public Lease[]  getLease()
     {
         return Lease.getAll(statement);
+    }
+
+    @RequestMapping(value ="/advisors", method = RequestMethod.GET)
+    @ResponseBody
+    public Advisor[] getAdvisors()
+    {
+        return Advisor.getAll(statement);
+    }
+
+    @RequestMapping(value ="/rooms", method = RequestMethod.GET)
+    @ResponseBody
+    public Room[] getRooms()
+    {
+        return Room.getAll(statement);
+    }
+
+    @RequestMapping(value ="/buildings", method = RequestMethod.GET)
+    @ResponseBody
+    public Building[] getBuildings()
+    {
+        return Building.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)

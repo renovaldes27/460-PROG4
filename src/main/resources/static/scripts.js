@@ -62,6 +62,60 @@ $(document).ready(function () {
     }
     createLease();
 
+    function createAdvisors() {
+        $('#advisor-table').DataTable({
+            ajax: {
+                url: '/advisors',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'name', title: 'Name' },
+                { data: 'position', title: 'Position' },
+                { data: 'departmentID', title: 'Dept. ID' },
+                { data: 'telephoneNumber', title: 'Phone' },
+                { data: 'email', title: 'Email' },
+            ]
+        });
+    }
+    createAdvisors();
+
+    function createRooms() {
+        $('#room-table').DataTable({
+            ajax: {
+                url: '/rooms',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'roomNumber', title: 'Room #' },
+                { data: 'buildingId', title: 'Building ID' },
+                { data: 'studentID', title: 'Student ID' },
+                { data: 'monthlyRent', title: 'Monthly Rent' }
+            ]
+        });
+    }
+    createRooms();
+
+    function createBuildings() {
+        $('#building-table').DataTable({
+            ajax: {
+                url: '/buildings',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'name', title: 'Name' },
+                { data: 'address', title: 'Address' },
+                { data: 'isApartment', title: 'Apartment?' },
+                { data: 'telephoneNumber', title: 'Phone' },
+                { data: 'managerID', title: 'Manager ID' },
+                { data: 'numStudents', title: 'Student Count' },
+            ]
+        });
+    }
+    createBuildings();
+
 
     $('#hallmanagers-table').DataTable( {
         ajax: {

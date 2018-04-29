@@ -10,7 +10,7 @@ public class Advisor
     public String name;
     public String position;
     public String departmentID;
-    public String TelephoneNumber;
+    public String telephoneNumber;
     public String email;
 
     public static Advisor[] getAll(Statement statement)
@@ -32,7 +32,7 @@ public class Advisor
                 tempStaff.name = answer.getString("Name");
                 tempStaff.position = answer.getString("Position");
                 tempStaff.departmentID = answer.getString("dName");
-                tempStaff.TelephoneNumber = answer.getString("TelephoneNumber");
+                tempStaff.telephoneNumber = answer.getString("TelephoneNumber");
                 tempStaff.email = answer.getString("Email");
 
                 expandableList.add(tempStaff);
@@ -76,7 +76,7 @@ public class Advisor
             "', '" + name +
             "', '" + position +
             "', '" + departmentID +
-            "', '" + TelephoneNumber +
+            "', '" + telephoneNumber +
             "', '" + email +
             "' )");
         }

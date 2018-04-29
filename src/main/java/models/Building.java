@@ -10,7 +10,7 @@ public class Building
     public String name;
     public String address;
     public String isAppartment;
-    public String TelephoneNumber;
+    public String telephoneNumber;
     public String managerID;
     public String numStudents;
 
@@ -42,7 +42,7 @@ public class Building
                     tempStaff.isAppartment = "Yes";
                 }
                 tempStaff.managerID = answer.getString("staffName");
-                tempStaff.TelephoneNumber = answer.getString("TelephoneNumber");
+                tempStaff.telephoneNumber = answer.getString("TelephoneNumber");
                 tempStaff.numStudents = answer.getString("NumberOfStudents");
 
                 expandableList.add(tempStaff);
@@ -86,7 +86,7 @@ public class Building
             "', '" + name +
             "', '" + address +
             "', '" + isAppartment +
-            "', '" + TelephoneNumber +
+            "', '" + telephoneNumber +
             "', '" + managerID +
             "', '" + numStudents +
             "' )");
