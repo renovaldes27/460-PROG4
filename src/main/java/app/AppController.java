@@ -91,15 +91,16 @@ public class AppController
     @ResponseBody
     public Lease[]  getLease()
     {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-        Lease lease = new Lease();
-        lease.id = 200;
-        lease.rID = 4;
-        lease.sID = 27;
-        lease.duration = "6 mo";
-        lease.cost = 1000;
-        lease.startDate = df.format(new Date());
-        return new Lease[]{lease};
+        // DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+        // Lease lease = new Lease();
+        // lease.id = 200;
+        // lease.rID = 4;
+        // lease.sID = 27;
+        // lease.duration = "6 mo";
+        // lease.cost = 1000;
+        // lease.startDate = df.format(new Date());
+        // return new Lease[]{lease};
+        return Lease.getAll(statement);
     }
 
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
@@ -137,14 +138,6 @@ public class AppController
 
         return output;
     }
-
-
-    // // the id field of input student will be ignored.
-    // // id will be uniqly assigned
-    // public void addStudent(Student student)
-    // {
-    //     student.add(statement);
-    // }
 
     // for the given student.id, updates all of the other fields.
     // TODO: how to designate when no matching id is found.
