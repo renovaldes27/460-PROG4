@@ -87,5 +87,4 @@ public class Advisor
         }
         nextAdvisorId++;
     }
-
 }
