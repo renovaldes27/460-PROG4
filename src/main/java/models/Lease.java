@@ -1,8 +1,13 @@
 package models;
 import java.sql.*;
 import java.util.*;
+import java.text.*;
 
-public class Lease {
+
+public class Lease 
+{
+    private static int nextLeaseId;
+    private static boolean isInitialized;
     public int id;
     public String rID;
     public String sID;
@@ -54,6 +59,42 @@ public class Lease {
         }
 
         return output;
+    }
+
+    public void add(Statement statement)
+    {
+        try
+        {
+            if(isInitialized == false)
+            {
+                isInitialized = true;
+                // get the max id that was used in the database
+                ResultSet answer = statement.executeQuery("select max(id) from isaacp.lease");
+                while(answer.next()) // there should be only one result, but java requires us to use .next()
+                {
+                    nextLeaseId = answer.getInt("MAX(ID)") + 1;
+                }
+            }
+
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+            // System.out.println(input.toPattern());
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String startDateString = formater.format(input.parse(startDate));
+
+            statement.execute("insert into isaacp.lease('" + nextLeaseId +
+            "', '" + rID +
+            "', '" + sID +
+            "', '" + duration +
+            "', '" + cost +
+            "', '" + startDateString +
+            "' )");
+        }
+        catch (SQLException | ParseException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't add a new lease. " + e.getMessage());
+        }
+        nextLeaseId++;
     }
 
 }

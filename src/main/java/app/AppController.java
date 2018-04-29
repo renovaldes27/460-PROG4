@@ -65,18 +65,18 @@ public class AppController {
 
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewSaff(@RequestBody Staff jsonString) {
-
-        System.out.println(jsonString.name);
+    public void addNewSaff(@RequestBody Staff jsonString)
+    {
         jsonString.add(statement); 
     }
 
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewLease(@RequestBody Lease jsonString) {
-
+    public void addNewLease(@RequestBody Lease jsonString) 
+    {
         System.out.println(jsonString.startDate);  
+        jsonString.add(statement);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
