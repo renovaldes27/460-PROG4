@@ -69,7 +69,7 @@ public class Lease
             {
                 isInitialized = true;
                 // get the max id that was used in the database
-                ResultSet answer = statement.executeQuery("select max(id) from isaacp.lease");
+                ResultSet answer = statement.executeQuery("select max(id) from isaacp.StudentLease");
                 while(answer.next()) // there should be only one result, but java requires us to use .next()
                 {
                     nextLeaseId = answer.getInt("MAX(ID)") + 1;
@@ -81,7 +81,7 @@ public class Lease
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String startDateString = formater.format(input.parse(startDate));
 
-            statement.execute("insert into isaacp.lease('" + nextLeaseId +
+            statement.execute("insert into isaacp.StudentLease('" + nextLeaseId +
             "', '" + rID +
             "', '" + sID +
             "', '" + duration +
