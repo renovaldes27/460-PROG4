@@ -119,7 +119,7 @@ $(document).ready(function () {
     function createInspections() {
         $('#inspect-table').DataTable({
             ajax: {
-                url: '/inspections',
+                url: '/inspection',
                 dataSrc: ''
             },
             columns: [
@@ -137,7 +137,7 @@ $(document).ready(function () {
     function createInvoices() {
         $('#invoice-table').DataTable({
             ajax: {
-                url: '/invoices',
+                url: '/invoice',
                 dataSrc: ''
             },
             columns: [
@@ -697,7 +697,7 @@ $(document).ready(function () {
         $.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/inspections",
+			url : "/inspection",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			timeout : 1000,
@@ -729,7 +729,7 @@ $(document).ready(function () {
         $.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/invoices",
+			url : "/invoice",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			timeout : 1000,
