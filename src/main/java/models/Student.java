@@ -99,6 +99,16 @@ public class Student
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update student. " + e.getMessage());
+            System.err.println("ID = " + id);
+            System.err.println("Name = " + name);
+            System.err.println("Address = " + address);
+            System.err.println("Email = " + email);
+            System.err.println("Gender = " + gender);
+            System.err.println("DOB = " + dob);
+            System.err.println("Category = " + category);
+            System.err.println("MajorID = " + major);
+            System.err.println("MinorID = " + minor);
+            System.err.println("AdviosorID = " + advisorID);
         }  
     }
 
