@@ -53,13 +53,6 @@ public class AppController
     @ResponseBody
     public Invoice[]  getInvoices() 
     {
-        // Invoice dummy = new Invoice();
-        // dummy.id = 1;
-        // dummy.DatePaid= "1999-12-12";
-        // dummy.leaseID = "3";
-        // dummy.semester = "Spring";
-        // dummy.paymentDueDate = "2001-12-12";
-        // return new Invoice[]{dummy};
         Invoice results[] = null;
         try 
         {
@@ -80,15 +73,6 @@ public class AppController
     @ResponseBody
     public Inspection[]  getInspections() 
     {
-        // Inspection result = new Inspection();
-        // result.id=1;
-        // result.roomString="some2";
-        // result.staffName = "Bob";
-        // result.inspectionDate="2000-10-10";
-        // result.condition = "terrible";
-        // result.action = "eviction";
-        
-        // return new Inspection[]{result};
         Inspection results[] = null;
         try 
         {
