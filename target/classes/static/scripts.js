@@ -697,7 +697,7 @@ $(document).ready(function () {
         $.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/inspection",
+			url : "/inspect",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			timeout : 1000,
