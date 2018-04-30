@@ -117,7 +117,7 @@ $(document).ready(function () {
     createBuildings();
 
     function createInspections() {
-        $('#inspection-table').DataTable({
+        $('#inspect-table').DataTable({
             ajax: {
                 url: '/inspections',
                 dataSrc: ''
@@ -134,6 +134,21 @@ $(document).ready(function () {
     }
     createInspections();
 
+    function createInvoices() {
+        $('#invoice-table').DataTable({
+            ajax: {
+                url: '/invoices',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'leaseID', title: 'Lease ID' },
+                { data: 'semester', title: 'Semester' },
+                { data: 'paymentDueDate', title: 'Payment Due' },
+                { data: 'DatePaid', title: 'Date Paid' }
+            ]
+        });
+    }
     //createInvoices();
 
 
@@ -155,7 +170,7 @@ $(document).ready(function () {
     var advisorTable = $('#advisor-table').DataTable();
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
-    //var invoiceTable = $('#invoice-table').DataTable();
+    var invoiceTable = $('#invoice-table').DataTable();
     var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
