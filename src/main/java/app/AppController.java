@@ -54,18 +54,12 @@ public class AppController
     public Invoice[]  getInvoices() 
     {
         Invoice[] results = null;
-        try 
-        {
-            Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            results =  Invoice.getAll(statement);
-            statement.close();
-            connection.close();
-        } 
-        catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
-        }
+        Invoice dummy = new Invoice();
+        dummy.id = 1;
+        dummy.DatePaid= "1999-12-12";
+        dummy.leaseID = 3;
+        dummy.semester = "Spring";
+        dummy.paymentDueDate = "2001-12-12";
         return results;
     }
 
