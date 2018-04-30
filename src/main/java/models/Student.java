@@ -42,34 +42,30 @@ public class Student
                 exists = true;
             }
 
-            int inputID;
             if(exists)
             {
-                inputID = id;
-                statement.execute("delete from isaacp.student where id = " + id);                
+                update(statement);               
             }
             else
             {
-                inputID = nextStudentId;
+                SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+                SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+                String dobString = formater.format(input.parse(dob));
+    
+                statement.execute("insert into isaacp.student values('" + nextStudentId +
+                "', '" + name +
+                "', '" + address +
+                "', '" + phone +
+                "', '" + email +
+                "', '" + gender +
+                "', '" + dobString +
+                "', '" + category +
+                "', '" + major +
+                "', '" + minor +
+                "', '" + advisorID +
+                "' )");
                 nextStudentId++;
             }
-            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
-            // System.out.println(input.toPattern());
-            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
-            String dobString = formater.format(input.parse(dob));
-
-            statement.execute("insert into isaacp.student values('" + inputID +
-            "', '" + name +
-            "', '" + address +
-            "', '" + phone +
-            "', '" + email +
-            "', '" + gender +
-            "', '" + dobString +
-            "', '" + category +
-            "', '" + major +
-            "', '" + minor +
-            "', '" + advisorID +
-            "' )");
         }
         catch (SQLException | ParseException e)
         {
@@ -82,12 +78,27 @@ public class Student
     {
         try
         {
-            statement.execute("update isaacp.student set name = '" + name + "' where id = " + id);
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String dobString = formater.format(input.parse(dob));
+            
+            statement.execute("update isaacp.student " +
+            "set Name = '" + name + 
+            "', set Address = '" + address + 
+            "', set PhoneNumber = '" + phone + 
+            "', set Email = '" + email + 
+            "', set Gender = '" + gender + 
+            "', set DOB = '" + dobString + 
+            "', set Category = '" + category + 
+            "', set MajorID = '" + major + 
+            "', set MinorID = '" + minor + 
+            "', set AdvisorID = '" + advisorID + 
+            "' where id = " + id);
         }
-        catch (SQLException e)
+        catch (SQLException | ParseException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't update student, id = " + id + "." + e.getMessage());
+            System.err.println("ERROR: can't update student. " + e.getMessage());
         }  
     }
 
