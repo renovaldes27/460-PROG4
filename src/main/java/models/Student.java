@@ -93,7 +93,7 @@ public class Student
             "', set MajorID = '" + major + 
             "', set MinorID = '" + minor + 
             "', set AdvisorID = '" + advisorID + 
-            "' where id = " + id);
+            "' where ( ID = " + id + " )");
         }
         catch (SQLException | ParseException e)
         {
