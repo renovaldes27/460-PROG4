@@ -82,17 +82,17 @@ public class Student
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String dobString = formater.format(input.parse(dob));
             
-            statement.execute("update isaacp.student " +
-            "set Name = '" + name + 
-            "', set Address = '" + address + 
-            "', set PhoneNumber = '" + phone + 
-            "', set Email = '" + email + 
-            "', set Gender = '" + gender + 
-            "', set DOB = '" + dobString + 
-            "', set Category = '" + category + 
-            "', set MajorID = '" + major + 
-            "', set MinorID = '" + minor + 
-            "', set AdvisorID = '" + advisorID + 
+            statement.execute("update isaacp.student set " +
+            "Name = '" + name + 
+            "', Address = '" + address + 
+            "', PhoneNumber = '" + phone + 
+            "', Email = '" + email + 
+            "', Gender = '" + gender + 
+            "', DOB = '" + dobString + 
+            "', Category = '" + category + 
+            "', MajorID = '" + major + 
+            "', MinorID = '" + minor + 
+            "', AdvisorID = '" + advisorID + 
             "' where ( ID = " + id + " )");
         }
         catch (SQLException | ParseException e)
