@@ -22,8 +22,7 @@ public class Invoice
         try
         {
             ResultSet answer = statement.executeQuery("select isaacp.Invoice.ID as ID, semester, PaymentDue, DatePaid, isaacp.Student.name AS sName, isaacp.room.RoomNumber AS rNumber, isaacp.building.name AS bName " + 
-            "from isaacp.Invoice join isaacp.Staff on (isaacp.Invoice.InspectorID = isaacp.Staff.id) " +
-            "join isaacp.StudentLease on (isaacp.Invoice.LeaseID = isaacp.StudentLease.id) " + 
+            "from join isaacp.StudentLease on (isaacp.Invoice.LeaseID = isaacp.StudentLease.id) " + 
             "join isaacp.Student on (isaacp.StudentLease.StudentID = isaacp.Student.id) " + 
             "join isaacp.room on (isaacp.StudentLease.RoomID = isaacp.room.id) " + 
             "join isaacp.building on (isaacp.room.buildingID = isaacp.building.id)");

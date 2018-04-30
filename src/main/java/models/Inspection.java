@@ -37,7 +37,7 @@ public class Inspection
                 tempLease.condition = answer.getString("Condition");
                 tempLease.roomString = answer.getString("bName") + ": " + answer.getString("rNumber");
                 tempLease.staffName = answer.getString("SNAME");
-                tempLease.inspectionDate = answer.getDate("LeaseinspectionDate").toString();
+                tempLease.inspectionDate = answer.getDate("InspectionDate").toString();
 
                 expandableList.add(tempLease);
             }
