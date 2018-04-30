@@ -132,7 +132,7 @@ $(document).ready(function () {
             ]
         });
     }
-    createInspections();
+    //createInspections();
 
     function createInvoices() {
         $('#invoice-table').DataTable({
