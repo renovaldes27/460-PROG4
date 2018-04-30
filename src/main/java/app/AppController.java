@@ -53,14 +53,13 @@ public class AppController
     @ResponseBody
     public Invoice[]  getInvoices() 
     {
-        Invoice[] results = null;
         Invoice dummy = new Invoice();
         dummy.id = 1;
         dummy.DatePaid= "1999-12-12";
         dummy.leaseID = "3";
         dummy.semester = "Spring";
         dummy.paymentDueDate = "2001-12-12";
-        return results;
+        return new Invoice[]{dummy};
     }
 
     @RequestMapping(value ="/inspect", method = RequestMethod.GET)
