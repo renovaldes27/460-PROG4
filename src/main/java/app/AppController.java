@@ -67,16 +67,9 @@ public class AppController
         }
     }
 
-    @RequestMapping(value ="/deletestudent", method = RequestMethod.POST)
-    public void deleteStudentPost(@RequestBody String jsonString) 
-    {
-        // Not working currently
-        System.out.println("test"+jsonString);
-    }
-
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewSaff(@RequestBody Staff jsonString)
+    public void addNewStaff(@RequestBody Staff jsonString)
     {
         try 
         {
@@ -92,6 +85,13 @@ public class AppController
         } 
     }
 
+    @RequestMapping(value ="/studremove", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void something(@RequestBody Student jsonString)
+    {
+        System.out.print(jsonString.id);
+
+    }
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
@@ -109,6 +109,27 @@ public class AppController
             e.printStackTrace();
             System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
         }
+    }
+
+    @RequestMapping(value ="/advisors", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewAdvisor(@RequestBody Advisor jsonString) 
+    {
+       System.out.println(jsonString.name);
+    }
+
+    @RequestMapping(value ="/room", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewRoom(@RequestBody Room jsonString) 
+    {
+       System.out.println(jsonString.monthlyRent);
+    }
+
+    @RequestMapping(value ="/buildings", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewBuildilng(@RequestBody Building jsonString) 
+    {
+       System.out.println(jsonString.name);
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)

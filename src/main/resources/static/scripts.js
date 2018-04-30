@@ -138,7 +138,10 @@ $(document).ready(function () {
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
-    var leaseModal = document.getElementById('lease-modal')
+    var leaseModal = document.getElementById('lease-modal');
+    var advisorModal = document.getElementById('advisor-modal');
+    var roomModal = document.getElementById('room-modal');
+    var buildingModal = document.getElementById('building-modal');
 
 
     $('#staffTable tbody').on('click', 'tr', function () {
@@ -167,6 +170,36 @@ $(document).ready(function () {
         }
         else {
             leaseTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#advisor-table tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            advisorTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#room-table tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            roomTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#building-table tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            buildingTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
@@ -219,6 +252,45 @@ $(document).ready(function () {
         }
     });
 
+    $('#edit-advisor').click( function () {
+        advisorModal.style.display= "block";
+        var selectedData = advisorTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#advisor-id').attr('value',selectedData.id);
+            $('#advisor-name').attr('value',selectedData.name);
+            $('#advisor-position').attr('value',selectedData.position);
+            $('#advisor-department').attr('value',selectedData.departmentID);
+            $('#advisor-phone').attr('value', selectedData.telephoneNumber);
+            $('#advisor-email').attr('value',selectedData.email);
+        }
+    });
+
+    $('#edit-room').click( function () {
+        roomModal.style.display= "block";
+        var selectedData = roomTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#room-id').attr('value',selectedData.id);
+            $('#room-num').attr('value',selectedData.roomNumber);
+            $('#room-building').attr('value',selectedData.buildingId);
+            $('#room-student').attr('value',selectedData.studentID);
+            $('#room-rent').attr('value', selectedData.monthlyRent);
+        }
+    });
+
+    $('#edit-building').click( function () {
+        buildingModal.style.display= "block";
+        var selectedData = buildingTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#building-id').attr('value',selectedData.id);
+            $('#building-name').attr('value',selectedData.name);
+            $('#building-apt').attr('value',selectedData.isApartment);
+            $('#building-phone').attr('value',selectedData.telephoneNumber);
+            $('#building-manager').attr('value', selectedData.managerID);
+            $('#building-count').attr('value',selectedData.numStudents);
+            $('#building-address').attr('value',selectedData.address);
+        }
+    });
+
     $('#newStudentBtn').click( function() {
         studentModal.style.display = "block";
     });
@@ -229,6 +301,18 @@ $(document).ready(function () {
 
     $('#newLeaseBtn').click( function() {
         leaseModal.style.display = "block";
+    });
+
+    $('#new-advisor').click( function() {
+        advisorModal.style.display = "block";
+    });
+
+    $('#new-room').click( function() {
+        roomModal.style.display = "block";
+    });
+
+    $('#new-building').click( function() {
+        buildingModal.style.display = "block";
     });
 
     $('#studentClose').click( function() {
@@ -243,6 +327,18 @@ $(document).ready(function () {
         leaseModal.style.display = "none";
     });
 
+    $('#advisor-close').click( function() {
+        advisorModal.style.display = "none";
+    });
+
+    $('#room-close').click( function() {
+        roomModal.style.display = "none";
+    });
+
+    $('#building-close').click( function() {
+        buildingModal.style.display = "none";
+    });
+
     $('#studentCancel').click( function() {
         studentModal.style.display = "none";
     });
@@ -253,6 +349,18 @@ $(document).ready(function () {
 
     $('#lease-cancel').click( function() {
         leaseModal.style.display = "none";
+    });
+
+    $('#advisor-cancel').click( function() {
+        advisorModal.style.display = "none";
+    });
+
+    $('#room-cancel').click( function() {
+        roomModal.style.display = "none";
+    });
+
+    $('#building-cancel').click( function() {
+        buildingModal.style.display = "none";
     });
 
     $('#studentSubmit').click( function() {
@@ -363,14 +471,154 @@ $(document).ready(function () {
         location.reload();
     });
 
+    $('#advisor-submit').click( function() {
+        var formData = {
+            id: $('#advisor-id').val(),
+            name:$('#advisor-name').val(),
+            position:$('#advisor-position').val(),
+            departmentID:$('#advisor-department').val(),
+            telephoneNumber:$('#advisor-phone').val(),
+            email:$('#advisor-email').val(),
+        };
+
+        advisorModal.style.display = "none";
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/advisors",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 1000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+        });
+
+        location.reload();
+    });
+
+    $('#room-submit').click( function() {
+        var formData = {
+            id: $('#room-id').val(),
+            roomNumber:$('#room-num').val(),
+            buildingId:$('#room-building').val(),
+            studentID:$('#room-student').val(),
+            monthlyRent:$('#room-rent').val(),
+        };
+            
+        roomModal.style.display = "none";
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/room",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 1000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+        });
+
+        location.reload();
+    });
+
+    $('#building-submit').click( function() {
+        var formData = {
+            id: $('#building-id').val(),
+            name:$('#building-name').val(),
+            address:$('#building-address').val(),
+            isApartment:$('#building-apt').val(),
+            telephoneNumber:$('#building-phone').val(),
+            managerID:$('#building-manager').val(),
+            numStudents:$('#building-count').val()
+        };
+            
+        buildingModal.style.display = "none";
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/buildings",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 1000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+        });
+
+        location.reload();
+    });
+
     $('#delete-student').click( function() {
 
         var selectedData = studentTable.row('.selected').data()
 
         if(selectedData.id !== null){
-            $.post("/deletestudent", selectedData.id);
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/studremove",
+                data : JSON.stringify(selectedData),
+                dataType : 'json',
+                timeout : 1000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                    location.reload();
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                }
+            });
         }
     });
+
+    $.getJSON( "/staff", function( data ) {
+        var options = $("#building-manager");
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
+      });
+
+      $.getJSON( "/students", function( data ) {
+        var options = $("#room-student");
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
+      });
+
+      $.getJSON( "/buildings", function( data ) {
+        var options = $("#room-building");
+        data.forEach(element => {
+            options.append(new Option(element.name, element.id));
+        });
+      });
 
 });
 
