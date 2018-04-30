@@ -132,7 +132,7 @@ $(document).ready(function () {
             ]
         });
     }
-    //createInspections();
+    createInspections();
 
     function createInvoices() {
         $('#invoice-table').DataTable({
@@ -149,7 +149,7 @@ $(document).ready(function () {
             ]
         });
     }
-    createInvoices();
+    //createInvoices();
 
 
     $('#hallmanagers-table').DataTable( {
