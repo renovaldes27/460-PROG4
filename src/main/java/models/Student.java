@@ -35,12 +35,30 @@ public class Student
                 }
             }
 
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.student where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
+
+            int inputID;
+            if(exists)
+            {
+                inputID = id;
+                statement.execute("delete from isaacp.student where id = " + id);                
+            }
+            else
+            {
+                inputID = nextStudentId;
+                nextStudentId++;
+            }
             SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
             // System.out.println(input.toPattern());
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String dobString = formater.format(input.parse(dob));
 
-            statement.execute("insert into isaacp.student values('" + nextStudentId +
+            statement.execute("insert into isaacp.student values('" + inputID +
             "', '" + name +
             "', '" + address +
             "', '" + phone +
@@ -58,7 +76,6 @@ public class Student
             e.printStackTrace();
             System.err.println("ERROR: can't add a new student. " + e.getMessage());
         }
-        nextStudentId++;
     }
 
     public void update(Statement statement)
