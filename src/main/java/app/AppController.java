@@ -223,7 +223,7 @@ public class AppController
 
     @RequestMapping(value ="/inspect", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void addNewInspection(@RequestBody Building jsonString) 
+    public void addNewInspection(@RequestBody Inspection jsonString) 
     {
        try 
        {
