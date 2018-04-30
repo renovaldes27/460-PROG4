@@ -57,7 +57,7 @@ public class AppController
         Invoice dummy = new Invoice();
         dummy.id = 1;
         dummy.DatePaid= "1999-12-12";
-        dummy.leaseID = 3;
+        dummy.leaseID = "3";
         dummy.semester = "Spring";
         dummy.paymentDueDate = "2001-12-12";
         return results;
