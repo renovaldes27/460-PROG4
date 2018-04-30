@@ -170,7 +170,7 @@ $(document).ready(function () {
     var advisorTable = $('#advisor-table').DataTable();
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
-    var invoiceTable = $('#invoice-table').DataTable();
+    //var invoiceTable = $('#invoice-table').DataTable();
     var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
@@ -249,7 +249,7 @@ $(document).ready(function () {
             $(this).removeClass('selected');
         }
         else {
-            invoiceTable.$('tr.selected').removeClass('selected');
+            //invoiceTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
