@@ -89,7 +89,6 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void removeStudent(@RequestBody Student jsonString)
     {
-        System.out.println(jsonString.id);
         try 
         {
             Connection connection = dataSource.getConnection();
@@ -127,6 +126,9 @@ public class AppController
     public void addNewAdvisor(@RequestBody Advisor jsonString) 
     {
        System.out.println(jsonString.name);
+       System.out.println(jsonString.departmentID);
+       System.out.println(jsonString.email);
+       System.out.println(jsonString.telephoneNumber);
        try 
        {
            Connection connection = dataSource.getConnection();
@@ -163,7 +165,6 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewBuildilng(@RequestBody Building jsonString) 
     {
-       System.out.println(jsonString.name);
        try 
        {
            Connection connection = dataSource.getConnection();
