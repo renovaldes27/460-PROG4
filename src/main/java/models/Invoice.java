@@ -202,8 +202,8 @@ public class Invoice
             "LeaseID = '" + leaseID + 
             "', Semester = '" + semester + 
             "', PaymentDue = '" + payDueString + 
-            "', DatePaid = '" + datePaidString + 
-            "' where ( ID = " + id + " )");
+            "', DatePaid = " + datePaidString + 
+            " where ( ID = " + id + " )");
         }
         catch (SQLException | ParseException e)
         {
