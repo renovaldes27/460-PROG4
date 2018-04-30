@@ -149,7 +149,7 @@ $(document).ready(function () {
             ]
         });
     }
-    //createInvoices();
+    createInvoices();
 
 
     $('#hallmanagers-table').DataTable( {
