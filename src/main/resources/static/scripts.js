@@ -136,8 +136,8 @@ $(document).ready(function () {
     var advisorTable = $('#advisor-table').DataTable();
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
-    var invoiceTable = $('#invoice-table').DataTable();
-    var inspectionTable = $('#inspect-table').DataTable();
+    //var invoiceTable = $('#invoice-table').DataTable();
+    //var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
