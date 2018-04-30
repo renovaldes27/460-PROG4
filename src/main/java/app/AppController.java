@@ -87,9 +87,9 @@ public class AppController
 
     @RequestMapping(value ="/studremove", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void something(@RequestBody Student jsonString)
+    public void removeStudent(@RequestBody Student jsonString)
     {
-        System.out.print(jsonString.id);
+        System.out.println(jsonString.id);
         try 
         {
             Connection connection = dataSource.getConnection();
@@ -145,7 +145,6 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewRoom(@RequestBody Room jsonString) 
     {
-       System.out.println(jsonString.monthlyRent);
        try 
        {
            Connection connection = dataSource.getConnection();
