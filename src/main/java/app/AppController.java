@@ -53,28 +53,56 @@ public class AppController
     @ResponseBody
     public Invoice[]  getInvoices() 
     {
-        Invoice dummy = new Invoice();
-        dummy.id = 1;
-        dummy.DatePaid= "1999-12-12";
-        dummy.leaseID = "3";
-        dummy.semester = "Spring";
-        dummy.paymentDueDate = "2001-12-12";
-        return new Invoice[]{dummy};
+        // Invoice dummy = new Invoice();
+        // dummy.id = 1;
+        // dummy.DatePaid= "1999-12-12";
+        // dummy.leaseID = "3";
+        // dummy.semester = "Spring";
+        // dummy.paymentDueDate = "2001-12-12";
+        // return new Invoice[]{dummy};
+        Invoice results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Invoice.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
     }
 
     @RequestMapping(value ="/inspect", method = RequestMethod.GET)
     @ResponseBody
     public Inspection[]  getInspections() 
     {
-        Inspection result = new Inspection();
-        result.id=1;
-        result.roomString="some2";
-        result.staffName = "Bob";
-        result.inspectionDate="2000-10-10";
-        result.condition = "terrible";
-        result.action = "eviction";
+        // Inspection result = new Inspection();
+        // result.id=1;
+        // result.roomString="some2";
+        // result.staffName = "Bob";
+        // result.inspectionDate="2000-10-10";
+        // result.condition = "terrible";
+        // result.action = "eviction";
         
-        return new Inspection[]{result};
+        // return new Inspection[]{result};
+        Inspection results[] = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Inspection.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
     }
 
     @RequestMapping(value ="/students", method = RequestMethod.POST)
