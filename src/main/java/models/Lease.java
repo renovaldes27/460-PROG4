@@ -77,7 +77,7 @@ public class Lease
             }
 
             boolean exists = false;
-            ResultSet answer = statement.executeQuery("select * from isaacp.lease where (id = " + id + " )");
+            ResultSet answer = statement.executeQuery("select * from isaacp.StudentLease where (id = " + id + " )");
             while(answer.next())
             {
                 exists = true;
@@ -120,7 +120,7 @@ public class Lease
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String startDateString = formater.format(input.parse(startDate));
             
-            statement.execute("update isaacp.lease set " +
+            statement.execute("update isaacp.StudentLease set " +
             "RoomID = '" + rID + 
             "', StudentID = '" + sID + 
             "', Duration = '" + duration + 
