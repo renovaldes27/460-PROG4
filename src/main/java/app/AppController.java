@@ -49,7 +49,7 @@ public class AppController
         return results;
     }
 
-    @RequestMapping(value ="/invoices", method = RequestMethod.GET)
+    @RequestMapping(value ="/invoice", method = RequestMethod.GET)
     @ResponseBody
     public Invoice[]  getInvoices() 
     {
@@ -63,7 +63,7 @@ public class AppController
         return results;
     }
 
-    @RequestMapping(value ="/inspections", method = RequestMethod.GET)
+    @RequestMapping(value ="/inspect", method = RequestMethod.GET)
     @ResponseBody
     public Inspection[]  getInspections() 
     {
@@ -209,7 +209,7 @@ public class AppController
        }
     }
 
-    @RequestMapping(value ="/invoices", method = RequestMethod.POST)
+    @RequestMapping(value ="/invoice", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewInvoice(@RequestBody Invoice jsonString) 
     {
@@ -227,7 +227,7 @@ public class AppController
        }
     }
 
-    @RequestMapping(value ="/inspections", method = RequestMethod.POST)
+    @RequestMapping(value ="/inspect", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewInspection(@RequestBody Building jsonString) 
     {
