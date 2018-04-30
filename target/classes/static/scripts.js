@@ -116,6 +116,25 @@ $(document).ready(function () {
     }
     createBuildings();
 
+    function createInspections() {
+        $('#inspection-table').DataTable({
+            ajax: {
+                url: '/inspections',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'inspectionDate', title: 'Inspection Date' },
+                { data: 'staffName', title: 'Staff' },
+                { data: 'roomString', title: 'Room Info' },
+                { data: 'condition', title: 'Condition' },
+                { data: 'action', title: 'Action' }
+            ]
+        });
+    }
+    createInspections();
+
+    //createInvoices();
 
 
     $('#hallmanagers-table').DataTable( {
@@ -137,7 +156,7 @@ $(document).ready(function () {
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
     //var invoiceTable = $('#invoice-table').DataTable();
-    //var inspectionTable = $('#inspect-table').DataTable();
+    var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
