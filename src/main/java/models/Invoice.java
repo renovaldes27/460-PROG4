@@ -13,7 +13,7 @@ public class Invoice
     public String leaseID;
     public String semester;
     public String paymentDueDate;
-    public String DatePaid;
+    public String DatePaid = "";
 
     public static Invoice[] getAll(Statement statement)
     {

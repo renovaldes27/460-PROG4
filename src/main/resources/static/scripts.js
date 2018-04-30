@@ -116,6 +116,41 @@ $(document).ready(function () {
     }
     createBuildings();
 
+    function createInspections() {
+        $('#inspection-table').DataTable({
+            ajax: {
+                url: '/inspections',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'inspectionDate', title: 'Inspection Date' },
+                { data: 'staffName', title: 'Staff' },
+                { data: 'roomString', title: 'Room Info' },
+                { data: 'condition', title: 'Condition' },
+                { data: 'action', title: 'Action' }
+            ]
+        });
+    }
+    createInspections();
+
+    function createInvoices() {
+        $('#invoice-table').DataTable({
+            ajax: {
+                url: '/invoices',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'leaseID', title: 'Lease ID' },
+                { data: 'semester', title: 'Semester' },
+                { data: 'paymentDueDate', title: 'Payment Due' },
+                { data: 'DatePaid', title: 'Date Paid' }
+            ]
+        });
+    }
+    createInvoices();
+
 
     $('#hallmanagers-table').DataTable( {
         ajax: {
@@ -135,6 +170,8 @@ $(document).ready(function () {
     var advisorTable = $('#advisor-table').DataTable();
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
+    var invoiceTable = $('#invoice-table').DataTable();
+    var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
     var staffModal = document.getElementById('staffModal');
@@ -142,6 +179,9 @@ $(document).ready(function () {
     var advisorModal = document.getElementById('advisor-modal');
     var roomModal = document.getElementById('room-modal');
     var buildingModal = document.getElementById('building-modal');
+    var invoiceModal = document.getElementById('invoice-modal');
+    var inspectionModal = document.getElementById('inspect-modal');
+
 
 
     $('#staffTable tbody').on('click', 'tr', function () {
@@ -200,6 +240,26 @@ $(document).ready(function () {
         }
         else {
             buildingTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#invoice-table tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            invoiceTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#inspect-table tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            inspectionTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
@@ -291,6 +351,32 @@ $(document).ready(function () {
         }
     });
 
+    $('#edit-invoice').click( function () {
+        invoiceModal.style.display= "block";
+        var selectedData = invoiceTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#invoice-id').attr('value',selectedData.id);
+            $('#invoice-lease').attr('value',selectedData.leaseID);
+            $('#invoice-semester').attr('value',selectedData.semester);
+            $('#invoice-due').attr('value',selectedData.paymentDueDate);
+            $('#invoice-paid').attr('value', selectedData.DatePaid);
+
+        }
+    });
+
+    $('#edit-inspect').click( function () {
+        inspectionModal.style.display= "block";
+        var selectedData = inspectionTable.row('.selected').data()
+        if(selectedData !== null){
+            $('#inspect-id').attr('value',selectedData.id);
+            $('#inspect-date').attr('value',selectedData.inspectionDate);
+            $('#inspect-staff').attr('value',selectedData.staffName);
+            $('#inspect-room').attr('value',selectedData.roomString);
+            $('#inspect-condition').attr('value', selectedData.condtion);
+            $('#inspect-action').attr('value',selectedData.action);
+        }
+    });
+
     $('#newStudentBtn').click( function() {
         studentModal.style.display = "block";
     });
@@ -313,6 +399,14 @@ $(document).ready(function () {
 
     $('#new-building').click( function() {
         buildingModal.style.display = "block";
+    });
+
+    $('#new-inspect').click( function() {
+        inspectionModal.style.display = "block";
+    });
+
+    $('#new-invoice').click( function() {
+        invoiceModal.style.display = "block";
     });
 
     $('#studentClose').click( function() {
@@ -339,6 +433,14 @@ $(document).ready(function () {
         buildingModal.style.display = "none";
     });
 
+    $('#inspect-close').click( function() {
+        inspectionModal.style.display = "none";
+    });
+
+    $('#invoice-close').click( function() {
+        invoiceModal.style.display = "none";
+    });
+
     $('#studentCancel').click( function() {
         studentModal.style.display = "none";
     });
@@ -361,6 +463,14 @@ $(document).ready(function () {
 
     $('#building-cancel').click( function() {
         buildingModal.style.display = "none";
+    });
+
+    $('#inspect-cancel').click( function() {
+        inspectionModal.style.display = "none";
+    });
+
+    $('#invoice-cancel').click( function() {
+        invoiceModal.style.display = "none";
     });
 
     $('#studentSubmit').click( function() {
@@ -569,7 +679,71 @@ $(document).ready(function () {
 				console.log("DONE");
 			}
         });
+        location.reload();
+    });
 
+    $('#inspect-submit').click( function() {
+        var formData = {
+            id: $('#inspect-id').val(),
+            inspectionDate:$('#inspect-date').val(),
+            staffName:$('#inspect-staff').val(),
+            roomString:$('#inspect-room').val(),
+            condtion:$('#inspect-condition').val(),
+            action:$('#inspect-action').val(),
+        };
+            
+        inspectionModal.style.display = "none";
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/inspections",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 1000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+        });
+        location.reload();
+    });
+
+    $('#invoice-submit').click( function() {
+        var formData = {
+            id: $('#invoice-id').val(),
+            leaseID:$('#invoice-lease').val(),
+            semester:$('#invoice-semester').val(),
+            paymentDueDate:$('#invoice-due').val(),
+            DatePaid:$('#invoice-paid').val(),
+        };
+            
+        invoiceModal.style.display = "none";
+
+        $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "/invoices",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			timeout : 1000,
+			success : function(data) {
+                console.log("SUCCESS: ", data);
+                location.reload();
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+        });
         location.reload();
     });
 
@@ -600,9 +774,11 @@ $(document).ready(function () {
     });
 
     $.getJSON( "/staff", function( data ) {
-        var options = $("#building-manager");
+        var buildingOpt = $("#building-manager");
+        var inspectOpt = $("#inspect-staff");
         data.forEach(element => {
-            options.append(new Option(element.name, element.id));
+            buildingOpt.append(new Option(element.name, element.id));
+            inspectOpt.append(new Option(element.name, element.id));
         });
       });
 
@@ -617,6 +793,13 @@ $(document).ready(function () {
         var options = $("#room-building");
         data.forEach(element => {
             options.append(new Option(element.name, element.id));
+        });
+      });
+
+      $.getJSON( "/leases", function( data ) {
+        var options = $("#invoice-lease");
+        data.forEach(element => {
+            options.append(new Option(element.leaseID, element.leaseID));
         });
       });
 

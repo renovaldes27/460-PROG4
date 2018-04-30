@@ -49,6 +49,46 @@ public class AppController
         return results;
     }
 
+    @RequestMapping(value ="/invoices", method = RequestMethod.GET)
+    @ResponseBody
+    public Invoice[]  getInvoices() 
+    {
+        Invoice[] results = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Invoice.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+    }
+
+    @RequestMapping(value ="/inspections", method = RequestMethod.GET)
+    @ResponseBody
+    public Inspection[]  getInspections() 
+    {
+        Inspection[] results = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Inspection.getAll(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+    }
+
     @RequestMapping(value ="/students", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewStudent(@RequestBody Student jsonString) 
@@ -125,10 +165,6 @@ public class AppController
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewAdvisor(@RequestBody Advisor jsonString) 
     {
-       System.out.println(jsonString.name);
-       System.out.println(jsonString.departmentID);
-       System.out.println(jsonString.email);
-       System.out.println(jsonString.telephoneNumber);
        try 
        {
            Connection connection = dataSource.getConnection();
@@ -164,6 +200,42 @@ public class AppController
     @RequestMapping(value ="/buildings", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewBuildilng(@RequestBody Building jsonString) 
+    {
+       try 
+       {
+           Connection connection = dataSource.getConnection();
+           Statement statement = connection.createStatement();
+           jsonString.add(statement);
+           statement.close();
+           connection.close();
+       } 
+       catch (SQLException e) {
+           e.printStackTrace();
+           System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+       }
+    }
+
+    @RequestMapping(value ="/invoices", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewInvoice(@RequestBody Invoice jsonString) 
+    {
+       try 
+       {
+           Connection connection = dataSource.getConnection();
+           Statement statement = connection.createStatement();
+           jsonString.add(statement);
+           statement.close();
+           connection.close();
+       } 
+       catch (SQLException e) {
+           e.printStackTrace();
+           System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+       }
+    }
+
+    @RequestMapping(value ="/inspections", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void addNewInspection(@RequestBody Building jsonString) 
     {
        try 
        {

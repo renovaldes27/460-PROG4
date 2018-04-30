@@ -13,7 +13,7 @@ public class Inspection
     public String staffName;
     public String roomString;
     public String condition;
-    public String Action;
+    public String action;
 
     public static Inspection[] getAll(Statement statement)
     {
@@ -33,7 +33,7 @@ public class Inspection
                 Inspection tempLease = new Inspection();
 
                 tempLease.id = answer.getInt("ID");
-                tempLease.Action = answer.getString("Action");
+                tempLease.action = answer.getString("Action");
                 tempLease.condition = answer.getString("Condition");
                 tempLease.roomString = answer.getString("bName") + ": " + answer.getString("rNumber");
                 tempLease.staffName = answer.getString("SNAME");
@@ -86,7 +86,7 @@ public class Inspection
             "', '" + staffName +
             "', '" + roomString +
             "', '" + condition +
-            "', '" + Action +
+            "', '" + action +
             "' )");
         }
         catch (SQLException | ParseException e)
