@@ -90,7 +90,18 @@ public class AppController
     public void something(@RequestBody Student jsonString)
     {
         System.out.print(jsonString.id);
-
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            jsonString.delete(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
     }
 
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
@@ -116,6 +127,18 @@ public class AppController
     public void addNewAdvisor(@RequestBody Advisor jsonString) 
     {
        System.out.println(jsonString.name);
+       try 
+       {
+           Connection connection = dataSource.getConnection();
+           Statement statement = connection.createStatement();
+           jsonString.add(statement);
+           statement.close();
+           connection.close();
+       } 
+       catch (SQLException e) {
+           e.printStackTrace();
+           System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+       }
     }
 
     @RequestMapping(value ="/room", method = RequestMethod.POST)
@@ -123,6 +146,18 @@ public class AppController
     public void addNewRoom(@RequestBody Room jsonString) 
     {
        System.out.println(jsonString.monthlyRent);
+       try 
+       {
+           Connection connection = dataSource.getConnection();
+           Statement statement = connection.createStatement();
+           jsonString.add(statement);
+           statement.close();
+           connection.close();
+       } 
+       catch (SQLException e) {
+           e.printStackTrace();
+           System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+       }
     }
 
     @RequestMapping(value ="/buildings", method = RequestMethod.POST)
@@ -130,6 +165,18 @@ public class AppController
     public void addNewBuildilng(@RequestBody Building jsonString) 
     {
        System.out.println(jsonString.name);
+       try 
+       {
+           Connection connection = dataSource.getConnection();
+           Statement statement = connection.createStatement();
+           jsonString.add(statement);
+           statement.close();
+           connection.close();
+       } 
+       catch (SQLException e) {
+           e.printStackTrace();
+           System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+       }
     }
 
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
