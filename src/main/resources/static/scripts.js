@@ -119,7 +119,7 @@ $(document).ready(function () {
     function createInspections() {
         $('#inspect-table').DataTable({
             ajax: {
-                url: '/inspection',
+                url: '/inspect',
                 dataSrc: ''
             },
             columns: [
