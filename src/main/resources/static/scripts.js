@@ -132,7 +132,7 @@ $(document).ready(function () {
             ]
         });
     }
-    //createInspections();
+    createInspections();
 
     function createInvoices() {
         $('#invoice-table').DataTable({
@@ -249,7 +249,7 @@ $(document).ready(function () {
             $(this).removeClass('selected');
         }
         else {
-            //invoiceTable.$('tr.selected').removeClass('selected');
+            invoiceTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
     });
