@@ -116,40 +116,6 @@ $(document).ready(function () {
     }
     createBuildings();
 
-    function createInspections() {
-        $('#inspection-table').DataTable({
-            ajax: {
-                url: '/inspections',
-                dataSrc: ''
-            },
-            columns: [
-                { data: 'id', title: 'ID' },
-                { data: 'inspectionDate', title: 'Inspection Date' },
-                { data: 'staffName', title: 'Staff' },
-                { data: 'roomString', title: 'Room Info' },
-                { data: 'condition', title: 'Condition' },
-                { data: 'action', title: 'Action' }
-            ]
-        });
-    }
-    createInspections();
-
-    function createInvoices() {
-        $('#invoice-table').DataTable({
-            ajax: {
-                url: '/invoices',
-                dataSrc: ''
-            },
-            columns: [
-                { data: 'id', title: 'ID' },
-                { data: 'leaseID', title: 'Lease ID' },
-                { data: 'semester', title: 'Semester' },
-                { data: 'paymentDueDate', title: 'Payment Due' },
-                { data: 'DatePaid', title: 'Date Paid' }
-            ]
-        });
-    }
-    //createInvoices();
 
 
     $('#hallmanagers-table').DataTable( {
@@ -170,7 +136,7 @@ $(document).ready(function () {
     var advisorTable = $('#advisor-table').DataTable();
     var roomTable = $('#room-table').DataTable();
     var buildingTable = $('#building-table').DataTable();
-    //var invoiceTable = $('#invoice-table').DataTable();
+    var invoiceTable = $('#invoice-table').DataTable();
     var inspectionTable = $('#inspect-table').DataTable();
 
     var studentModal = document.getElementById('studentModal');
