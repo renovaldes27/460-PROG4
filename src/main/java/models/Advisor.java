@@ -72,19 +72,64 @@ public class Advisor
                 }
             }
 
-            statement.execute("insert into isaacp.Advisor values('" + nextAdvisorId +
-            "', '" + name +
-            "', '" + position +
-            "', '" + departmentID +
-            "', '" + telephoneNumber +
-            "', '" + email +
-            "' )");
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.advisor where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
+
+            if(exists)
+            {
+                update(statement);               
+            }
+            else
+            {
+                statement.execute("insert into isaacp.Advisor values('" + nextAdvisorId +
+                "', '" + name +
+                "', '" + position +
+                "', '" + departmentID +
+                "', '" + telephoneNumber +
+                "', '" + email +
+                "' )");
+
+                nextAdvisorId++;
+            }
+
         }
         catch (SQLException e)
         {
             e.printStackTrace();
             System.err.println("ERROR: can't add a new advisor. " + e.getMessage());
         }
-        nextAdvisorId++;
+    }
+
+    private void update(Statement statement)
+    {
+        try
+        {
+            statement.execute("update isaacp.advisor set " +
+            "Name = '" + name + 
+            "', Position = '" + position + 
+            "', DepartmentID = '" + departmentID + 
+            "', TelephoneNumber = '" + telephoneNumber + 
+            "', Email = '" + email + 
+            "' where ( ID = " + id + " )");
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't update advisor. " + e.getMessage());
+            // System.err.println("ID = " + id);
+            // System.err.println("Name = " + name);
+            // System.err.println("Address = " + address);
+            // System.err.println("Email = " + email);
+            // System.err.println("Gender = " + gender);
+            // System.err.println("DOB = " + dob);
+            // System.err.println("Category = " + category);
+            // System.err.println("MajorID = " + major);
+            // System.err.println("MinorID = " + minor);
+            // System.err.println("AdviosorID = " + advisorID);
+        }  
     }
 }

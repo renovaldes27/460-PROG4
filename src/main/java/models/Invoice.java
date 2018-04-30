@@ -135,11 +135,59 @@ public class Invoice
                 }
             }
 
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.invoice where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
+
+            if(exists)
+            {
+                update(statement);               
+            }
+            else
+            {
+                SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+                SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+                String payDueString = formater.format(input.parse(paymentDueDate));
+    
+                String datePaidString;
+                if(DatePaid.toLowerCase().compareTo("null") == 0)
+                {
+                    datePaidString = "NULL";
+                }
+                else
+                {
+                    datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
+                }
+    
+                statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
+                "', '" + leaseID +
+                "', '" + semester +
+                "', '" + payDueString +
+                "', " + datePaidString +
+                " )");
+
+                nextInvoiceId++;
+            }
+
+        }
+        catch (SQLException | ParseException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't add a new Invoice. " + e.getMessage());
+        }
+    }
+
+    private void update(Statement statement)
+    {
+        try
+        {
             SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
-            // System.out.println(input.toPattern());
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String payDueString = formater.format(input.parse(paymentDueDate));
-
+            
             String datePaidString;
             if(DatePaid.toLowerCase().compareTo("null") == 0)
             {
@@ -150,18 +198,26 @@ public class Invoice
                 datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
             }
 
-            statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
-            "', '" + leaseID +
-            "', '" + semester +
-            "', '" + payDueString +
-            "', " + datePaidString +
-            " )");
+            statement.execute("update isaacp.invoice set " +
+            "LeaseID = '" + leaseID + 
+            "', Semester = '" + semester + 
+            "', PaymentDue = '" + payDueString + 
+            "', DatePaid = '" + datePaidString + 
+            "' where ( ID = " + id + " )");
         }
         catch (SQLException | ParseException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't add a new Invoice. " + e.getMessage());
-        }
-        nextInvoiceId++;
-    }
+            System.err.println("ERROR: can't update invoice. " + e.getMessage());
+            // System.err.println("ID = " + id);
+            // System.err.println("Name = " + name);
+            // System.err.println("Address = " + address);
+            // System.err.println("Email = " + email);
+            // System.err.println("Gender = " + gender);
+            // System.err.println("DOB = " + dob);
+            // System.err.println("Category = " + category);
+            // System.err.println("MajorID = " + major);
+            // System.err.println("MinorID = " + minor);
+            // System.err.println("AdviosorID = " + advisorID);
+        }  
 }

@@ -74,20 +74,66 @@ public class Building
                 }
             }
 
-            statement.execute("insert into isaacp.Building values('" + nextBuildingId +
-            "', '" + name +
-            "', '" + address +
-            "', '" + isApartment +
-            "', '" + telephoneNumber +
-            "', '" + managerID +
-            "', '" + numStudents +
-            "' )");
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.building where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
+
+            if(exists)
+            {
+                update(statement);               
+            }
+            else
+            {
+                statement.execute("insert into isaacp.Building values('" + nextBuildingId +
+                "', '" + name +
+                "', '" + address +
+                "', '" + isApartment +
+                "', '" + telephoneNumber +
+                "', '" + managerID +
+                "', '" + numStudents +
+                "' )");
+
+                nextBuildingId++;
+            }
+
         }
         catch (SQLException e)
         {
             e.printStackTrace();
             System.err.println("ERROR: can't add a new Building. " + e.getMessage());
         }
-        nextBuildingId++;
+    }
+
+    private void update(Statement statement)
+    {
+        try
+        {
+            statement.execute("update isaacp.building set " +
+            "Name = '" + name + 
+            "', Address = '" + address + 
+            "', IsApartment = '" + isApartment + 
+            "', TelephoneNumber = '" + telephoneNumber + 
+            "', ManagerID = '" + managerID + 
+            "', NumberOfStudents = '" + numStudents + 
+            "' where ( ID = " + id + " )");
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't update building. " + e.getMessage());
+            // System.err.println("ID = " + id);
+            // System.err.println("Name = " + name);
+            // System.err.println("Address = " + address);
+            // System.err.println("Email = " + email);
+            // System.err.println("Gender = " + gender);
+            // System.err.println("DOB = " + dob);
+            // System.err.println("Category = " + category);
+            // System.err.println("MajorID = " + major);
+            // System.err.println("MinorID = " + minor);
+            // System.err.println("AdviosorID = " + advisorID);
+        }  
     }
 }

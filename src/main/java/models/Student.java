@@ -74,7 +74,7 @@ public class Student
         }
     }
 
-    public void update(Statement statement)
+    private void update(Statement statement)
     {
         try
         {
