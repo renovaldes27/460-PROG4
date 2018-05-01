@@ -811,8 +811,8 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/summary", function( data ) {
-        $("fresh-apt").append(data.freshApt);
-        $("fresh-hall").append(data.freshDorm);
+        $("fresh-apt").text(data.freshApt);
+        $("fresh-hall").text("test");
 
         $("soph-apt").append(data.sophApt);
         $("soph-hall").append(data.sophDorm);
