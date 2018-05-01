@@ -811,6 +811,7 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/summary", function( data ) {
+        consol.log(data)
         document.getElementById("fresh-apt").text = data.freshApt;
         document.getElementById("fresh-hall").text = data.freshDorm;
 
@@ -854,24 +855,6 @@ function toggle(elId) {
     for (var i = 0; i < tables.length; i++) {
         tables[i].style.display = 'none';
     }
-
-    $.getJSON( "/summary", function( data ) {
-        document.getElementById("fresh-apt").text = data.freshApt;
-        document.getElementById("fresh-hall").text = data.freshDorm;
-
-        document.getElementById("soph-apt").text = data.sophApt;
-        document.getElementById("soph-hall").text = data.sophDorm;
-
-        document.getElementById("junior-apt").text = data.junApt;
-        document.getElementById("junior-hall").text = data.junDorm;
-
-        document.getElementById("senior-apt").text = data.senApt;
-        document.getElementById("senior-hall").text = data.senDorm;
-
-        document.getElementById("grad-apt").text = data.gradApt;
-        document.getElementById("grad-hall").text = data.gradDorm;
-
-      });
 
     document.getElementById(elId).style.display = 'block';
 
