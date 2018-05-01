@@ -844,6 +844,13 @@ $(document).ready(function () {
 
       });
 
+      $.getJSON( "/debt", function( data ) {
+        var total = $("#total");
+        total.innerHTML = data;
+      });
+
+      
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
