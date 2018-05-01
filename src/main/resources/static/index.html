@@ -34,6 +34,18 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbar-special-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Special Queries
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')">Hall Managers</a>
+                              <a class="dropdown-item" id="nav-activeleases" onClick="toggle('activeleases')">Currently Active Leases</a>
+                              <a class="dropdown-item" id="nav-unpaidinvoices" onClick="toggle('unpaidinvoices')">Outstanding unpaid invoices</a>
+                              <a class="dropdown-item" id="nav-unpaidinvoices" onClick="toggle('unpaidinvoices')"></a>
+                              <a class="dropdown-item" id="nav-unpaidinvoices" onClick="toggle('unpaidinvoices')"></a>
+                            </div>
+                          </li>
                     <li class="nav-item">
                         <a class="nav-link" onClick="toggle('students')" href="#">Students</a>
                     </li>
@@ -43,16 +55,9 @@
                     <li class="nav-item">
                         <a class="nav-link" onClick="toggle('leases')" href="#">Leases</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Buildings
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">All Buildings</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')">Hall Managers</a>
-                        </div>
-                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onClick="toggle('buildings')" href="#">Buildings</a>
+                    </li>
                 </ul>
             </div>
         </nav>

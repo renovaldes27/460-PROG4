@@ -142,6 +142,54 @@ public class AppController
     {
         student.delete(statement);
     }
+
+    
+    @RequestMapping(value ="/getRoomWithOldestInspection", method = RequestMethod.GET)
+    @ResponseBody
+    public OldestInspection[] getRoomWithNewestInspection()
+    {
+        OldestInspection[] output = null;
+        try
+        {
+            String queString = "SELECT Date, isaacp.Staff.Name as InspectorName, isaacp.Building.Name as BuildingName, isaacp.Room.RoomNumber as RoomNumber, isaacp.Room.StudentID as StudentID, isaacp.Student.Name as StudentName FROM isaacp.Inspection "+
+            "join isaacp.Staff on InspectorID = isaacp.Staff.ID "+
+            "join isaacp.Room on InspectedRoomID = isaacp.Room.ID "+
+            "join isaacp.Building on BuildingID = isaacp.Building.ID "+
+            "join isaacp.Student on StudentID = isaacp.Student.ID "+
+            "WHERE Date = (SELECT MAX(Date) FROM isaacp.Inspection)";
+
+            ResultSet answer = statement.executeQuery(queString);
+            List<OldestInspection> expandableList = new ArrayList<>();
+
+            while(answer.next())
+            {
+                OldestInspection oldestInspection = new OldestInspection();
+
+                oldestInspection.Date = (answer.getString("Date"));
+                oldestInspection.InspectorName = (answer.getString("InspectorName"));
+                oldestInspection.BuildingName = (answer.getString("BuildingName"));
+                oldestInspection.RoomNumber = (answer.getInt("RoomNumber"));
+                oldestInspection.StudentID = (answer.getInt("StudentID"));
+                oldestInspection.StudentName = (answer.getString("StudentName"));
+
+                expandableList.add(oldestInspection);
+            }
+
+            int size = expandableList.size();
+            output = new OldestInspection[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR:can't retrieve the oldest inspection data. " + e.getMessage());
+        }
+
+        return output;
+    }
 }
 
 
