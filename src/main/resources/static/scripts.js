@@ -845,7 +845,7 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/debt", function( data ) {
-        var total = $("#total");
+        var total = document.getElementById("total");
         total.innerHTML = data;
       });
 
