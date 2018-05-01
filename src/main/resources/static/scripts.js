@@ -796,7 +796,7 @@ $(document).ready(function () {
         });
       });
 
-      $.getJSON( "/leases", function( data ) {
+      $.getJSON( "/lease", function( data ) {
         var options = $("#invoice-lease");
         data.forEach(element => {
             options.append(new Option(element.leaseID, element.leaseID));
