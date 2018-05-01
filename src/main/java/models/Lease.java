@@ -76,24 +76,72 @@ public class Lease
                 }
             }
 
-            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
-            // System.out.println(input.toPattern());
-            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
-            String startDateString = formater.format(input.parse(startDate));
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.StudentLease where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
 
-            statement.execute("insert into isaacp.StudentLease values('" + nextLeaseId +
-            "', '" + rID +
-            "', '" + sID +
-            "', '" + duration +
-            "', '" + cost +
-            "', '" + startDateString +
-            "' )");
+            if(exists)
+            {
+                update(statement);               
+            }
+            else
+            {
+                SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+                SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+                String startDateString = formater.format(input.parse(startDate));
+    
+                statement.execute("insert into isaacp.StudentLease values('" + nextLeaseId +
+                "', '" + rID +
+                "', '" + sID +
+                "', '" + duration +
+                "', '" + cost +
+                "', '" + startDateString +
+                "' )");
+
+                nextLeaseId++;
+            }
+
         }
         catch (SQLException | ParseException e)
         {
             e.printStackTrace();
             System.err.println("ERROR: can't add a new lease. " + e.getMessage());
         }
-        nextLeaseId++;
+    }
+
+    private void update(Statement statement)
+    {
+        try
+        {
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+            SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+            String startDateString = formater.format(input.parse(startDate));
+            
+            statement.execute("update isaacp.StudentLease set " +
+            "RoomID = '" + rID + 
+            "', StudentID = '" + sID + 
+            "', Duration = '" + duration + 
+            "', MonthlyCost = '" + cost + 
+            "', LeaseStartDate = '" + startDateString + 
+            "' where ( ID = " + id + " )");
+        }
+        catch (SQLException | ParseException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't update lease. " + e.getMessage());
+            // System.err.println("ID = " + id);
+            // System.err.println("Name = " + name);
+            // System.err.println("Address = " + address);
+            // System.err.println("Email = " + email);
+            // System.err.println("Gender = " + gender);
+            // System.err.println("DOB = " + dob);
+            // System.err.println("Category = " + category);
+            // System.err.println("MajorID = " + major);
+            // System.err.println("MinorID = " + minor);
+            // System.err.println("AdviosorID = " + advisorID);
+        }  
     }
 }

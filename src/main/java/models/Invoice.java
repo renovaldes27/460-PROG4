@@ -22,8 +22,7 @@ public class Invoice
         try
         {
             ResultSet answer = statement.executeQuery("select isaacp.Invoice.ID as ID, semester, PaymentDue, DatePaid, isaacp.Student.name AS sName, isaacp.room.RoomNumber AS rNumber, isaacp.building.name AS bName " + 
-            "from isaacp.Invoice join isaacp.Staff on (isaacp.Invoice.InspectorID = isaacp.Staff.id) " +
-            "join isaacp.StudentLease on (isaacp.Invoice.LeaseID = isaacp.StudentLease.id) " + 
+            "from isaacp.Invoice join isaacp.StudentLease on (isaacp.Invoice.LeaseID = isaacp.StudentLease.id) " + 
             "join isaacp.Student on (isaacp.StudentLease.StudentID = isaacp.Student.id) " + 
             "join isaacp.room on (isaacp.StudentLease.RoomID = isaacp.room.id) " + 
             "join isaacp.building on (isaacp.room.buildingID = isaacp.building.id)");
@@ -136,11 +135,59 @@ public class Invoice
                 }
             }
 
+            boolean exists = false;
+            ResultSet answer = statement.executeQuery("select * from isaacp.invoice where (id = " + id + " )");
+            while(answer.next())
+            {
+                exists = true;
+            }
+
+            if(exists)
+            {
+                update(statement);               
+            }
+            else
+            {
+                SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
+                SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
+                String payDueString = formater.format(input.parse(paymentDueDate));
+    
+                String datePaidString;
+                if(DatePaid.toLowerCase().compareTo("null") == 0)
+                {
+                    datePaidString = "NULL";
+                }
+                else
+                {
+                    datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
+                }
+    
+                statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
+                "', '" + leaseID +
+                "', '" + semester +
+                "', '" + payDueString +
+                "', " + datePaidString +
+                " )");
+
+                nextInvoiceId++;
+            }
+
+        }
+        catch (SQLException | ParseException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't add a new Invoice. " + e.getMessage());
+        }
+    }
+
+    private void update(Statement statement)
+    {
+        try
+        {
             SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-DD");
-            // System.out.println(input.toPattern());
             SimpleDateFormat formater = new SimpleDateFormat("dd-MMM-yy");
             String payDueString = formater.format(input.parse(paymentDueDate));
-
+            
             String datePaidString;
             if(DatePaid.toLowerCase().compareTo("null") == 0)
             {
@@ -151,18 +198,22 @@ public class Invoice
                 datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
             }
 
-            statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
-            "', '" + leaseID +
-            "', '" + semester +
-            "', '" + payDueString +
-            "', " + datePaidString +
-            " )");
+            statement.execute("update isaacp.invoice set " +
+            "LeaseID = '" + leaseID + 
+            "', Semester = '" + semester + 
+            "', PaymentDue = '" + payDueString + 
+            "', DatePaid = " + datePaidString + 
+            " where ( ID = " + id + " )");
         }
         catch (SQLException | ParseException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR: can't add a new Invoice. " + e.getMessage());
-        }
-        nextInvoiceId++;
+            System.err.println("ERROR: can't update invoice. " + e.getMessage());
+            // System.err.println("ID = " + id);
+            System.err.println("leaseID = " + leaseID);
+            System.err.println("semester = " + semester);
+            System.err.println("payDueString = " + paymentDueDate);
+            System.err.println("DatePaid = " + DatePaid);
+        }  
     }
 }
