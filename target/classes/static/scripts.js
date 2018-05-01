@@ -811,7 +811,7 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/summary", function( data ) {
-        consol.log(data)
+        console.log(data)
         document.getElementById("fresh-apt").text = data.freshApt;
         document.getElementById("fresh-hall").text = data.freshDorm;
 
