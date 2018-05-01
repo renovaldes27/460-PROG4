@@ -154,7 +154,7 @@ $(document).ready(function () {
     function createUnapid() {
         $('#unpaid-table').DataTable({
             ajax: {
-                url: '/unapaid',
+                url: '/unpaid',
                 dataSrc: ''
             },
             columns: [
