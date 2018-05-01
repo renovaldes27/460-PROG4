@@ -803,6 +803,13 @@ $(document).ready(function () {
         });
       });
 
+      $.getJSON( "/advisors", function( data ) {
+        var options = $("#aid");
+        data.forEach(element => {
+            options.append(new Option(element.id, element.name));
+        });
+      });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
