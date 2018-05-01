@@ -351,6 +351,26 @@ public class AppController
         return results;
     }
 
+    @RequestMapping(value ="/leasesum", method = RequestMethod.GET)
+    @ResponseBody
+    public LeaseSummary getLeaseSummary()
+    {
+        LeaseSummary result = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            result =  LeaseSummary.getSummary(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return result;
+    }
+
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()
