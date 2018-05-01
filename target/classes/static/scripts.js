@@ -810,6 +810,22 @@ $(document).ready(function () {
         });
       });
 
+      $.getJSON( "/leasesum", function( data ) {
+        $("fresh-apt").text(data.freshApt);
+        $("fresh-hall").text(data.freshDorm);
+
+        $("soph-apt").text(data.sophApt);
+        $("soph-hall").text(data.sophDorm);
+
+        $("junior-apt").text(data.junApt);
+        $("junior-hall").text(data.junDorm);
+        $("senior-apt").text(data.senApt);
+        $("senior-hall").text(data.senDorm);
+        $("grad-apt").text(data.gradApt);
+        $("grad-hall").text(data.gradDorm);
+
+      });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
