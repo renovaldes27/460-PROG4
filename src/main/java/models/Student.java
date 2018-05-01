@@ -116,6 +116,14 @@ public class Student
     {
         try
         {
+            ResultSet answer = statement.executeQuery("select id from isaacp.studentLease where id = " + id);
+            while(answer.next())
+            {
+                int leaseID = answer.getInt(0);
+                statement.execute("delete from isaacp.invoice where LeaseID = " + leaseID);
+                statement.execute("delete from isaacp.StudentLease where id = " + leaseID);
+            }
+
             statement.execute("delete from isaacp.student where id = " + id);
         }
         catch (SQLException e)
