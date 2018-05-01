@@ -812,7 +812,8 @@ $(document).ready(function () {
 
       $.getJSON( "/summary", function( data ) {
         console.log(data)
-        document.getElementById("fresh-apt").text = data.freshApt;
+        document.getElementById("test").innerHTML = data.freshApt
+        document.getElementById("fresh-apt").innerHTML = data.freshApt;
         document.getElementById("fresh-hall").text = data.freshDorm;
 
         document.getElementById("soph-apt").text = data.sophApt;
