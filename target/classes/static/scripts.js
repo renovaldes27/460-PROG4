@@ -812,21 +812,20 @@ $(document).ready(function () {
 
       $.getJSON( "/summary", function( data ) {
         console.log(data)
-        document.getElementById("test").innerHTML = data.freshApt
         document.getElementById("fresh-apt").innerHTML = data.freshApt;
-        document.getElementById("fresh-hall").text = data.freshDorm;
+        document.getElementById("fresh-hall").innerHTML = data.freshDorm;
 
-        document.getElementById("soph-apt").text = data.sophApt;
-        document.getElementById("soph-hall").text = data.sophDorm;
+        document.getElementById("soph-apt").innerHTML = data.sophApt;
+        document.getElementById("soph-hall").innerHTML = data.sophDorm;
 
-        document.getElementById("junior-apt").text = data.junApt;
-        document.getElementById("junior-hall").text = data.junDorm;
+        document.getElementById("junior-apt").innerHTML = data.junApt;
+        document.getElementById("junior-hall").innerHTML = data.junDorm;
 
-        document.getElementById("senior-apt").text = data.senApt;
-        document.getElementById("senior-hall").text = data.senDorm;
+        document.getElementById("senior-apt").innerHTML = data.senApt;
+        document.getElementById("senior-hall").innerHTML = data.senDorm;
 
-        document.getElementById("grad-apt").text = data.gradApt;
-        document.getElementById("grad-hall").text = data.gradDorm;
+        document.getElementById("grad-apt").innerHTML = data.gradApt;
+        document.getElementById("grad-hall").innerHTML = data.gradDorm;
 
       });
 
