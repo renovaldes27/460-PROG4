@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class LeaseSummary
 {
-    public int freshDrom;
+    public int freshDorm;
     public int freshApt;
     public int sophDorm;
     public int sophApt;
@@ -20,7 +20,7 @@ public class LeaseSummary
     {
         LeaseSummary summary = new LeaseSummary();
 
-        summary.freshDrom = getOneSummary("freshman", 0, statement);
+        summary.freshDorm = getOneSummary("freshman", 0, statement);
         summary.freshApt = getOneSummary("freshman", 1, statement);
         
         summary.sophDorm = getOneSummary("sophmore", 0, statement);

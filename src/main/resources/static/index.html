@@ -53,10 +53,16 @@
                         <a class="nav-link" onClick="toggle('leases')" href="#">Leases</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" onClick="toggle('summary')" href="#">Lease Summary</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" onClick="toggle('inspections')" href="#">Inspections</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" onClick="toggle('invoices')" href="#">Invoices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onClick="toggle('unpaid')" href="#">Unpaid Invoices</a>
                     </li>
                 </ul>
             </div>
@@ -112,7 +118,119 @@
             <table id="invoice-table" class="table table-striped table-bordered">
             </table>
         </div>
-    </body>
+
+        <div class="container dt" id="unpaid" style="margin:10px 0px; display:none;">
+            <div class="row">
+                <div class="col-8">
+                    <h1>Total Ammount Unapid: $<span id="total-amt"></span></h1>
+                </div>
+            </div>
+            <div class="row" style="margin:20px 0">
+                <div class="col-8">
+                    <table id="unpaid-table" class="table table-striped table-bordered"></table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container dt" id="summary" style="margin:10px 0px; display:none;">
+            <div class="container">
+                <div class="row" style="margin:20px 0">
+                    <div class="col-4 offset-2 text-center">
+                        <h2>Rental Summary</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 col-2 text-center style=" background-color: lightslategray "">
+                        <h3>Apartment</h3>
+                    </div>
+                    <div class="col-2 text-center style=" background-color: lightslategray "">
+                        <h3>Residence Hall</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h3>Freshman</h3>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="fresh-apt"></span>
+                        </h4>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="fresh-hall"></span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-center">
+                        <h3>Sohpmore</h3>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h4>
+                            <span id="soph-apt"></span>
+                        </h4>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h4>
+                            <span id="soph-hall"></span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h3>Junior</h3>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="junior-apt"></span>
+                        </h4>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="junior-hall"></span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 text-center">
+                        <h3>Senior</h3>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h4>
+                            <span id="senior-apt"></span>
+                        </h4>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h4>
+                            <span id="senior-hall"></span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h3>Grad</h3>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="grad-apt"></span>
+                        </h4>
+                    </div>
+                    <div class="col-2 text-center" style="background-color:lightblue">
+                        <h4>
+                            <span id="grad-hall"></span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </body>
 
     <div id="studentModal" class="modal">
@@ -180,7 +298,7 @@
                     </div>
                     <label for="aid" class="col-1 col-form-label">AID</label>
                     <div class="col-4">
-                        <select class="form-control" id="aid" ></select>
+                        <select class="form-control" id="aid"></select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -465,97 +583,97 @@
     </div>
 
     <div id="inspect-modal" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <span id="inspect-close" class="close">&times;</span>
-                </div>
-                <form>
-                    <div class="form-group row">
-                        <label for="inspect-id" class="col-1 col-form-label">ID</label>
-                        <div class="col-2">
-                            <input class="form-control" id="inspect-id" placeholder="ID">
-                        </div>
-                        <label for="inspect-date" class="col-1 col-form-label">Date</label>
-                        <div class="col-3 ">
-                            <input class="form-control" type="date" id="inspect-date">
-                        </div>
-                        <label for="inspect-staff" class="col-1 col-form-label">Staff</label>
-                        <div class="col-3">
-                            <select class="form-control" id="inspect-staff">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inspect-room" class="col-1 col-form-label">Room Info</label>
-                        <div class="col-3">
-                            <input class="form-control" id="inspect-room" placeholder="Room Info">
-                        </div>
-                        <label for="inspect-condition" class="col-1 col-form-label">Condition</label>
-                        <div class="col-3">
-                            <input class="form-control" id="inspect-condition" placeholder="Condtion">
-                        </div>
-                        <label for="inspect-action" class="col-1 col-form-label">Action</label>
-                        <div class="col-3">
-                            <input class="form-control" id="inspect-action" placeholder="Action">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2 offset-8">
-                            <button class="btn btn-small btn-primary" type=button id="inspect-submit">Submit</button>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-small btn-light" type="reset" id="inspect-cancel">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="modal-content">
+            <div class="row">
+                <span id="inspect-close" class="close">&times;</span>
             </div>
+            <form>
+                <div class="form-group row">
+                    <label for="inspect-id" class="col-1 col-form-label">ID</label>
+                    <div class="col-2">
+                        <input class="form-control" id="inspect-id" placeholder="ID">
+                    </div>
+                    <label for="inspect-date" class="col-1 col-form-label">Date</label>
+                    <div class="col-3 ">
+                        <input class="form-control" type="date" id="inspect-date">
+                    </div>
+                    <label for="inspect-staff" class="col-1 col-form-label">Staff</label>
+                    <div class="col-3">
+                        <select class="form-control" id="inspect-staff">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inspect-room" class="col-1 col-form-label">Room Info</label>
+                    <div class="col-3">
+                        <input class="form-control" id="inspect-room" placeholder="Room Info">
+                    </div>
+                    <label for="inspect-condition" class="col-1 col-form-label">Condition</label>
+                    <div class="col-3">
+                        <input class="form-control" id="inspect-condition" placeholder="Condtion">
+                    </div>
+                    <label for="inspect-action" class="col-1 col-form-label">Action</label>
+                    <div class="col-3">
+                        <input class="form-control" id="inspect-action" placeholder="Action">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 offset-8">
+                        <button class="btn btn-small btn-primary" type=button id="inspect-submit">Submit</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-small btn-light" type="reset" id="inspect-cancel">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div id="invoice-modal" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <span id="invoice-close" class="close">&times;</span>
-                </div>
-                <form>
-                    <div class="form-group row">
-                        <label for="invoice-id" class="col-1 col-form-label">ID</label>
-                        <div class="col-3">
-                            <input class="form-control" id="invoice-id" placeholder="ID">
-                        </div>
-                        <label for="invoice-lease" class="col-1 col-form-label">Lease ID</label>
-                        <div class="col-3 ">
-                            <input class="form-control" id="invoice-lease" placeholder="Lease ID">
-                        </div>
-                        <label for="invoice-semester" class="col-1 col-form-label">Semester</label>
-                        <div class="col-3">
-                            <select class="form-control" id="invoice-semester">
-                                <option value="Spring">Spring</option>
-                                <option value="Fall">Fall</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="invoice-due" class="col-2 col-form-label">Payment Due</label>
-                        <div class="col-4">
-                            <input class="form-control" type="date" id="invoice-due">
-                        </div>
-                        <label for="invoice-paid" class="col-2 col-form-label">Date Paid</label>
-                        <div class="col-4">
-                            <input class="form-control" type="date" id="invoice-paid">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-2 offset-8">
-                            <button class="btn btn-small btn-primary" type=button id="invoice-submit">Submit</button>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-small btn-light" type="reset" id="invoice-cancel">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="modal-content">
+            <div class="row">
+                <span id="invoice-close" class="close">&times;</span>
             </div>
-    </div>    
+            <form>
+                <div class="form-group row">
+                    <label for="invoice-id" class="col-1 col-form-label">ID</label>
+                    <div class="col-3">
+                        <input class="form-control" id="invoice-id" placeholder="ID">
+                    </div>
+                    <label for="invoice-lease" class="col-1 col-form-label">Lease ID</label>
+                    <div class="col-3 ">
+                        <input class="form-control" id="invoice-lease" placeholder="Lease ID">
+                    </div>
+                    <label for="invoice-semester" class="col-1 col-form-label">Semester</label>
+                    <div class="col-3">
+                        <select class="form-control" id="invoice-semester">
+                            <option value="Spring">Spring</option>
+                            <option value="Fall">Fall</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="invoice-due" class="col-2 col-form-label">Payment Due</label>
+                    <div class="col-4">
+                        <input class="form-control" type="date" id="invoice-due">
+                    </div>
+                    <label for="invoice-paid" class="col-2 col-form-label">Date Paid</label>
+                    <div class="col-4">
+                        <input class="form-control" type="date" id="invoice-paid">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 offset-8">
+                        <button class="btn btn-small btn-primary" type=button id="invoice-submit">Submit</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-small btn-light" type="reset" id="invoice-cancel">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 </html>
 

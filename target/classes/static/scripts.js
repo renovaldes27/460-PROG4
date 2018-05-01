@@ -151,6 +151,22 @@ $(document).ready(function () {
     }
     createInvoices();
 
+    function createUnapid() {
+        $('#unpaid-table').DataTable({
+            ajax: {
+                url: '/unpaid',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'leaseID', title: 'Lease ID' },
+                { data: 'semester', title: 'Semester' },
+                { data: 'paymentDueDate', title: 'Payment Due' },
+            ]
+        });
+    }
+    createUnapid();
+
 
     $('#hallmanagers-table').DataTable( {
         ajax: {
@@ -810,6 +826,24 @@ $(document).ready(function () {
         });
       });
 
+      $.getJSON( "/summary", function( data ) {
+        document.getElementById("fresh-apt").innerHTML = data.freshApt;
+        document.getElementById("fresh-hall").innerHTML = data.freshDorm;
+
+        document.getElementById("soph-apt").innerHTML = data.sophApt;
+        document.getElementById("soph-hall").innerHTML = data.sophDorm;
+
+        document.getElementById("junior-apt").innerHTML = data.junApt;
+        document.getElementById("junior-hall").innerHTML = data.junDorm;
+
+        document.getElementById("senior-apt").innerHTML = data.senApt;
+        document.getElementById("senior-hall").innerHTML = data.senDorm;
+
+        document.getElementById("grad-apt").innerHTML = data.gradApt;
+        document.getElementById("grad-hall").innerHTML = data.gradDorm;
+
+      });
+
 });
 
 $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
@@ -838,4 +872,5 @@ function toggle(elId) {
     }
 
     document.getElementById(elId).style.display = 'block';
+
 }
