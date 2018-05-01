@@ -391,6 +391,26 @@ public class AppController
         return results;
     }
 
+    @RequestMapping(value ="/debt", method = RequestMethod.GET)
+    @ResponseBody
+    public String getDebt()
+    {
+        int result = 0;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            result =  Invoice.getDebt(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return String.valueOf(result);
+    }
+
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()
