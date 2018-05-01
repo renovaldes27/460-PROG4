@@ -119,7 +119,7 @@ public class Student
             ResultSet answer = statement.executeQuery("select id from isaacp.studentLease where id = " + id);
             while(answer.next())
             {
-                int leaseID = answer.getInt(0);
+                int leaseID = answer.getInt(1);
                 statement.execute("delete from isaacp.invoice where LeaseID = " + leaseID);
                 statement.execute("delete from isaacp.StudentLease where id = " + leaseID);
             }
