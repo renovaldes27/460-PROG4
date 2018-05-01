@@ -371,6 +371,26 @@ public class AppController
         return result;
     }
 
+    @RequestMapping(value ="/unpaid", method = RequestMethod.GET)
+    @ResponseBody
+    public Invoice[] getUnapid()
+    {
+        Invoice[] results = null;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            results =  Invoice.getUnpaid(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return results;
+    }
+
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()

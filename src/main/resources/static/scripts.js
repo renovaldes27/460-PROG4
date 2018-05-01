@@ -151,6 +151,22 @@ $(document).ready(function () {
     }
     createInvoices();
 
+    function createInvoices() {
+        $('#unpaid-table').DataTable({
+            ajax: {
+                url: '/unapid',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id', title: 'ID' },
+                { data: 'leaseID', title: 'Lease ID' },
+                { data: 'semester', title: 'Semester' },
+                { data: 'paymentDueDate', title: 'Payment Due' },
+            ]
+        });
+    }
+    createInvoices();
+
 
     $('#hallmanagers-table').DataTable( {
         ajax: {
@@ -811,7 +827,6 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/summary", function( data ) {
-        console.log(data)
         document.getElementById("fresh-apt").innerHTML = data.freshApt;
         document.getElementById("fresh-hall").innerHTML = data.freshDorm;
 
