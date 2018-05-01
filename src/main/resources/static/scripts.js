@@ -811,18 +811,18 @@ $(document).ready(function () {
       });
 
       $.getJSON( "/summary", function( data ) {
-        $("fresh-apt").text(data.freshApt);
-        $("fresh-hall").text(data.freshDorm);
+        $("fresh-apt").html(data.freshApt);
+        $("fresh-hall").html(data.freshDorm);
 
-        $("soph-apt").text(data.sophApt);
-        $("soph-hall").text(data.sophDorm);
+        $("soph-apt").html(data.sophApt);
+        $("soph-hall").html(data.sophDorm);
 
-        $("junior-apt").text(data.junApt);
-        $("junior-hall").text(data.junDorm);
-        $("senior-apt").text(data.senApt);
-        $("senior-hall").text(data.senDorm);
-        $("grad-apt").text(data.gradApt);
-        $("grad-hall").text(data.gradDorm);
+        $("junior-apt").html(data.junApt);
+        $("junior-hall").html(data.junDorm);
+        $("senior-apt").html(data.senApt);
+        $("senior-hall").html(data.senDorm);
+        $("grad-apt").html(data.gradApt);
+        $("grad-hall").html(data.gradDorm);
 
       });
 
