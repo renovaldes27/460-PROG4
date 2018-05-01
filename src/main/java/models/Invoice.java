@@ -70,6 +70,33 @@ public class Invoice
         return output;
     }
 
+    // This answers query 3    
+    public static int getDebt(Statement statement)
+    {
+        int output = 0;
+
+        try
+        {
+            ResultSet answer = statement.executeQuery("select isaacp.StudentLease.MonthlyCost as cost " + 
+            "from isaacp.Invoice join isaacp.StudentLease on (isaacp.Invoice.LeaseID = isaacp.StudentLease.id) " + 
+            "where DatePaid IS NULL");
+
+            while(answer.next())
+            {
+                output += answer.getInt("cost");
+            }
+            
+            output *= 4; // lease is per semester, rent is per month.  assuming 4 whole months in a semester.
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR: can't retrieve the Invoice. " + e.getMessage());
+        }
+
+        return output;
+    }
+
     // This answers query 3
     public static Invoice[] getUnpaid(Statement statement)
     {
