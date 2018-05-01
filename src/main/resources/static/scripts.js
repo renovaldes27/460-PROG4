@@ -151,10 +151,10 @@ $(document).ready(function () {
     }
     createInvoices();
 
-    function createInvoices() {
+    function createUnapid() {
         $('#unpaid-table').DataTable({
             ajax: {
-                url: '/unapid',
+                url: '/unapaid',
                 dataSrc: ''
             },
             columns: [
@@ -165,7 +165,7 @@ $(document).ready(function () {
             ]
         });
     }
-    createInvoices();
+    createUnapid();
 
 
     $('#hallmanagers-table').DataTable( {
