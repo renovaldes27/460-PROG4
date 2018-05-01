@@ -812,19 +812,19 @@ $(document).ready(function () {
 
       $.getJSON( "/summary", function( data ) {
         document.getElementById("fresh-apt").text = data.freshApt;
-        document.getElementById("fresh-apt").text = data.freshDorm;
+        document.getElementById("fresh-hall").text = data.freshDorm;
 
         document.getElementById("soph-apt").text = data.sophApt;
-        document.getElementById("soph-apt").text = data.sophDorm;
+        document.getElementById("soph-hall").text = data.sophDorm;
 
         document.getElementById("junior-apt").text = data.junApt;
-        document.getElementById("junior-apt").text = data.junDorm;
+        document.getElementById("junior-hall").text = data.junDorm;
 
         document.getElementById("senior-apt").text = data.senApt;
-        document.getElementById("senior-apt").text = data.senDorm;
+        document.getElementById("senior-hall").text = data.senDorm;
 
         document.getElementById("grad-apt").text = data.gradApt;
-        document.getElementById("grad-apt").text = data.gradDorm;
+        document.getElementById("grad-hall").text = data.gradDorm;
 
       });
 
