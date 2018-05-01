@@ -810,7 +810,7 @@ $(document).ready(function () {
         });
       });
 
-      $.getJSON( "/leasesum", function( data ) {
+      $.getJSON( "/summary", function( data ) {
         $("fresh-apt").text(data.freshApt);
         $("fresh-hall").text(data.freshDorm);
 

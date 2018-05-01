@@ -351,7 +351,7 @@ public class AppController
         return results;
     }
 
-    @RequestMapping(value ="/leasesum", method = RequestMethod.GET)
+    @RequestMapping(value ="/summary", method = RequestMethod.GET)
     @ResponseBody
     public LeaseSummary getLeaseSummary()
     {
