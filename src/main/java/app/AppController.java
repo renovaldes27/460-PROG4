@@ -460,6 +460,9 @@ public class AppController
         LowerRent[] output = null;
         try
         {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+
             int studentRent = 0;
             Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
@@ -499,6 +502,47 @@ public class AppController
         {
             e.printStackTrace();
             System.err.println("ERROR:can't retrieve the oldest inspection data. " + e.getMessage());
+        }
+
+        return output;
+    }
+
+    @RequestMapping(value ="/getCategoryAvgRent", method = RequestMethod.GET)
+    @ResponseBody
+    public CategoryAvgrRent[] getCategoryAvgRent()
+    {
+        CategoryAvgrRent[] output = null;
+
+        try
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet answer = statement.executeQuery("SELECT isaacp.Student.Category as StudentCategory, AVG(isaacp.StudentLease.MonthlyCost) as AverageMonthlyCost FROM isaacp.Student JOIN isaacp.StudentLease ON (isaacp.Student.ID = isaacp.StudentLease.StudentID) GROUP BY isaacp.Student.Category");
+            List<CategoryAvgrRent> expandableList = new ArrayList<>();
+
+            while(answer.next())
+            {
+                CategoryAvgrRent categoryAvgRent = new CategoryAvgrRent();
+
+                categoryAvgRent.StudentCategory = (answer.getString("ManagerName"));
+                categoryAvgRent.AverageMonthlyCost = (answer.getFloat("TelephoneNumber"));
+
+                expandableList.add(categoryAvgRent);
+            } 
+
+            int size = expandableList.size();
+            output = new CategoryAvgrRent[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
+            }
+            statement.close();
+            connection.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
         }
 
         return output;
