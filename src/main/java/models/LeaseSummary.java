@@ -3,6 +3,14 @@
 package models;
 import java.sql.*;
 
+/*
+ * - Advisor
+ *
+ *
+ * - This class is used the model query 2 of the projet spec on the front end.
+ *   It is also used for the backend method getOneSummary()
+ *
+ * */
 public class LeaseSummary
 {
     public int freshDorm;
@@ -37,6 +45,13 @@ public class LeaseSummary
         return summary;
     }
 
+    /*
+     * - getOneSummary(String category, int isApt, Statement statement)
+     *
+     * - This method makes a call to the DB to get a summary of Lease.
+     * 
+     * - Param: db statement - Return: a summary of one lease
+     */
     private static int getOneSummary(String category, int isApt, Statement statement)
     {
         try {

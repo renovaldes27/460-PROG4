@@ -3,7 +3,14 @@ import java.sql.*;
 import java.util.*;
 import java.text.*;
 
-
+/*
+ * - Inspection
+ *
+ *
+ * - This class is used the model the Inspection Table. It also provides related fucntion such
+ *   as add, and update
+ *
+ * */
 public class Inspection 
 {
     private static int nextInspectionId;
@@ -15,6 +22,14 @@ public class Inspection
     public String condition;
     public String action;
 
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the Inspections from the Inspection
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all Inspections.
+     */
     public static Inspection[] getAll(Statement statement)
     {
         Inspection[] output = null;
@@ -61,6 +76,14 @@ public class Inspection
         return output;
     }
 
+    /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new Inspection to the Inspection
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -112,6 +135,14 @@ public class Inspection
         }
     }
 
+    /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing inspection in the
+     * inspection table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try
