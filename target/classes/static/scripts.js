@@ -180,6 +180,17 @@ $(document).ready(function () {
         ]
     } );
 
+    $('#categorymonthlyavg-table').DataTable( {
+        ajax: {
+            url: '/getCategoryAvgRent',
+            dataSrc: ''
+        },
+        columns: [
+            { data: 'StudentCategory', title: 'Student Category' },
+            { data: 'AverageMonthlyCost', title: 'Average Monthly Cost' }
+        ]
+    } );
+
     var staffTable = $('#staffTable').DataTable();
     var studentTable = $('#studentTable').DataTable();
     var leaseTable = $('#leaseTable').DataTable();
