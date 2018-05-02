@@ -922,23 +922,23 @@ $("#nav-hallmanagers").on("click", function populateHallManagersTable() {
     } );
 });
 
-// $("#nav-categorymonthlyavg").on("click", function populateCategoryMonthlyAvgTable() {
-//     table = $('#categorymonthlyavg-table').DataTable();
+$("#nav-categorymonthlyavg").on("click", function populateCategoryMonthlyAvgTable() {
+    table = $('#categorymonthlyavg-table').DataTable();
 
-//     table.destroy();
+    table.destroy();
 
-// $('#categorymonthlyavg-table').DataTable( {
-//     ajax: {
-//         url: '/getCategoryAvgRent',
-//         dataSrc: ''
-//     },
-//     columns: [
-//         { data: 'StudentCategory', title: 'Student Category' },
-//         { data: 'AverageMonthlyCost', title: 'Average Monthly Cost' }
-//     ]
-// } );
+$('#categorymonthlyavg-table').DataTable( {
+    ajax: {
+        url: '/getCategoryAvgRent',
+        dataSrc: ''
+    },
+    columns: [
+        { data: 'StudentCategory', title: 'Student Category' },
+        { data: 'AverageMonthlyCost', title: 'Average Monthly Cost' }
+    ]
+} );
 
-// });
+});
 
 function toggle(elId) {
     var tables = document.getElementsByClassName('dt');

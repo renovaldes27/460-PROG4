@@ -522,8 +522,8 @@ public class AppController
             {
                 CategoryAvgrRent categoryAvgRent = new CategoryAvgrRent();
 
-                categoryAvgRent.StudentCategory = (answer.getString("ManagerName"));
-                categoryAvgRent.AverageMonthlyCost = (answer.getFloat("TelephoneNumber"));
+                categoryAvgRent.StudentCategory = (answer.getString("StudentCategory"));
+                categoryAvgRent.AverageMonthlyCost = (answer.getFloat("AverageMonthlyCost"));
 
                 expandableList.add(categoryAvgRent);
             } 
@@ -540,7 +540,7 @@ public class AppController
         catch (SQLException e)
         {
             e.printStackTrace();
-            System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
+            System.err.println("ERROR:can't retrieve average of rents for each student category. " + e.getMessage());
         }
 
         return output;
