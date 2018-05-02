@@ -398,13 +398,13 @@
                     <div class="col-3">
                         <input class="form-control" id="lease-id" placeholder="ID">
                     </div>
-                    <label for="lease-rid" class="col-1 col-form-label">RID</label>
+                    <label for="lease-rid" class="col-1 col-form-label">Room</label>
                     <div class="col-3 ">
-                        <input class="form-control" id="lease-rid" placeholder="RID">
+                        <select class="form-control" id="lease-rid"></select>
                     </div>
-                    <label for="lease-sid" class="col-1 col-form-label">SID</label>
+                    <label for="lease-sid" class="col-1 col-form-label">Student</label>
                     <div class="col-3">
-                        <input class="form-control" id="lease-sid" placeholder="SID">
+                        <select class="form-control" id="lease-sid"></select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -414,7 +414,10 @@
                     </div>
                     <label for="lease-duration" class="col-1 col-form-label">Duration</label>
                     <div class="col-4">
-                        <input class="form-control" id="lease-duration" placeholder="Duration">
+                        <select class="form-control" id="lease-duration">
+                            <option val="1">1 Semeseter</option>
+                            <option val="2">2 Semeseters</option>
+                        </select>
                     </div>
 
                 </div>

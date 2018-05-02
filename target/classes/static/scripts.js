@@ -787,6 +787,7 @@ $(document).ready(function () {
                 }
             });
         }
+        var selectedData = studentTable.row('.selected').remove().draw();
     });
 
     $.getJSON( "/staff", function( data ) {
@@ -800,8 +801,10 @@ $(document).ready(function () {
 
       $.getJSON( "/students", function( data ) {
         var options = $("#room-student");
+        var leaseOptions = $("#lease-sid");
         data.forEach(element => {
             options.append(new Option(element.name, element.id));
+            leaseOptions.append(new Option(element.name, element.id));
         });
       });
 
@@ -809,6 +812,13 @@ $(document).ready(function () {
         var options = $("#room-building");
         data.forEach(element => {
             options.append(new Option(element.name, element.id));
+        });
+      });
+
+      $.getJSON( "/room", function( data ) {
+        var options = $("#lease-rid");
+        data.forEach(element => {
+            options.append(new Option(element.roomNumber, element.id));
         });
       });
 
