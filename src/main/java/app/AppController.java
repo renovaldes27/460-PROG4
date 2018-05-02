@@ -1,6 +1,6 @@
 package app; 
 
-import models.*; 
+import models.*;
 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
@@ -391,6 +391,26 @@ public class AppController
         return results;
     }
 
+    @RequestMapping(value ="/debt", method = RequestMethod.GET)
+    @ResponseBody
+    public String getDebt()
+    {
+        int result = 0;
+        try 
+        {
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            result =  Invoice.getDebt(statement);
+            statement.close();
+            connection.close();
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: can't get statement from the database. " + e.getMessage());
+        }
+        return String.valueOf(result);
+    }
+
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()
@@ -428,6 +448,57 @@ public class AppController
         {
             e.printStackTrace();
             System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
+        }
+
+        return output;
+    }
+    
+    @RequestMapping(value ="/getLowerRents", method = RequestMethod.GET)
+    @ResponseBody
+    public LowerRent[] getLowerRents(@RequestParam(value="studentID", defaultValue="1") int studentID)
+    {
+        LowerRent[] output = null;
+        try
+        {
+            int studentRent = 0;
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+
+            ResultSet answer = statement.executeQuery("SELECT MonthlyRentRate from isaacp.Room WHERE StudentID = "+studentID);
+            while(answer.next()) // there should be only one result, but java requires us to use .next()
+            {
+                studentRent = answer.getInt(1); // result set is one indexed, unlike normal compSci
+            }
+            
+            String finalQueryString = "SELECT isaacp.Building.Name as BuildingName, isaacp.Room.RoomNumber as RoomNumber, isaacp.Building.Address as BuildingAddress, isaacp.Room.MonthlyRentRate as MonthlyRentRate FROM isaacp.Room JOIN isaacp.Building ON (isaacp.Room.BuildingID = isaacp.Building.ID) WHERE isaacp.Room.MonthlyRentRate < "+studentRent;
+
+            answer = statement.executeQuery(finalQueryString);
+
+            List<LowerRent> expandableList = new ArrayList<>();
+
+            while(answer.next())
+            {
+                LowerRent lowerRent = new LowerRent();
+
+                lowerRent.BuildingName = (answer.getString("BuildingName"));
+                lowerRent.RoomNumber = (answer.getInt("RoomNumber"));
+                lowerRent.BuildingAddress = (answer.getString("BuildingAddress"));
+                lowerRent.MonthlyRentRate = (answer.getString("MonthlyRentRate"));
+
+                expandableList.add(lowerRent);
+            }
+
+            int size = expandableList.size();
+            output = new LowerRent[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR:can't retrieve the oldest inspection data. " + e.getMessage());
         }
 
         return output;
