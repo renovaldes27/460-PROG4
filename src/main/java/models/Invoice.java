@@ -180,7 +180,7 @@ public class Invoice
                 String payDueString = formater.format(input.parse(paymentDueDate));
     
                 String datePaidString;
-                if(DatePaid.toLowerCase().compareTo("null") == 0)
+                if(DatePaid.length() == 0)
                 {
                     datePaidString = "NULL";
                 }
@@ -188,9 +188,6 @@ public class Invoice
                 {
                     datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
                 }
-                
-                if(datePaidString.length() == 0)
-                    datePaidString = "NULL";
 
                 statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
                 "', '" + leaseID +
@@ -219,7 +216,7 @@ public class Invoice
             String payDueString = formater.format(input.parse(paymentDueDate));
             
             String datePaidString;
-            if(DatePaid.toLowerCase().compareTo("null") == 0)
+            if(DatePaid.length() == 0)
             {
                 datePaidString = "NULL";
             }
