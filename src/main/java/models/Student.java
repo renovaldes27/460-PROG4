@@ -106,6 +106,15 @@ public class Student {
         }
     }
 
+    /*
+     * - delete()
+     *
+     * - This method makes a call to the DB to delete a an existing student in the
+     * student table.  It also deletes all Leases that refer to this student, 
+     * and all Invoices that refer to those Leases.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void delete(Statement statement) {
         try {
             ResultSet answer = statement.executeQuery("select id from isaacp.studentLease where StudentID = " + id);

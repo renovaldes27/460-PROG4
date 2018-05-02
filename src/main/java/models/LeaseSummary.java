@@ -13,17 +13,25 @@ import java.sql.*;
  * */
 public class LeaseSummary
 {
-    public int freshDorm;
-    public int freshApt;
-    public int sophDorm;
-    public int sophApt;
-    public int junDorm;
-    public int junApt;
-    public int senDorm;
-    public int senApt;
-    public int gradDorm;
-    public int gradApt;
+    public int freshDorm;   // how many freshman are in dormatories
+    public int freshApt;    // how many freshman are in apartments
+    public int sophDorm;    // how many sophmores are in dormatories
+    public int sophApt;     // how many sophmores are in apartments
+    public int junDorm;     // how many juniors are in dormatories
+    public int junApt;      // how many juniors are in apartments
+    public int senDorm;     // how many seniors are in dormatories
+    public int senApt;      // how many seniors are in apartments
+    public int gradDorm;    // how many graduates are in dormatories
+    public int gradApt;     // how many graduates are in apartments
 
+    /*
+     * - getSummary()
+     *
+     * - This method makes calls to the DB to determin how many students of each category are
+     * in either apartments or dormatories
+     * 
+     * - Param: db statement - Return:A list of all buildings.
+     */
     public static LeaseSummary getSummary(Statement statement)
     {
         LeaseSummary summary = new LeaseSummary();

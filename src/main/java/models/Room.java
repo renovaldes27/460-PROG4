@@ -2,16 +2,33 @@ package models;
 import java.sql.*;
 import java.util.*;
 
+/*
+ * - Room
+ *
+ *
+ * - This class is used the model an Room on the front end.
+ *   It is also used for any backend methods that add/get/update Room
+ *   to the table.
+ *
+ * */
 public class Room 
 {
-    private static int nextRoomId;
-    private static boolean isInitialized;
-    public int id;
-    public String roomNumber;
-    public String buildingId;
-    public String studentID;
-    public String monthlyRent;
+    private static int nextRoomId;// next id to assign to a new staff
+    private static boolean isInitialized;// retains whether nextStaffId has been initialized
+    public int id;// primary key
+    public String roomNumber; // physical room number
+    public String buildingId; // which building is the room in
+    public String studentID;  // which student currently occupies the room
+    public String monthlyRent; // the rent
 
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the room from the room
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all rooms.
+     */
     public static Room[] getAll(Statement statement)
     {
         Room[] output = null;
@@ -56,6 +73,14 @@ public class Room
         return output;
     }
 
+    /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new room to the room
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -101,6 +126,14 @@ public class Room
         }
     }
     
+    /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing room in the
+     * room table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try
@@ -116,16 +149,6 @@ public class Room
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update room. " + e.getMessage());
-            // System.err.println("ID = " + id);
-            // System.err.println("Name = " + name);
-            // System.err.println("Address = " + address);
-            // System.err.println("Email = " + email);
-            // System.err.println("Gender = " + gender);
-            // System.err.println("DOB = " + dob);
-            // System.err.println("Category = " + category);
-            // System.err.println("MajorID = " + major);
-            // System.err.println("MinorID = " + minor);
-            // System.err.println("AdviosorID = " + advisorID);
         }  
     }
 }

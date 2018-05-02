@@ -3,19 +3,33 @@ package app;
 import models.*;
 import org.springframework.stereotype.Controller; 
 import org.springframework.web.bind.annotation.*; 
-// import org.springframework.web.bind.annotation.RequestParam; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import javax.sql.*; 
 import java.sql.*; 
 import java.util.*;
 
+/*
+ * - AppController
+ *
+ *
+ * - This class provides all of the methods that are called by the front end.
+ *
+ * */
 @Controller
 public class AppController 
 {
     @Autowired
     private DataSource dataSource;
 
+     /*
+     * - getStudents()
+     *
+     * - This method makes a call to the DB to get all the students from the student
+     * table.
+     * 
+     * - Param: none - Return:A list of all students.
+     */
     @RequestMapping(value ="/students", method = RequestMethod.GET)
     @ResponseBody
     public Student[]  getStudents() 
@@ -36,6 +50,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getInvoice()
+     *
+     * - This method makes a call to the DB to get all the invoices from the invoice
+     * table.
+     * 
+     * - Param: none - Return:A list of all invoice.
+     */
     @RequestMapping(value ="/invoice", method = RequestMethod.GET)
     @ResponseBody
     public Invoice[]  getInvoices() 
@@ -56,6 +78,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getInspection()
+     *
+     * - This method makes a call to the DB to get all the inspections from the inspection
+     * table.
+     * 
+     * - Param: none - Return:A list of all inspection.
+     */
     @RequestMapping(value ="/inspect", method = RequestMethod.GET)
     @ResponseBody
     public Inspection[]  getInspections() 
@@ -76,6 +106,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - addNewStudent()
+     *
+     * - This method makes a call to the DB to add a new student to the student
+     * table.
+     * 
+     * - Param: a new student - Return: None.
+     */
     @RequestMapping(value ="/students", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewStudent(@RequestBody Student jsonString) 
@@ -94,6 +132,14 @@ public class AppController
         }
     }
 
+    /*
+     * - addNewStaff()
+     *
+     * - This method makes a call to the DB to add a new staff to the staff
+     * table.
+     * 
+     * - Param: a new staff - Return: None.
+     */
     @RequestMapping(value ="/staff", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewStaff(@RequestBody Staff jsonString)
@@ -112,6 +158,14 @@ public class AppController
         } 
     }
 
+    /*
+     * - removeStudent()
+     *
+     * - This method makes a call to the DB to remove an existing student from the student
+     * table.
+     * 
+     * - Param: an existing student - Return: None.
+     */
     @RequestMapping(value ="/studremove", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void removeStudent(@RequestBody Student jsonString)
@@ -130,6 +184,14 @@ public class AppController
         }
     }
 
+    /*
+     * - addNewLease()
+     *
+     * - This method makes a call to the DB to add a new lease to the lease
+     * table.
+     * 
+     * - Param: a new lease - Return: None.
+     */
     @RequestMapping(value ="/lease", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewLease(@RequestBody Lease jsonString) 
@@ -148,6 +210,14 @@ public class AppController
         }
     }
 
+    /*
+     * - addNewAdvisor()
+     *
+     * - This method makes a call to the DB to add a new advisor to the advisor
+     * table.
+     * 
+     * - Param: a new advisor - Return: None.
+     */
     @RequestMapping(value ="/advisors", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewAdvisor(@RequestBody Advisor jsonString) 
@@ -166,6 +236,14 @@ public class AppController
        }
     }
 
+    /*
+     * - addNewRoom()
+     *
+     * - This method makes a call to the DB to add a new room to the room
+     * table.
+     * 
+     * - Param: a new room - Return: None.
+     */
     @RequestMapping(value ="/room", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewRoom(@RequestBody Room jsonString) 
@@ -184,6 +262,14 @@ public class AppController
        }
     }
 
+    /*
+     * - addNewBuilding()
+     *
+     * - This method makes a call to the DB to add a new building to the building
+     * table.
+     * 
+     * - Param: a new building - Return: None.
+     */
     @RequestMapping(value ="/buildings", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewBuildilng(@RequestBody Building jsonString) 
@@ -202,6 +288,14 @@ public class AppController
        }
     }
 
+    /*
+     * - addNewInvoice()
+     *
+     * - This method makes a call to the DB to add a new invoice to the invoice
+     * table.
+     * 
+     * - Param: a new invoice - Return: None.
+     */
     @RequestMapping(value ="/invoice", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewInvoice(@RequestBody Invoice jsonString) 
@@ -220,6 +314,14 @@ public class AppController
        }
     }
 
+    /*
+     * - addNewInspection()
+     *
+     * - This method makes a call to the DB to add a new Inspection to the inspection
+     * table.
+     * 
+     * - Param: a new inspection - Return: None.
+     */
     @RequestMapping(value ="/inspect", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addNewInspection(@RequestBody Inspection jsonString) 
@@ -238,6 +340,14 @@ public class AppController
        }
     }
 
+    /*
+     * - getStaff()
+     *
+     * - This method makes a call to the DB to get all the staff from the staff
+     * table.
+     * 
+     * - Param: none - Return:A list of all staff.
+     */
     @RequestMapping(value ="/staff", method = RequestMethod.GET)
     @ResponseBody
     public Staff[]  getStaff()
@@ -258,6 +368,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getLease()
+     *
+     * - This method makes a call to the DB to get all the Leases from the lease
+     * table.
+     * 
+     * - Param: none - Return:A list of all leases.
+     */
     @RequestMapping(value ="/lease", method = RequestMethod.GET)
     @ResponseBody
     public Lease[]  getLease()
@@ -278,6 +396,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getAdvisors()
+     *
+     * - This method makes a call to the DB to get all the advisors from the advisor
+     * table.
+     * 
+     * - Param: none - Return:A list of all advisor.
+     */
     @RequestMapping(value ="/advisors", method = RequestMethod.GET)
     @ResponseBody
     public Advisor[] getAdvisors()
@@ -298,6 +424,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getRooms()
+     *
+     * - This method makes a call to the DB to get all the rooms from the room
+     * table.
+     * 
+     * - Param: none - Return:A list of all room.
+     */
     @RequestMapping(value ="/room", method = RequestMethod.GET)
     @ResponseBody
     public Room[] getRooms()
@@ -318,6 +452,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getbuildings()
+     *
+     * - This method makes a call to the DB to get all the buildings from the building
+     * table.
+     * 
+     * - Param: none - Return:A list of all building.
+     */
     @RequestMapping(value ="/buildings", method = RequestMethod.GET)
     @ResponseBody
     public Building[] getBuildings()
@@ -338,6 +480,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getLeaseSummary()
+     *
+     * - This method makes a call to the DB to determine how many students
+     * in each category are in each type of housing.
+     * 
+     * - Param: None - Return: a summary of all leases.
+     */
     @RequestMapping(value ="/summary", method = RequestMethod.GET)
     @ResponseBody
     public LeaseSummary getLeaseSummary()
@@ -358,6 +508,13 @@ public class AppController
         return result;
     }
 
+    /*
+     * - getUnapid()
+     *
+     * - This method makes a call to the DB to get a list of all unpaid invoices.
+     * 
+     * - Param: None - Return: a list of unpaid invoices.
+     */
     @RequestMapping(value ="/unpaid", method = RequestMethod.GET)
     @ResponseBody
     public Invoice[] getUnapid()
@@ -378,6 +535,14 @@ public class AppController
         return results;
     }
 
+    /*
+     * - getDebt()
+     *
+     * - This method makes a call to the DB to get the total amount of money
+     * owed by unpaid invoces.
+     * 
+     * - Param: None - Return: the amount of money owed by unpaid invoces.
+     */
     @RequestMapping(value ="/debt", method = RequestMethod.GET)
     @ResponseBody
     public String getDebt()
@@ -398,6 +563,14 @@ public class AppController
         return String.valueOf(result);
     }
 
+    /*
+     * - getHallManagerInfo()
+     *
+     * - This method makes a call to the DB to get information about the staff members
+     * that manage the dormatories.
+     * 
+     * - Param: None - Return: the list of information about dormatory managers.
+     */
     @RequestMapping(value ="/getHallManagerInfo", method = RequestMethod.GET)
     @ResponseBody
     public HallManager[] getHallManagerInfo()
@@ -440,6 +613,14 @@ public class AppController
         return output;
     }
     
+    /*
+     * - getLowerRents()
+     *
+     * - This method makes a call to the DB to get information about rooms
+     * that have a lower rent than the room that the student is currently residing in.
+     * 
+     * - Param: the id of a student - Return: the list of rooms cheaper than the studen't current room.
+     */
     @RequestMapping(value ="/getLowerRents", method = RequestMethod.GET)
     @ResponseBody
     public LowerRent[] getLowerRents(@RequestParam(value="studentID", defaultValue="1") int studentID)
@@ -492,6 +673,14 @@ public class AppController
         return output;
     }
 
+    /*
+     * - getCategoryAvgRent()
+     *
+     * - This method makes a call to the DB to get the average rent of each category of student
+     * for every type of housing.
+     * 
+     * - Param: None - Return: the list of average rents.
+     */
     @RequestMapping(value ="/getCategoryAvgRent", method = RequestMethod.GET)
     @ResponseBody
     public CategoryAvgrRent[] getCategoryAvgRent()
