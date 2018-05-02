@@ -3,7 +3,15 @@ import java.sql.*;
 import java.util.*;
 import java.text.*;
 
-
+/*
+ * - Lease
+ *
+ *
+ * - This class is used the model an Lease on the front end.
+ *   It is also used for any backend methods that add/get/update Leases
+ *   to the table.
+ *
+ * */
 public class Lease 
 {
     private static int nextLeaseId;
@@ -15,6 +23,14 @@ public class Lease
     public int cost;
     public String startDate;
 
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the Leases from the Lease
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all leases.
+     */
     public static Lease[] getAll(Statement statement)
     {
         Lease[] output = null;
@@ -61,6 +77,14 @@ public class Lease
         return output;
     }
 
+    /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new advisor to the advisor
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -112,6 +136,14 @@ public class Lease
         }
     }
 
+    /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing Lease in the
+     * Lease table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try

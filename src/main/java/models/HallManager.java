@@ -1,8 +1,12 @@
 package models;
 
-/**
- * Staff
- */
+/*
+ * - HallManager
+ *
+ *
+ * - This class is used the model related infomation for the Hall Manager query
+ *
+ * */
 public class HallManager 
 {
     public String ManagerName;
