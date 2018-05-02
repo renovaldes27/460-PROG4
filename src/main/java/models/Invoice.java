@@ -188,7 +188,10 @@ public class Invoice
                 {
                     datePaidString = "'" + formater.format(input.parse(DatePaid)) + "'";
                 }
-    
+                
+                if(datePaidString.length() == 0)
+                    datePaidString = "NULL";
+
                 statement.execute("insert into isaacp.Invoice values('" + nextInvoiceId +
                 "', '" + leaseID +
                 "', '" + semester +

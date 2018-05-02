@@ -2,18 +2,36 @@ package models;
 import java.sql.*;
 import java.util.*;
 
+/*
+ * - Building
+ *
+ *
+ * - This class is used the model an Building on the front end.
+ *   It is also used for any backend methods that add/get/update buildings
+ *   to the table.
+ *
+ * */
 public class Building 
 {
-    private static int nextBuildingId;
-    private static boolean isInitialized;
-    public int id;
-    public String name;
-    public String address;
-    public int isApartment;
-    public String telephoneNumber;
-    public String managerID;
-    public String numStudents;
+    private static int nextBuildingId; // next id
+    private static boolean isInitialized; // initialzed
+    public int id; // building ID
+    public String name; // building name
+    public String address; // building address
+    public int isApartment; // apartment? 0 == no, 1 == yes
+    public String telephoneNumber; // phone number
+    public String managerID; // buildilng manager ID
+    public String numStudents; // Building student count
 
+
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the buildings from the building
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all advisors.
+     */
     public static Building[] getAll(Statement statement)
     {
         Building[] output = null;
@@ -59,6 +77,14 @@ public class Building
         return output;
     }
 
+        /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new building to the building
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -107,6 +133,14 @@ public class Building
         }
     }
 
+        /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing buildilng in the
+     * building table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try

@@ -816,8 +816,6 @@ $(document).ready(function () {
                 document.getElementById("lower-none").style.display="inline";
             }
           });
-
-
     });
 
     $.getJSON( "/staff", function( data ) {
