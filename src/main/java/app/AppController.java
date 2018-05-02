@@ -461,6 +461,8 @@ public class AppController
         try
         {
             int studentRent = 0;
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
 
             ResultSet answer = statement.executeQuery("SELECT MonthlyRentRate from isaacp.Room WHERE StudentID = "+studentID);
             while(answer.next()) // there should be only one result, but java requires us to use .next()

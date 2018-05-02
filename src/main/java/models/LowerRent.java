@@ -1,6 +1,6 @@
 package models;
 
-class LowerRent
+public class LowerRent
 {
     public String BuildingName;
     public int RoomNumber;
