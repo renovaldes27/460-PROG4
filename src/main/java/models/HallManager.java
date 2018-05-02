@@ -9,7 +9,7 @@ package models;
  * */
 public class HallManager 
 {
-    public String ManagerName;
-    public int TelephoneNumber;
-    public String BuildingName;
+    public String ManagerName;  // The name of the manager
+    public int TelephoneNumber; // the phone number of the building
+    public String BuildingName; // the name of the building
 }

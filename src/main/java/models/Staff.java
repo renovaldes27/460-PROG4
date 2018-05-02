@@ -3,20 +3,36 @@ import java.sql.*;
 import java.util.*;
 import java.text.*;
 
-
+/*
+ * - Staff
+ *
+ *
+ * - This class is used to model a Staff on the front end.
+ *   It is also used for any backend methods that add/get/update buildings
+ *   to the table.
+ *
+ * */
 public class Staff 
 {
-    private static int nextStaffId;
-    private static boolean isInitialized;
-    public int id;
-    public String name;
-    public String email;
-    public String address;
-    public String gender;
-    public String dob;
-    public String jobTitle;
-    public String location;
+    private static int nextStaffId; // next id to assign to a new staff
+    private static boolean isInitialized; // retains whether nextStaffId has been initialized
+    public int id; // primary key
+    public String name; // legal name of this person
+    public String email; // email address
+    public String address; // physical address
+    public String gender; // their gender
+    public String dob; // when were they born
+    public String jobTitle; // what their job title is
+    public String location; // where do they work
 
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the staff from the staff
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all staff.
+     */
     public static Staff[] getAll(Statement statement)
     {
         Staff[] output = null;
@@ -63,6 +79,14 @@ public class Staff
         return output;
     }
 
+    /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new staff to the staff
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -117,6 +141,14 @@ public class Staff
         }
     }
 
+    /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing staff in the
+     * staff table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try
@@ -139,16 +171,6 @@ public class Staff
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update staff. " + e.getMessage());
-            // System.err.println("ID = " + id);
-            // System.err.println("Name = " + name);
-            // System.err.println("Address = " + address);
-            // System.err.println("Email = " + email);
-            // System.err.println("Gender = " + gender);
-            // System.err.println("DOB = " + dob);
-            // System.err.println("Category = " + category);
-            // System.err.println("MajorID = " + major);
-            // System.err.println("MinorID = " + minor);
-            // System.err.println("AdviosorID = " + advisorID);
         }  
     }
 }

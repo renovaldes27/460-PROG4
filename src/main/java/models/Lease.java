@@ -80,7 +80,7 @@ public class Lease
     /*
      * - add()
      *
-     * - This method makes a call to the DB to add a new advisor to the advisor
+     * - This method makes a call to the DB to add a new lease to the lease
      * table.
      * 
      * - Param: db statement - Return:None
@@ -164,16 +164,6 @@ public class Lease
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update lease. " + e.getMessage());
-            // System.err.println("ID = " + id);
-            // System.err.println("Name = " + name);
-            // System.err.println("Address = " + address);
-            // System.err.println("Email = " + email);
-            // System.err.println("Gender = " + gender);
-            // System.err.println("DOB = " + dob);
-            // System.err.println("Category = " + category);
-            // System.err.println("MajorID = " + major);
-            // System.err.println("MinorID = " + minor);
-            // System.err.println("AdviosorID = " + advisorID);
         }  
     }
 }

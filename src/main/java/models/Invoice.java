@@ -280,7 +280,7 @@ public class Invoice
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update invoice. " + e.getMessage());
-            // System.err.println("ID = " + id);
+            System.err.println("ID = " + id);
             System.err.println("leaseID = " + leaseID);
             System.err.println("semester = " + semester);
             System.err.println("payDueString = " + paymentDueDate);

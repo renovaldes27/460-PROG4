@@ -30,7 +30,7 @@ public class Building
      * - This method makes a call to the DB to get all the buildings from the building
      * table.
      * 
-     * - Param: db statement - Return:A list of all advisors.
+     * - Param: db statement - Return:A list of all buildings.
      */
     public static Building[] getAll(Statement statement)
     {
@@ -77,7 +77,7 @@ public class Building
         return output;
     }
 
-        /*
+    /*
      * - add()
      *
      * - This method makes a call to the DB to add a new building to the building
@@ -133,7 +133,7 @@ public class Building
         }
     }
 
-        /*
+    /*
      * - update()
      *
      * - This method makes a call to the DB to update a an existing buildilng in the
@@ -158,16 +158,6 @@ public class Building
         {
             e.printStackTrace();
             System.err.println("ERROR: can't update building. " + e.getMessage());
-            // System.err.println("ID = " + id);
-            // System.err.println("Name = " + name);
-            // System.err.println("Address = " + address);
-            // System.err.println("Email = " + email);
-            // System.err.println("Gender = " + gender);
-            // System.err.println("DOB = " + dob);
-            // System.err.println("Category = " + category);
-            // System.err.println("MajorID = " + major);
-            // System.err.println("MinorID = " + minor);
-            // System.err.println("AdviosorID = " + advisorID);
         }  
     }
 }
