@@ -4,7 +4,15 @@ import java.util.*;
 import java.util.Date;
 import java.text.*;
 
-
+/*
+ * - Invoice
+ *
+ *
+ * - This class is used the model an Invoice on the front end.
+ *   It is also used for any backend methods that add/get/update Invoices
+ *   to the table.
+ *
+ * */
 public class Invoice 
 {
     private static int nextInvoiceId;
@@ -15,6 +23,14 @@ public class Invoice
     public String paymentDueDate;
     public String DatePaid = "";
 
+    /*
+     * - getAll()
+     *
+     * - This method makes a call to the DB to get all the Invoices from the Invoice
+     * table.
+     * 
+     * - Param: db statement - Return:A list of all Invoices.
+     */
     public static Invoice[] getAll(Statement statement)
     {
         Invoice[] output = null;
@@ -70,7 +86,13 @@ public class Invoice
         return output;
     }
 
-    // This answers query 3    
+    /*
+     * - getDebt(Statement statement)
+     *
+     * - This method answers query 3 
+     * 
+     * - Param: db statement - Return: MonthlyCost that was not paid
+     */  
     public static int getDebt(Statement statement)
     {
         int output = 0;
@@ -97,7 +119,13 @@ public class Invoice
         return output;
     }
 
-    // This answers query 3
+    /*
+     * - getDebt(Statement statement)
+     *
+     * - This method answers query 3 
+     * 
+     * - Param: db statement - Return: the Invoice model
+     */  
     public static Invoice[] getUnpaid(Statement statement)
     {
         Invoice[] output = null;
@@ -147,6 +175,14 @@ public class Invoice
         return output;
     }
 
+    /*
+     * - add()
+     *
+     * - This method makes a call to the DB to add a new invoice to the invoice
+     * table.
+     * 
+     * - Param: db statement - Return:None
+     */
     public void add(Statement statement)
     {
         try
@@ -207,6 +243,14 @@ public class Invoice
         }
     }
 
+    /*
+     * - update()
+     *
+     * - This method makes a call to the DB to update a an existing invoice in the
+     *   invoice table.
+     * 
+     * - Param: db statement - Return:None
+     */
     private void update(Statement statement)
     {
         try
