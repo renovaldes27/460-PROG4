@@ -1,6 +1,6 @@
 package app; 
 
-import models.*; 
+import models.*;
 
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model; 
@@ -448,6 +448,55 @@ public class AppController
         {
             e.printStackTrace();
             System.err.println("ERROR:can't retrieve the managers. " + e.getMessage());
+        }
+
+        return output;
+    }
+    
+    @RequestMapping(value ="/getLowerRents", method = RequestMethod.GET)
+    @ResponseBody
+    public LowerRent[] getLowerRents(@RequestParam(value="studentID", defaultValue="0") int studentID)
+    {
+        LowerRent[] output = null;
+        try
+        {
+            int studentRent = 0;
+
+            ResultSet answer = statement.executeQuery("SELECT MonthlyRentRate from isaacp.Room WHERE StudentID = "+studentID);
+            while(answer.next()) // there should be only one result, but java requires us to use .next()
+            {
+                studentRent = answer.getInt(1); // result set is one indexed, unlike normal compSci
+            }
+            
+            String finalQueryString = "SELECT isaacp.Building.Name as BuildingName, isaacp.Room.RoomNumber as RoomNumber, isaacp.Building.Address as BuildingAddress, isaacp.Room.MonthlyRentRate as MonthlyRentRate FROM isaacp.Room JOIN isaacp.Building ON (isaacp.Room.BuildingID = isaacp.Building.ID) WHERE isaacp.Room.MonthlyRentRate < "+studentRent;
+
+            answer = statement.executeQuery(finalQueryString);
+
+            List<LowerRent> expandableList = new ArrayList<>();
+
+            while(answer.next())
+            {
+                LowerRent lowerRent = new LowerRent();
+
+                lowerRent.BuildingName = (answer.getString("BuildingName"));
+                lowerRent.RoomNumber = (answer.getInt("RoomNumber"));
+                lowerRent.BuildingAddress = (answer.getString("BuildingAddress"));
+                lowerRent.MonthlyRentRate = (answer.getString("MonthlyRentRate"));
+
+                expandableList.add(lowerRent);
+            }
+
+            int size = expandableList.size();
+            output = new LowerRent[size];
+            for(int i = 0; i < output.length; i++)
+            {
+                output[i] = expandableList.get(i);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            System.err.println("ERROR:can't retrieve the oldest inspection data. " + e.getMessage());
         }
 
         return output;
