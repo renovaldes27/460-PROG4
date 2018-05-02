@@ -790,6 +790,36 @@ $(document).ready(function () {
         var selectedData = studentTable.row('.selected').remove().draw();
     });
 
+    $('#lower-btn').click(function() {
+        document.getElementById("user-in").style.display = "none";
+
+        var id = $('#lower-students').val();
+
+        $.getJSON( "/getLowerRents?studentID="+id, function( data ) {
+            if(data.length > 0){
+                $('#lower-table').DataTable({
+                    ajax: {
+                        url: '/getLowerRents?studentID='+id,
+                        dataSrc: ''
+                    },
+                    columns: [
+                        { data: 'BuildingName', title: 'Building Name' },
+                        { data: 'RoomNumber', title: 'Room #' },
+                        { data: 'BuildingAddress', title: 'Address' },
+                        { data: 'MonthlyRentRate', title: 'Rent' }
+                    ]
+                });
+
+                document.getElementById("lower-show").style.display="inline";
+            }
+            else{
+                document.getElementById("lower-none").style.display="inline";
+            }
+          });
+
+
+    });
+
     $.getJSON( "/staff", function( data ) {
         var buildingOpt = $("#building-manager");
         var inspectOpt = $("#inspect-staff");
@@ -802,9 +832,11 @@ $(document).ready(function () {
       $.getJSON( "/students", function( data ) {
         var options = $("#room-student");
         var leaseOptions = $("#lease-sid");
+        var lowerOptions = $("#lower-students");
         data.forEach(element => {
             options.append(new Option(element.name, element.id));
             leaseOptions.append(new Option(element.name, element.id));
+            lowerOptions.append(new Option(element.name, element.id));
         });
       });
 
