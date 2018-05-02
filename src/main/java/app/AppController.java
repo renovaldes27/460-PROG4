@@ -455,7 +455,7 @@ public class AppController
     
     @RequestMapping(value ="/getLowerRents", method = RequestMethod.GET)
     @ResponseBody
-    public LowerRent[] getLowerRents(@RequestParam(value="studentID", defaultValue="0") int studentID)
+    public LowerRent[] getLowerRents(@RequestParam(value="studentID", defaultValue="1") int studentID)
     {
         LowerRent[] output = null;
         try

@@ -42,7 +42,7 @@
                               <a class="dropdown-item" id="nav-hallmanagers" onClick="toggle('hallmanagers')">Hall Managers</a>
                               <a class="dropdown-item" id="nav-activeleases" onClick="toggle('summary')">Currently Active Leases</a>
                               <a class="dropdown-item" id="nav-unpaidinvoices" onClick="toggle('unpaid')">Outstanding unpaid invoices</a>
-                              <a class="dropdown-item" id="nav-lowerrent" onClick="toggle('lowerrent')">Provide Lower Rents</a>
+                              <a class="dropdown-item" id="nav-lowerrent" onClick="toggle('lower')">Provide Lower Rents</a>
                               <a class="dropdown-item" id="nav-categorymonthlyavg" onClick="toggle('categorymonthlyavg')">Student categories Monthly Rent Average</a>
                             </div>
                           </li>
@@ -236,6 +236,32 @@
             </div>
 
         </div>
+
+        <div class="container dt" id="lower" style="margin:10px 0px; display:none;">
+            <div class="row" id="user-in">
+                <div class="col-6">
+                    <h4>Select a student to find rooms with lower/equal rents than theirs.</h4>
+                </div>
+                <div class="col-4">
+                    <select class="form-control" id="lower-students">
+
+                    </select>
+                </div>
+                <div class="col-4">
+                    <button id="lower-btn" type="button" class="btn btn-small btn-primary">Search</button>
+                </div>
+            </div>
+            <div class="row" style="margin:20px 0; display: none;">
+                <div id="lower-show" class="col-8">
+                    <table id="lower-table" class="table table-striped table-bordered"></table>
+                </div>
+                <div id="lower-none" class="col-4 text-center">
+                    <h1>No rooms with a lower rent!</h1>
+                </div>
+            </div>
+        </div>
+
+        
 
     </body>
 
